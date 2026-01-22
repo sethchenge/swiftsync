@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Seth Chenge - Professional CV. Computer Technician & IT Professional. View qualifications, experience, and certifications.">
+    <meta name="theme-color" content="#0a0a0a">
+    
+    <title>Digital Resume | Swiftsync</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="cv.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
+</head>
+<body class="dark-theme">
+
+    <div class="loader-wrapper">
+        <div class="loader-content">
+            <h2 class="loader-text">LOADING DOSSIER</h2>
+            <div class="loader-bar"></div>
+        </div>
+    </div>
+
+    <canvas id="neuron-canvas"></canvas>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a class="navbar-brand" href="index.html">
+                <img src="logo.jpg" alt="Swiftsync Logo" class="footer-logo">
+                <span class="brand-text">Swiftsync</span>
+            </a>
+            <button class="sidebar-close" id="sidebarClose">
+                <span class="material-icons">close</span>
+            </button>
+        </div>
+        <ul class="sidebar-nav">
+            <li class="nav-item"><a class="nav-link" href="index.html"><span class="material-icons">home</span> Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="services.html"><span class="material-icons">hub</span> Services</a></li>
+            <li class="nav-item"><a class="nav-link" href="staff.html"><span class="material-icons">groups</span> Team</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html"><span class="material-icons">contact_mail</span> Contact</a></li>
+            <li class="nav-item"><a class="nav-link active" href="cv.html"><span class="material-icons">description</span> CV</a></li>
+        </ul>
+    </nav>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <button class="navbar-toggler sidebar-toggle" type="button" id="sidebarToggle">
+                <span class="material-icons">menu</span>
+            </button>
+            
+            <a class="navbar-brand" href="index.html">
+                <img src="logo.jpg" alt="Swiftsync Logo" class="footer-logo">
+                <span class="brand-text">Swiftsync</span>
+            </a>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="staff.html">Team</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link active btn-glow" href="cv.html">CV</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="cv-wrapper">
+        <div class="container">
+            
+            <div class="cv-card glass-card" id="printable-area">
+                <header class="cv-header">
+                    <div class="row align-items-center">
+                        <div class="col-md-3 text-center text-md-start">
+                            <div class="profile-frame">
+                                <img src="ICT teacher.jpg" alt="Seth Chenge" class="profile-img">
+                                <div class="scan-line"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-9 text-center text-md-start">
+                            <h1 class="name">SETH CHENGE</h1>
+                            <p class="role-title">Computer Technician & IT Professional</p>
+                            
+                            <div class="contact-grid">
+                                <div class="contact-pill">
+                                    <i class="fas fa-envelope"></i> chengeseth25@gmail.com
+                                </div>
+                                <div class="contact-pill">
+                                    <i class="fas fa-phone"></i> +254 721 156 350
+                                </div>
+                                <div class="contact-pill">
+                                    <i class="fas fa-map-marker-alt"></i> Eldoret, Kenya
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="cv-body">
+                    <div class="row">
+                        <div class="col-lg-4 cv-sidebar-col">
+                            
+                            <section class="cv-section">
+                                <h3 class="cv-heading"><i class="material-icons">fingerprint</i> Profile</h3>
+                                <p class="summary-text">
+                                    Experienced Computer Technician with comprehensive knowledge in IT, ready to explore innovative solutions with AI tools. Proven expertise in customer service, system troubleshooting, and project management with a strong foundation in data analysis.
+                                </p>
+                            </section>
+
+                            <section class="cv-section">
+                                <h3 class="cv-heading"><i class="material-icons">memory</i> Technical Capabilities</h3>
+                                <div class="skill-list">
+                                    <div class="skill-item">
+                                        <div class="d-flex justify-content-between">
+                                            <span>Computer Networking</span>
+                                            <span class="text-primary">95%</span>
+                                        </div>
+                                        <div class="progress"><div class="progress-bar" style="width: 95%"></div></div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="d-flex justify-content-between">
+                                            <span>Data Analysis</span>
+                                            <span class="text-secondary">90%</span>
+                                        </div>
+                                        <div class="progress"><div class="progress-bar sec" style="width: 90%"></div></div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="d-flex justify-content-between">
+                                            <span>Microsoft Office</span>
+                                            <span class="text-accent">92%</span>
+                                        </div>
+                                        <div class="progress"><div class="progress-bar acc" style="width: 92%"></div></div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="d-flex justify-content-between">
+                                            <span>Web Development</span>
+                                            <span class="text-primary">85%</span>
+                                        </div>
+                                        <div class="progress"><div class="progress-bar" style="width: 85%"></div></div>
+                                    </div>
+                                </div>
+                                <div class="badges-grid mt-3">
+                                    <span class="tech-badge">Cisco Certified</span>
+                                    <span class="tech-badge">Cloud Computing</span>
+                                    <span class="tech-badge">Cybersecurity</span>
+                                    <span class="tech-badge">Customer Service</span>
+                                </div>
+                            </section>
+
+                            <section class="cv-section">
+                                <h3 class="cv-heading"><i class="material-icons">translate</i> Languages</h3>
+                                <ul class="lang-list">
+                                    <li>English <span>(Proficient)</span></li>
+                                    <li>Kiswahili <span>(Fluent)</span></li>
+                                    <li>French <span>(Basic)</span></li>
+                                </ul>
+                            </section>
+                        </div>
+
+                        <div class="col-lg-8 cv-main-col">
+                            
+                            <section class="cv-section">
+                                <h3 class="cv-heading"><i class="material-icons">history</i> Professional Experience</h3>
+                                <div class="timeline">
+                                    
+                                    <div class="timeline-item">
+                                        <span class="date-badge">Present</span>
+                                        <h4>Computer Technician</h4>
+                                        <span class="company">Freelance | Eldoret, Kenya</span>
+                                        <p>Specialized in customer service and Microsoft Office assistance. Responsible for troubleshooting hardware/software, OS installations, and IT infrastructure maintenance.</p>
+                                    </div>
+
+                                    <div class="timeline-item">
+                                        <span class="date-badge">2021 - 2022</span>
+                                        <h4>Project Manager</h4>
+                                        <span class="company">Project Lead | Kitale, Kenya</span>
+                                        <p>Managed team coordination and project delivery. Developed essential skills in timeline management and collaborative leadership to achieve objectives within deadlines.</p>
+                                    </div>
+
+                                    <div class="timeline-item">
+                                        <span class="date-badge">2019 - 2020</span>
+                                        <h4>Data Analyst</h4>
+                                        <span class="company">Government of Kenya | Bungoma</span>
+                                        <p>Conducted national census data analysis using statistical methods. Handled large datasets to ensure accuracy and generate meaningful insights for government systems.</p>
+                                    </div>
+
+                                </div>
+                            </section>
+
+                            <section class="cv-section">
+                                <h3 class="cv-heading"><i class="material-icons">school</i> Education</h3>
+                                <div class="edu-card">
+                                    <h4>Bachelor of Education (Maths/Comp Sci)</h4>
+                                    <p class="school">Meru University of Science and Technology</p>
+                                    <span class="edu-date">Present</span>
+                                </div>
+                                <div class="edu-card mt-3">
+                                    <h4>High School Diploma</h4>
+                                    <p class="school">Friends Bwake Boys High School, Kitale</p>
+                                    <span class="edu-date">Graduated: Nov 2021</span>
+                                </div>
+                            </section>
+
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="cv-footer text-center">
+                    <p>Generated by Swiftsync AI Systems | &copy; 2025 Seth Chenge</p>
+                </footer>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="fab-container">
+        <button class="fab-btn" onclick="window.print()" title="Print / Save PDF">
+            <i class="material-icons">print</i>
+        </button>
+        <button class="fab-btn secondary" id="downloadBtn" title="Download CV">
+            <i class="material-icons">download</i>
+        </button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="cv.js"></script>
+</body>
+</html>

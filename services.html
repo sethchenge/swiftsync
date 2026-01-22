@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Swiftsync</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="services.css">
+</head>
+<body>
+
+    <canvas id="neuron-canvas"></canvas>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="logo.jpg" alt="Logo">
+                <span class="ms-2">Swiftsync</span>
+            </a>
+            <button class="sidebar-close" id="sidebarClose">
+                <span class="material-icons">close</span>
+            </button>
+        </div>
+        <ul class="sidebar-nav">
+            <li class="nav-item"><a class="nav-link" href="index.html"><span class="material-icons">house</span> Home</a></li>
+            <li class="nav-item"><a class="nav-link active" href="services.html"><span class="material-icons">hub</span> Services</a></li>
+            <li class="nav-item"><a class="nav-link" href="staff.html"><span class="material-icons">groups</span> Team</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html"><span class="material-icons">contact_mail</span> Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="cv.html"><span class="material-icons">description</span> CV</a></li>
+        </ul>
+    </nav>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <button class="sidebar-toggle me-3" type="button" id="sidebarToggle">
+                <span class="material-icons">menu</span>
+            </button>
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="logo.jpg" alt="Logo">
+                <span class="ms-2">Swiftsync</span>
+            </a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html"><i class="material-icons">house</i> Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="services.html"><i class="material-icons">hub</i> Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="staff.html"><i class="material-icons">groups</i> Team</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html"><i class="material-icons">contact_mail</i> Contact</a></li>
+                </ul>
+                <a href="contact.html" class="btn btn-primary ms-3 btn-sm rounded-pill">Get Quote</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="services-header text-center pt-5 mt-5">
+        <div class="container mt-5">
+            <span class="badge rounded-pill border border-light text-white mb-3 px-3 py-2">Our Capabilities</span>
+            <h1 class="display-4 fw-bold text-white">Comprehensive <span class="text-gradient">Solutions</span></h1>
+            <p class="lead text-white-50">Precision engineering for every aspect of your digital infrastructure.</p>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                
+                <div class="col-lg-4 col-md-6 reveal">
+                    <div class="service-card border-cyan">
+                        <div class="card-glow"></div>
+                        <div class="service-icon cyan"><i class="fab fa-linux"></i></div>
+                        <h3>OS Architecture</h3>
+                        <p>Expert installation and upgrades for Linux (Kali, Ubuntu), Windows (10/11), and macOS. We configure dual-boot systems and optimize drivers for peak performance.</p>
+                        <ul class="service-list">
+                            <li><i class="fas fa-check"></i> Zero-latency config</li>
+                            <li><i class="fas fa-check"></i> Custom Shells</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 reveal">
+                    <div class="service-card border-purple">
+                        <div class="card-glow"></div>
+                        <div class="service-icon purple"><i class="fas fa-box-open"></i></div>
+                        <h3>Software Suites</h3>
+                        <p>Full deployment of essential software ecosystems. From Microsoft Office (Word, Excel) to Adobe Creative Cloud and specialized development IDEs.</p>
+                        <ul class="service-list">
+                            <li><i class="fas fa-check"></i> Licensed Setup</li>
+                            <li><i class="fas fa-check"></i> Dev Environments</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 reveal">
+                    <div class="service-card border-orange">
+                        <div class="card-glow"></div>
+                        <div class="service-icon orange"><i class="fas fa-microchip"></i></div>
+                        <h3>Hardware Ops</h3>
+                        <p>Precision component installation. We handle Motherboards, GPUs, RAM upgrades, SSD migration, and custom PC building with cable management.</p>
+                        <ul class="service-list">
+                            <li><i class="fas fa-check"></i> Thermal Optimization</li>
+                            <li><i class="fas fa-check"></i> Parts Replacement</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 reveal">
+                    <div class="service-card border-blue">
+                        <div class="card-glow"></div>
+                        <div class="service-icon blue"><i class="fas fa-network-wired"></i></div>
+                        <h3>Lab & Networking</h3>
+                        <p>Complete Computer Lab setup for institutions. Structured cabling, switch configuration, router setup, and secure LAN/WAN deployment.</p>
+                        <ul class="service-list">
+                            <li><i class="fas fa-check"></i> Server Racks</li>
+                            <li><i class="fas fa-check"></i> Network Topology</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 reveal">
+                    <div class="service-card border-red">
+                        <div class="card-glow"></div>
+                        <div class="service-icon red"><i class="fas fa-video"></i></div>
+                        <h3>CCTV Security</h3>
+                        <p>Advanced surveillance integration. Installation of IP Cameras, DVR/NVR systems, and configuration for remote mobile viewing.</p>
+                        <ul class="service-list">
+                            <li><i class="fas fa-check"></i> Night Vision</li>
+                            <li><i class="fas fa-check"></i> Remote Access</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 reveal">
+                    <div class="service-card border-green">
+                        <div class="card-glow"></div>
+                        <div class="service-icon green"><i class="fas fa-bell"></i></div>
+                        <h3>Autobell Systems</h3>
+                        <p>Automated timing solutions for schools and factories. Programmable logic controllers for precise bell schedules and alerts.</p>
+                        <ul class="service-list">
+                            <li><i class="fas fa-check"></i> Custom Schedules</li>
+                            <li><i class="fas fa-check"></i> Hardware Install</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 reveal">
+                    <div class="service-card border-yellow">
+                        <div class="card-glow"></div>
+                        <div class="service-icon yellow"><i class="fas fa-stethoscope"></i></div>
+                        <h3>Diagnostics</h3>
+                        <p>Deep system analysis for critical failures. We troubleshoot hardware bottlenecks, software bugs, and perform data recovery.</p>
+                        <ul class="service-list">
+                            <li><i class="fas fa-check"></i> Data Recovery</li>
+                            <li><i class="fas fa-check"></i> Error Logs</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 reveal">
+                    <div class="service-card border-pink">
+                        <div class="card-glow"></div>
+                        <div class="service-icon pink"><i class="fas fa-code"></i></div>
+                        <h3>Web & SEO</h3>
+                        <p>Next-gen web development with built-in SEO. We build responsive, fast, and high-ranking websites to boost your digital presence.</p>
+                        <ul class="service-list">
+                            <li><i class="fas fa-check"></i> E-commerce</li>
+                            <li><i class="fas fa-check"></i> SEO Optimization</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 reveal">
+                    <div class="service-card border-white text-center d-flex flex-column justify-content-center">
+                        <div class="service-icon white mx-auto"><i class="fas fa-calendar-check"></i></div>
+                        <h3>Book a Session</h3>
+                        <p>Need personalized training or consultation? Schedule a one-on-one session with our experts.</p>
+                        <a href="contact.html" class="btn btn-primary mt-3">Book Now</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 border-top border-light">
+        <div class="container text-center">
+            <h2 class="mb-5 text-white">Our Technology <span class="text-gradient">Toolkit</span></h2>
+            <div class="row justify-content-center g-4">
+                <div class="col-4 col-md-2 tech-icon"><i class="fab fa-linux"></i><br><small>Linux</small></div>
+                <div class="col-4 col-md-2 tech-icon"><i class="fab fa-windows"></i><br><small>Windows</small></div>
+                <div class="col-4 col-md-2 tech-icon"><i class="fab fa-apple"></i><br><small>MacOS</small></div>
+                <div class="col-4 col-md-2 tech-icon"><i class="fab fa-python"></i><br><small>Python</small></div>
+                <div class="col-4 col-md-2 tech-icon"><i class="fas fa-shield-alt"></i><br><small>Security</small></div>
+                <div class="col-4 col-md-2 tech-icon"><i class="fab fa-html5"></i><br><small>Web</small></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4 text-center">
+                <div class="col-md-4 reveal">
+                    <div class="stat-card border-cyan">
+                        <h2 class="counter" data-target="500">0</h2>
+                        <p>Projects Completed</p>
+                    </div>
+                </div>
+                <div class="col-md-4 reveal">
+                    <div class="stat-card border-purple">
+                        <h2 class="counter" data-target="98">0</h2>
+                        <p>Client Satisfaction (%)</p>
+                    </div>
+                </div>
+                <div class="col-md-4 reveal">
+                    <div class="stat-card border-blue">
+                        <h2 class="counter" data-target="24">0</h2>
+                        <p>Hours Support / 7</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="logo.jpg" alt="Logo" class="rounded-circle me-2" style="width:30px; border:1px solid #333;">
+                        <h5 class="m-0">Swiftsync</h5>
+                    </div>
+                    <p class="text-white-50">Synchronizing technology with human ambition.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="text-white">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-white-50 text-decoration-none">Home</a></li>
+                        <li><a href="services.html" class="text-white-50 text-decoration-none">Services</a></li>
+                        <li><a href="staff.html" class="text-white-50 text-decoration-none">Team</a></li>
+                        <li><a href="contact.html" class="text-white-50 text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="text-white">Connect</h5>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-white"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-secondary my-4">
+            <div class="text-center text-white-50">
+                <small>&copy; 2025 Swiftsync. All rights reserved.</small>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="services.js"></script>
+</body>
+</html>

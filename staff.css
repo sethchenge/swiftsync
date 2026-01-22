@@ -1,0 +1,192 @@
+/* Import core variables */
+@import url('styles.css'); 
+
+/* ===== UTILITIES & ANIMATIONS ===== */
+.section-padding { padding: 100px 0; }
+.text-visible { color: rgba(255, 255, 255, 0.9) !important; line-height: 1.8; }
+
+/* Animation Keyframes */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in-up {
+    animation: fadeUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    opacity: 0; 
+}
+
+/* Scroll Reveal */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.scroll-reveal.active { opacity: 1; transform: translateY(0); }
+
+.delay-100 { transition-delay: 0.1s; animation-delay: 0.1s; }
+.delay-200 { transition-delay: 0.2s; animation-delay: 0.2s; }
+
+/* ===== HERO SECTION ===== */
+.staff-hero {
+    padding: 150px 0 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Stats Cards (Premium Look) */
+.stat-card {
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    background: rgba(30, 38, 51, 0.7); /* Dark Glass */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-bottom-width: 4px;
+    transition: transform 0.3s;
+}
+.stat-card:hover { transform: translateY(-5px); background: rgba(40, 50, 65, 0.9); }
+.stat-card h2 { font-weight: 800; margin: 0; font-size: 3rem; }
+.stat-card p { 
+    color: rgba(255, 255, 255, 0.7) !important; 
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+    font-size: 0.9rem; 
+    margin-top: 10px;
+}
+
+/* ===== CEO SECTION ===== */
+.ceo-card {
+    background: rgba(30, 38, 51, 0.7);
+    padding: 30px;
+    border-radius: 20px;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 4px solid var(--secondary); /* Cyan Accent */
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.ceo-image-wrapper {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+.ceo-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.1);
+}
+
+.verified-badge {
+    position: absolute; bottom: 10px; right: 10px;
+    background: var(--secondary); color: #000;
+    width: 30px; height: 30px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 10px var(--secondary);
+}
+
+.role-badge {
+    background: rgba(255,255,255,0.1);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: var(--secondary);
+    letter-spacing: 1px;
+}
+
+.skills-row { display: flex; justify-content: center; gap: 10px; }
+.skill-pill {
+    font-size: 0.8rem; color: #fff; border: 1px solid rgba(255,255,255,0.2);
+    padding: 2px 10px; border-radius: 10px;
+}
+
+/* Milestones */
+.milestone {
+    border-left: 2px solid var(--secondary);
+    padding-left: 20px;
+    margin-bottom: 20px;
+    position: relative;
+}
+.milestone::before {
+    content: ''; position: absolute; left: -6px; top: 0;
+    width: 10px; height: 10px; border-radius: 50%; background: var(--secondary);
+    box-shadow: 0 0 10px var(--secondary);
+}
+.milestone .year { font-weight: 700; color: var(--secondary); display: block; margin-bottom: 5px; }
+.milestone p { margin: 0; color: rgba(255, 255, 255, 0.8); font-size: 0.95rem; }
+
+/* ===== SQUAD SECTION ===== */
+.member-card {
+    background: rgba(30, 38, 51, 0.7);
+    border-radius: 20px;
+    overflow: hidden;
+    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom-width: 4px;
+    transition: transform 0.3s;
+    backdrop-filter: blur(10px);
+}
+
+.member-card:hover { 
+    transform: translateY(-10px); 
+    background: rgba(40, 50, 65, 0.9);
+}
+
+.member-header {
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.avatar-placeholder {
+    width: 70px; height: 70px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 1.5rem; color: white;
+}
+
+.gradient-1 { background: linear-gradient(135deg, #f50057, #ff4081); } /* Pink for Web */
+.gradient-2 { background: linear-gradient(135deg, #2979ff, #00e5ff); } /* Blue for Cloud */
+
+.member-role h4 { margin: 0; font-size: 1.2rem; }
+.member-role span { font-size: 0.9rem; font-family: var(--font-body); }
+
+.member-body { padding: 30px; }
+.member-body p { color: rgba(255, 255, 255, 0.8) !important; font-size: 0.95rem; line-height: 1.6; }
+
+.specs-list { list-style: none; padding: 0; margin-top: 20px; }
+.specs-list li {
+    margin-bottom: 8px; font-size: 0.9rem; color: #fff;
+    display: flex; align-items: center; gap: 10px;
+}
+.specs-list li i { opacity: 0.8; font-size: 14px; }
+
+/* Border Colors */
+.border-blue { border-bottom-color: #2979ff; }
+.border-cyan { border-bottom-color: #00e5ff; }
+.border-purple { border-bottom-color: #d500f9; }
+.border-pink { border-bottom-color: #f50057; }
+
+/* Specific Text Colors for Roles */
+.member-card.border-pink .member-role span { color: #f50057 !important; }
+.member-card.border-pink .specs-list li i { color: #f50057; }
+
+.member-card.border-blue .member-role span { color: #2979ff !important; }
+.member-card.border-blue .specs-list li i { color: #2979ff; }
+
+/* ===== CULTURE SECTION ===== */
+.value-box {
+    padding: 30px;
+    background: rgba(255,255,255,0.02);
+    border-radius: 15px;
+    transition: background 0.3s;
+}
+.value-box:hover { background: rgba(255,255,255,0.05); }
+.value-icon { font-size: 40px; color: var(--primary); margin-bottom: 15px; }
+.value-box h4 { margin-bottom: 10px; color: white !important; }
+.value-box p { color: rgba(255, 255, 255, 0.7) !important; margin: 0; }

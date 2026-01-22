@@ -1,0 +1,181 @@
+/* ===== SERVICES SPECIFIC STYLES ===== */
+
+/* Base overrides for services page */
+.services-header h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+}
+
+/* ===== PREMIUM CARDS ===== */
+.service-card {
+    background: rgba(30, 38, 51, 0.7); /* Dark Glass */
+    backdrop-filter: blur(10px);
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    height: 100%;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    
+    /* Default Border (overridden by colors below) */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom-width: 4px; /* thick bottom border for color */
+}
+
+/* Hover Effect: Lift & Glow */
+.service-card:hover {
+    transform: translateY(-10px);
+    background: rgba(40, 50, 65, 0.9);
+}
+
+/* FORCE WHITE TEXT */
+.service-card h3 {
+    color: #ffffff !important;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.service-card p {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+/* Service List Items */
+.service-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1rem;
+}
+
+.service-list li {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.service-list li i {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+/* ===== NEW STATS CARD STYLES ===== */
+.stat-card {
+    background: rgba(30, 38, 51, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom-width: 4px; /* Matches service cards */
+    transition: transform 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    background: rgba(40, 50, 65, 0.9);
+}
+
+.stat-card h2 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #ffffff !important;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.stat-card p {
+    color: rgba(255, 255, 255, 0.7) !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    margin: 0;
+    font-weight: 600;
+}
+
+
+/* ===== COLOR CODING (Intuitive Borders) ===== */
+
+/* Cyan (OS) */
+.border-cyan { border-bottom-color: #00e5ff; }
+.service-card.border-cyan:hover, .stat-card.border-cyan:hover { box-shadow: 0 10px 30px rgba(0, 229, 255, 0.2); }
+.service-icon.cyan { color: #00e5ff; background: rgba(0, 229, 255, 0.1); }
+.border-cyan li i { color: #00e5ff; }
+
+/* Purple (Software) */
+.border-purple { border-bottom-color: #d500f9; }
+.service-card.border-purple:hover, .stat-card.border-purple:hover { box-shadow: 0 10px 30px rgba(213, 0, 249, 0.2); }
+.service-icon.purple { color: #d500f9; background: rgba(213, 0, 249, 0.1); }
+.border-purple li i { color: #d500f9; }
+
+/* Orange (Hardware) */
+.border-orange { border-bottom-color: #ff9100; }
+.service-card.border-orange:hover { box-shadow: 0 10px 30px rgba(255, 145, 0, 0.2); }
+.service-icon.orange { color: #ff9100; background: rgba(255, 145, 0, 0.1); }
+.border-orange li i { color: #ff9100; }
+
+/* Blue (Networking) */
+.border-blue { border-bottom-color: #2979ff; }
+.service-card.border-blue:hover, .stat-card.border-blue:hover { box-shadow: 0 10px 30px rgba(41, 121, 255, 0.2); }
+.service-icon.blue { color: #2979ff; background: rgba(41, 121, 255, 0.1); }
+.border-blue li i { color: #2979ff; }
+
+/* Red (Security) */
+.border-red { border-bottom-color: #ff1744; }
+.service-card.border-red:hover { box-shadow: 0 10px 30px rgba(255, 23, 68, 0.2); }
+.service-icon.red { color: #ff1744; background: rgba(255, 23, 68, 0.1); }
+.border-red li i { color: #ff1744; }
+
+/* Green (Autobell) */
+.border-green { border-bottom-color: #00c853; }
+.service-card.border-green:hover { box-shadow: 0 10px 30px rgba(0, 200, 83, 0.2); }
+.service-icon.green { color: #00c853; background: rgba(0, 200, 83, 0.1); }
+.border-green li i { color: #00c853; }
+
+/* Yellow (Diagnostics) */
+.border-yellow { border-bottom-color: #ffea00; }
+.service-card.border-yellow:hover { box-shadow: 0 10px 30px rgba(255, 234, 0, 0.2); }
+.service-icon.yellow { color: #ffea00; background: rgba(255, 234, 0, 0.1); }
+.border-yellow li i { color: #ffea00; }
+
+/* Pink (Web) */
+.border-pink { border-bottom-color: #f50057; }
+.service-card.border-pink:hover { box-shadow: 0 10px 30px rgba(245, 0, 87, 0.2); }
+.service-icon.pink { color: #f50057; background: rgba(245, 0, 87, 0.1); }
+.border-pink li i { color: #f50057; }
+
+/* White (Booking) */
+.border-white { border-bottom-color: #ffffff; }
+.service-card.border-white:hover { box-shadow: 0 10px 30px rgba(255, 255, 255, 0.15); }
+.service-icon.white { color: #ffffff; background: rgba(255, 255, 255, 0.1); }
+
+
+/* Tech Icons Section */
+.tech-icon {
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 0.3);
+    transition: all 0.3s;
+}
+
+.tech-icon small {
+    font-size: 0.9rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: block;
+    margin-top: 5px;
+}
+
+.tech-icon:hover {
+    color: var(--primary);
+    transform: translateY(-5px);
+}
+
+.tech-icon:hover small {
+    opacity: 1;
+    color: white;
+}

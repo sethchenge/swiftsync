@@ -1,0 +1,231 @@
+/* Import core variables */
+@import url('styles.css'); 
+
+/* Ensure Logo matches footer style (No Border) */
+.brand-logo {
+    border: none !important;
+}
+
+/* ===== CV LAYOUT ===== */
+.cv-wrapper {
+    padding: 120px 0 80px;
+    min-height: 100vh;
+}
+
+.cv-card {
+    background: rgba(10, 10, 10, 0.85); /* Slightly more opaque for readability */
+    border-radius: 0;
+    overflow: hidden;
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Header */
+.cv-header {
+    background: linear-gradient(135deg, rgba(0, 243, 255, 0.1), rgba(188, 19, 254, 0.1));
+    padding: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    position: relative;
+}
+
+.profile-frame {
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    padding: 5px;
+    border: 2px solid var(--primary);
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+}
+
+.profile-img {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Sci-fi Scan Line Effect */
+.scan-line {
+    position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+    background: rgba(0, 243, 255, 0.8);
+    box-shadow: 0 0 10px var(--primary);
+    animation: scan 3s linear infinite;
+}
+
+@keyframes scan {
+    0% { top: 0; opacity: 0; }
+    50% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+}
+
+.name {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: var(--text-main);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.role-title {
+    color: var(--primary);
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.contact-grid {
+    display: flex; gap: 15px; flex-wrap: wrap;
+    justify-content: center;
+}
+
+@media(min-width: 768px) {
+    .contact-grid { justify-content: flex-start; }
+}
+
+.contact-pill {
+    background: rgba(255,255,255,0.05);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #ccc;
+    display: flex; align-items: center; gap: 8px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+.contact-pill i { color: var(--secondary); }
+
+/* Body Content */
+.cv-body { padding: 40px; }
+
+.cv-heading {
+    font-size: 1.2rem;
+    color: var(--text-main);
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.cv-heading i { color: var(--primary); }
+
+.cv-section { margin-bottom: 40px; }
+
+.summary-text { color: #a0a0a0; line-height: 1.8; text-align: justify; }
+
+/* Skills Progress */
+.skill-item { margin-bottom: 15px; }
+.skill-item span { font-size: 0.9rem; color: #ccc; font-weight: 500; }
+.progress { height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; margin-top: 5px; }
+.progress-bar { background: var(--primary); box-shadow: 0 0 10px var(--primary); border-radius: 3px; }
+.progress-bar.sec { background: var(--secondary); box-shadow: 0 0 10px var(--secondary); }
+.progress-bar.acc { background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+
+.badges-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+.tech-badge {
+    background: rgba(30, 144, 255, 0.1);
+    color: var(--accent);
+    padding: 5px 12px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    border: 1px solid rgba(30, 144, 255, 0.3);
+}
+
+.lang-list { list-style: none; padding: 0; }
+.lang-list li { margin-bottom: 8px; color: #ccc; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 5px; }
+.lang-list span { color: var(--text-muted); font-size: 0.8rem; float: right; }
+
+/* Timeline */
+.timeline { border-left: 2px solid rgba(255,255,255,0.1); padding-left: 25px; }
+.timeline-item { position: relative; margin-bottom: 30px; }
+.timeline-item::before {
+    content: ''; position: absolute; left: -31px; top: 5px;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--bg-dark); border: 2px solid var(--primary);
+}
+
+.date-badge {
+    background: var(--gradient);
+    color: white; padding: 2px 10px;
+    border-radius: 10px; font-size: 0.75rem; font-weight: 700;
+}
+
+.timeline-item h4 { margin: 10px 0 5px; font-size: 1.1rem; color: white; }
+.timeline-item .company { display: block; color: var(--secondary); font-size: 0.9rem; margin-bottom: 10px; font-weight: 600; }
+.timeline-item p { color: #a0a0a0; font-size: 0.95rem; line-height: 1.6; }
+
+.edu-card {
+    background: rgba(255,255,255,0.03);
+    padding: 15px; border-radius: 10px;
+    border-left: 3px solid var(--secondary);
+}
+.edu-card h4 { font-size: 1rem; margin-bottom: 5px; }
+.edu-card .school { color: #ccc; margin-bottom: 5px; font-size: 0.9rem; }
+.edu-date { color: var(--primary); font-size: 0.8rem; }
+
+.cv-footer {
+    padding: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    color: #666; font-size: 0.8rem;
+}
+
+/* Floating Actions */
+.fab-container {
+    position: fixed; bottom: 100px; right: 30px;
+    display: flex; flex-direction: column; gap: 15px;
+    z-index: 999;
+}
+
+.fab-btn {
+    width: 50px; height: 50px;
+    border-radius: 50%; border: none;
+    background: var(--primary); color: #000;
+    box-shadow: 0 5px 20px rgba(0, 243, 255, 0.4);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: transform 0.2s;
+}
+.fab-btn.secondary { background: var(--secondary); color: white; box-shadow: 0 5px 20px rgba(188, 19, 254, 0.4); }
+.fab-btn:hover { transform: scale(1.1); }
+
+/* ===== PRINT STYLES ===== */
+@media print {
+    body { background: white; color: black; }
+    .loader-wrapper, #neuron-canvas, .navbar, .sidebar, .fab-container, .ai-float { display: none !important; }
+    
+    .cv-wrapper { padding: 0; }
+    .cv-card {
+        background: white; color: black;
+        box-shadow: none; border: none;
+        max-width: 100%;
+    }
+    
+    .cv-header { background: #f0f0f0; border-bottom: 2px solid #333; }
+    .name, .cv-heading, .timeline-item h4 { color: black !important; }
+    .role-title, .cv-heading i { color: #333 !important; }
+    
+    .profile-frame { border-color: #333; box-shadow: none; }
+    .scan-line { display: none; }
+    
+    .contact-pill { background: transparent; border: 1px solid #ddd; color: #333; }
+    .contact-pill i { color: #333; }
+    
+    .summary-text, .timeline-item p, .skill-item span { color: #444; }
+    
+    .progress { background: #eee; }
+    .progress-bar { background: #333 !important; box-shadow: none !important; }
+    
+    .tech-badge { border-color: #333; color: #333; background: transparent; }
+    
+    .timeline { border-left-color: #999; }
+    .timeline-item::before { background: white; border-color: #333; }
+    .date-badge { background: #333; color: white; }
+    
+    .edu-card { background: transparent; border: 1px solid #ddd; border-left: 3px solid #333; }
+    
+    .cv-footer { display: none; }
+}
