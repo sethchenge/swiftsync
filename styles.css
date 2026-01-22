@@ -173,13 +173,13 @@ p, li, span, div {
     overflow: hidden;
     display: flex;
     align-items: center;
-    padding-top: 60px; 
+    padding-top: 80px; 
 }
 
 /* MOBILE PADDING FIX - Ensures text is seen */
 @media (max-width: 991px) {
     .hero-section {
-        padding-top: 150px; /* Big padding for mobile */
+        padding-top: 100px; /* Big padding for mobile */
         height: auto;
         min-height: 100vh;
         align-items: flex-start; /* Start content below navbar */
