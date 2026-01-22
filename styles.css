@@ -173,7 +173,7 @@ p, li, span, div {
     overflow: hidden;
     display: flex;
     align-items: center;
-    padding-top: 80px; 
+    padding-top: 60px; 
 }
 
 /* MOBILE PADDING FIX - Ensures text is seen */
