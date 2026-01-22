@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 4. SIDEBAR LOGIC (Restored from Original)
+    // 4. SIDEBAR LOGIC
     const sidebarToggle = document.getElementById('sidebarToggle');
     const sidebarClose = document.getElementById('sidebarClose');
     const sidebar = document.getElementById('sidebar');
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (sidebarOverlay) sidebarOverlay.addEventListener('click', closeSidebar);
 });
 
-// ===== 5. PARTICLE BACKGROUND ANIMATION (Restored) =====
+// ===== 5. PARTICLE BACKGROUND ANIMATION =====
 const canvas = document.getElementById('neuron-canvas');
 if (canvas) {
     const ctx = canvas.getContext('2d');
@@ -113,7 +113,6 @@ if (canvas) {
                 const dy = particles[i].y - particles[j].y;
                 const dist = Math.sqrt(dx*dx + dy*dy);
                 if (dist < 150) {
-                    ctx.beginPath();
                     // Blue/Cyan connection lines
                     ctx.strokeStyle = `rgba(41, 121, 255, ${0.1 - dist/1500})`;
                     ctx.lineWidth = 1;
@@ -131,3 +130,23 @@ if (canvas) {
     initParticles(); 
     animateParticles();
 }
+// ===== BLOG SCROLL REVEAL =====
+// This ensures that new sections like #blog fade in correctly
+document.addEventListener('DOMContentLoaded', () => {
+    const revealElements = document.querySelectorAll('.reveal');
+    
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                // Only animate once
+                revealObserver.unobserve(entry.target); 
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+});
