@@ -179,7 +179,7 @@ p, li, span, div {
 /* MOBILE PADDING FIX - Ensures text is seen */
 @media (max-width: 991px) {
     .hero-section {
-        padding-top: 150px; /* Big padding for mobile */
+        padding-top: 110px; /* Reduced from 150px as requested */
         height: auto;
         min-height: 100vh;
         align-items: flex-start; /* Start content below navbar */
@@ -239,14 +239,19 @@ p, li, span, div {
     color: #ffffff !important;
 }
 
+/* Updated Service Card for Glass Effect & Neon Borders */
 .service-card {
-    background: var(--bg-card);
+    background: rgba(30, 38, 51, 0.7); /* Dark Glass */
+    backdrop-filter: blur(10px);
     padding: 2rem;
     border-radius: 16px;
     border: 1px solid var(--border-light);
+    border-bottom-width: 4px; /* Thick bottom border for color */
     box-shadow: var(--shadow-sm);
     transition: transform 0.3s, box-shadow 0.3s;
     height: 100%;
+    position: relative;
+    overflow: hidden;
 }
 
 /* CARD TEXT VISIBILITY FIX */
@@ -262,8 +267,8 @@ p, li, span, div {
 .service-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-    border-color: var(--primary);
-    background: var(--bg-surface);
+    background: rgba(40, 50, 65, 0.9);
+    /* Border color handles glow on hover via specific classes below */
 }
 
 .service-icon {
@@ -274,7 +279,42 @@ p, li, span, div {
     display: flex; align-items: center; justify-content: center;
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
+    transition: all 0.3s;
 }
+
+/* ===== INDEX PAGE AUTO-COLORING ===== */
+/* Manually targets the 6 service cards in index.html to apply the neon colors */
+
+/* 1. OS Installation (Cyan) */
+#services .col-md-4:nth-child(1) .service-card { border-bottom-color: #00e5ff; }
+#services .col-md-4:nth-child(1) .service-card:hover { box-shadow: 0 10px 30px rgba(0, 229, 255, 0.2); }
+#services .col-md-4:nth-child(1) .service-icon { color: #00e5ff; background: rgba(0, 229, 255, 0.1); }
+
+/* 2. Package Installation (Purple) */
+#services .col-md-4:nth-child(2) .service-card { border-bottom-color: #d500f9; }
+#services .col-md-4:nth-child(2) .service-card:hover { box-shadow: 0 10px 30px rgba(213, 0, 249, 0.2); }
+#services .col-md-4:nth-child(2) .service-icon { color: #d500f9; background: rgba(213, 0, 249, 0.1); }
+
+/* 3. Hardware Setup (Orange) */
+#services .col-md-4:nth-child(3) .service-card { border-bottom-color: #ff9100; }
+#services .col-md-4:nth-child(3) .service-card:hover { box-shadow: 0 10px 30px rgba(255, 145, 0, 0.2); }
+#services .col-md-4:nth-child(3) .service-icon { color: #ff9100; background: rgba(255, 145, 0, 0.1); }
+
+/* 4. Networking & CCTV (Blue) */
+#services .col-md-4:nth-child(4) .service-card { border-bottom-color: #2979ff; }
+#services .col-md-4:nth-child(4) .service-card:hover { box-shadow: 0 10px 30px rgba(41, 121, 255, 0.2); }
+#services .col-md-4:nth-child(4) .service-icon { color: #2979ff; background: rgba(41, 121, 255, 0.1); }
+
+/* 5. Diagnostics (Yellow) */
+#services .col-md-4:nth-child(5) .service-card { border-bottom-color: #ffea00; }
+#services .col-md-4:nth-child(5) .service-card:hover { box-shadow: 0 10px 30px rgba(255, 234, 0, 0.2); }
+#services .col-md-4:nth-child(5) .service-icon { color: #ffea00; background: rgba(255, 234, 0, 0.1); }
+
+/* 6. Web & SEO (Pink) */
+#services .col-md-4:nth-child(6) .service-card { border-bottom-color: #f50057; }
+#services .col-md-4:nth-child(6) .service-card:hover { box-shadow: 0 10px 30px rgba(245, 0, 87, 0.2); }
+#services .col-md-4:nth-child(6) .service-icon { color: #f50057; background: rgba(245, 0, 87, 0.1); }
+
 
 /* ===== NEW PORTFOLIO SECTION ===== */
 .portfolio-section {
