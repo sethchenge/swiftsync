@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Help Google find your sitemap
+Sitemap: https://swiftsync.co.ke/sitemap.xml
