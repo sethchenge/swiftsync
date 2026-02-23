@@ -125,3 +125,43 @@ window.addEventListener('scroll', () => {
         navbar.style.boxShadow = "none";
     }
 });
+// ===== PAGE PRELOADER LOGIC =====
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        // We add a tiny 500ms delay so the user gets a glimpse of the cool animation 
+        // even if the page loads instantly.
+        setTimeout(() => {
+            preloader.classList.add('preloader-hidden');
+            
+            // Completely remove it from the DOM after the fade transition completes (600ms)
+            setTimeout(() => {
+                preloader.remove();
+            }, 600);
+        }, 500); 
+    }
+});
+// ===== SCROLL TO TOP BUTTON LOGIC =====
+document.addEventListener("DOMContentLoaded", () => {
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    
+    if (scrollTopBtn) {
+        // 1. Show/Hide button based on scroll position
+        window.addEventListener("scroll", () => {
+            // If user scrolls down more than 300 pixels, show the button
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add("show");
+            } else {
+                scrollTopBtn.classList.remove("show");
+            }
+        });
+
+        // 2. Smooth scroll to top when clicked
+        scrollTopBtn.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    }
+});

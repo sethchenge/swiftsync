@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact | Swiftsync</title>
     
+    <meta name="title" content="Swiftsync | Modern Tech Solutions">
+    <meta name="description" content="Synchronizing technology with human ambition. We provide OS installation, secure networking, CCTV, and next-gen web development in Kenya.">
+    <meta name="keywords" content="Swiftsync, IT solutions Kenya, network setup, web development, OS installation, CCTV installation Nairobi, tech support">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://swiftsync.co.ke/"> <meta property="og:title" content="Swiftsync | Modern Tech Solutions">
+    <meta property="og:description" content="Synchronizing technology with human ambition. Expert IT, networking, and web solutions.">
+    <meta property="og:image" content="https://swiftsync.co.ke/logo.jpg"> 
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://swiftsync.co.ke/">
+    <meta property="twitter:title" content="Swiftsync | Modern Tech Solutions">
+    <meta property="twitter:description" content="Expert IT, networking, and web solutions in Kenya.">
+    <meta property="twitter:image" content="https://swiftsync.co.ke/logo.jpg">
+    
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -14,6 +29,13 @@
     <link rel="stylesheet" href="contact.css">
 </head>
 <body>
+
+    <div id="preloader">
+        <div class="loader-content">
+            <div class="neon-ring"></div>
+            <div class="loader-text">INITIALIZING...</div>
+        </div>
+    </div>
 
     <canvas id="neuron-canvas"></canvas>
 
@@ -217,6 +239,76 @@
         </div>
     </section>
 
+    <section class="faq-section section-padding">
+        <div class="container">
+            <div class="text-center mb-5 scroll-reveal">
+                <span class="badge rounded-pill border border-info text-info mb-3 px-3 py-2">Got Questions?</span>
+                <h2 class="section-title text-white">Frequently Asked <span class="text-gradient">Questions</span></h2>
+                <p class="text-white-50">Find quick answers to common queries about our services.</p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-9 scroll-reveal delay-100">
+                    <div class="accordion glass-accordion" id="faqAccordion">
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <i class="material-icons me-3">build</i> Do you offer on-site repairs and installations?
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes! We provide comprehensive on-site services including hardware setup, computer lab networking, and CCTV installations across Nairobi and surrounding areas. For software-only issues, we can often assist remotely.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <i class="material-icons me-3">code</i> How long does a typical web development project take?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    A standard professional website usually takes between 2 to 4 weeks from initial consultation to final deployment. E-commerce or complex platforms may take slightly longer. We always provide a clear timeline before starting any work.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    <i class="material-icons me-3">laptop_mac</i> Can you upgrade my old Windows laptop to run faster?
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Absolutely. The most common solution is migrating your hard drive to an SSD (Solid State Drive) and upgrading your RAM, paired with a fresh OS installation. This typically makes an old computer run up to 10x faster.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    <i class="material-icons me-3">security</i> Do you provide cybersecurity audits for small businesses?
+                                </button>
+                            </h2>
+                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes, we specialize in securing digital infrastructure. We can test your network for vulnerabilities, setup secure firewalls, install robust antivirus packages, and ensure your team's data is backed up safely against ransomware.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="support-section section-padding">
         <div class="container">
             <div class="text-center mb-5 scroll-reveal">
@@ -298,7 +390,18 @@
         <span id="toast-message">Notification</span>
     </div>
 
+    <a href="https://wa.me/254721156350?text=Hello%20Swiftsync,%20I%20would%20like%20to%20inquire%20about%20your%20services." 
+       class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <button id="scrollTopBtn" class="scroll-top-btn" title="Go to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="contact.js"></script>
+    
 </body>
 </html>

@@ -183,7 +183,7 @@
 /* ===== NEW WELCOME TEXT ANIMATION STYLES ===== */
 #welcome-text-section {
     background: radial-gradient(ellipse at center, rgba(0, 229, 255, 0.05) 0%, transparent 70%);
-    margin-top: 80px; 
+    margin-top: 60px; 
     padding-top: 8rem !important; /* Forces it down from under the navbar */
     padding-bottom: 4rem !important;
 }

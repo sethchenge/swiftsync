@@ -210,3 +210,172 @@ window.addEventListener('scroll', () => {
         navbar.style.boxShadow = "none";
     }
 });
+// ===== PAGE PRELOADER LOGIC =====
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        // We add a tiny 500ms delay so the user gets a glimpse of the cool animation 
+        // even if the page loads instantly.
+        setTimeout(() => {
+            preloader.classList.add('preloader-hidden');
+            
+            // Completely remove it from the DOM after the fade transition completes (600ms)
+            setTimeout(() => {
+                preloader.remove();
+            }, 600);
+        }, 500); 
+    }
+});
+// ===== SCROLL TO TOP BUTTON LOGIC =====
+document.addEventListener("DOMContentLoaded", () => {
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    
+    if (scrollTopBtn) {
+        // 1. Show/Hide button based on scroll position
+        window.addEventListener("scroll", () => {
+            // If user scrolls down more than 300 pixels, show the button
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add("show");
+            } else {
+                scrollTopBtn.classList.remove("show");
+            }
+        });
+
+        // 2. Smooth scroll to top when clicked
+        scrollTopBtn.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    }
+});
+// ===== BULLETPROOF PAGE PRELOADER LOGIC =====
+function removePreloader() {
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        setTimeout(() => {
+            preloader.classList.add('preloader-hidden');
+            setTimeout(() => {
+                preloader.remove();
+            }, 600);
+        }, 1200); 
+    }
+}
+
+if (document.readyState === 'complete') {
+    removePreloader();
+} else {
+    window.addEventListener('load', removePreloader);
+}
+
+// ===== SCROLL TO TOP BUTTON LOGIC =====
+document.addEventListener("DOMContentLoaded", () => {
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    
+    if (scrollTopBtn) {
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add("show");
+            } else {
+                scrollTopBtn.classList.remove("show");
+            }
+        });
+
+        scrollTopBtn.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    }
+});
+
+
+
+
+// ==========================================
+// ===== EMAILJS CONTACT FORM BACKEND =======
+// ==========================================
+
+// 1. Initialize EmailJS with your Public Key
+(function() {
+    emailjs.init("jqVskv1gIrhtxzWLj");
+})();
+
+document.addEventListener("DOMContentLoaded", () => {
+    const contactForm = document.getElementById("contactForm");
+    const formMessage = document.getElementById("formMessage");
+
+    if (contactForm) {
+        contactForm.addEventListener("submit", function(event) {
+            event.preventDefault(); // Stops the page from refreshing
+
+            // Get the submit button so we can change its text to "Sending..."
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            
+            // Show loading state
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Sending...';
+            submitBtn.disabled = true;
+
+            // Collect the data typed into the form
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+            const service = document.getElementById("service").value;
+            const message = document.getElementById("message").value;
+            
+            // Get the current time for your {{time}} variable in the template
+            const currentTime = new Date().toLocaleString('en-KE', { timeZone: 'Africa/Nairobi' });
+
+            // Package the data exactly how your EmailJS template expects it
+            const templateParams = {
+                name: name,
+                email: email,
+                title: service, // Maps to your {{title}} in the Subject line
+                time: currentTime, // Maps to {{time}} in the body
+                // Adding the phone number to the message just in case you need to call them back!
+                message: message + "\n\n--- \nClient Phone: " + phone 
+            };
+
+            // Send it using your Service ID and Template ID
+            emailjs.send("service_y5ep5de", "template_hjti01j", templateParams)
+                .then(function(response) {
+                    console.log("SUCCESS!", response.status, response.text);
+                    
+                    // Show a glowing green success message
+                    formMessage.innerHTML = `
+                        <div class="alert alert-success d-flex align-items-center mt-3" style="background: rgba(37, 211, 102, 0.1); border: 1px solid #25d366; color: #25d366;">
+                            <span class="material-icons me-2">check_circle</span>
+                            <div>Message sent successfully! We will get back to you shortly.</div>
+                        </div>
+                    `;
+                    
+                    // Clear the form
+                    contactForm.reset();
+
+                }, function(error) {
+                    console.error("FAILED...", error);
+                    
+                    // Show a red error message if something goes wrong
+                    formMessage.innerHTML = `
+                        <div class="alert alert-danger d-flex align-items-center mt-3" style="background: rgba(245, 0, 87, 0.1); border: 1px solid #f50057; color: #f50057;">
+                            <span class="material-icons me-2">error</span>
+                            <div>Failed to send the message. Please try checking your internet connection.</div>
+                        </div>
+                    `;
+                })
+                .finally(function() {
+                    // Turn the button back to normal whether it succeeded or failed
+                    submitBtn.innerHTML = originalBtnText;
+                    submitBtn.disabled = false;
+                    
+                    // Make the alert message disappear after 6 seconds
+                    setTimeout(() => {
+                        formMessage.innerHTML = '';
+                    }, 6000);
+                });
+        });
+    }
+});

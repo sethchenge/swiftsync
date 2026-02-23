@@ -258,3 +258,76 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(typeWriter, 1500);
     }
 });
+// ===== PAGE PRELOADER LOGIC =====
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        // We add a tiny 500ms delay so the user gets a glimpse of the cool animation 
+        // even if the page loads instantly.
+        setTimeout(() => {
+            preloader.classList.add('preloader-hidden');
+            
+            // Completely remove it from the DOM after the fade transition completes (600ms)
+            setTimeout(() => {
+                preloader.remove();
+            }, 600);
+        }, 500); 
+    }
+});
+// ===== SCROLL TO TOP BUTTON LOGIC =====
+document.addEventListener("DOMContentLoaded", () => {
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    
+    if (scrollTopBtn) {
+        // 1. Show/Hide button based on scroll position
+        window.addEventListener("scroll", () => {
+            // If user scrolls down more than 300 pixels, show the button
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add("show");
+            } else {
+                scrollTopBtn.classList.remove("show");
+            }
+        });
+
+        // 2. Smooth scroll to top when clicked
+        scrollTopBtn.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    }
+});
+// ===== SWIPER PORTFOLIO SLIDER INITIALIZATION =====
+document.addEventListener("DOMContentLoaded", () => {
+    if (typeof Swiper !== 'undefined') {
+        const portfolioSwiper = new Swiper('.portfolioSwiper', {
+            slidesPerView: 1, // Show 1 card on mobile
+            spaceBetween: 30, // Space between cards
+            loop: true,       // Infinite loop
+            grabCursor: true, // Shows the "hand" icon to drag
+            autoplay: {
+                delay: 3500, // Auto-scrolls every 3.5 seconds
+                disableOnInteraction: false, // Keeps auto-playing after user swipes
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                // When window width is >= 768px (Tablets)
+                768: {
+                    slidesPerView: 2,
+                },
+                // When window width is >= 992px (Desktop)
+                992: {
+                    slidesPerView: 3,
+                }
+            }
+        });
+    }
+});

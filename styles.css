@@ -688,3 +688,265 @@ p, li, span, div {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
 }
+
+/* ========================================= */
+/* ===== 1. CUSTOM NEON SCROLLBAR ===== */
+/* ========================================= */
+::-webkit-scrollbar {
+    width: 12px; /* Width of the vertical scrollbar */
+    height: 8px; /* Height of the horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: #0b0e14; /* Matches your dark body background */
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #00e5ff, #2979ff); /* Premium Cyan to Blue gradient */
+    border-radius: 10px;
+    border: 3px solid #0b0e14; /* Creates a nice padded "floating" effect */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #00e5ff, #d500f9); /* Shifts to Cyan/Purple on hover */
+}
+
+
+/* ========================================= */
+/* ===== 2. FLOATING WHATSAPP BUTTON ===== */
+/* ========================================= */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25d366; /* Official WhatsApp Green */
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 35px;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    /* This adds the premium pulsing ring effect */
+    animation: pulse-wa 2s infinite; 
+}
+
+.whatsapp-float i {
+    margin-top: 2px; /* Perfectly centers the FontAwesome icon */
+}
+
+.whatsapp-float:hover {
+    color: #fff;
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+}
+
+/* The Glowing Pulse Animation */
+@keyframes pulse-wa {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* Move the button slightly on mobile so it doesn't block content */
+@media (max-width: 768px) {
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 28px;
+    }
+}
+
+
+/* ========================================= */
+/* ===== 3. PREMIUM NEON PRELOADER ===== */
+/* ========================================= */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0b0e14; /* Matches your ultra-dark theme */
+    z-index: 999999; /* Stays on top of absolutely everything, including navbars */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.loader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+/* The Glowing Tech Ring */
+.neon-ring {
+    width: 65px;
+    height: 65px;
+    /* Creates a faint track for the spinner to travel on */
+    border: 3px solid rgba(41, 121, 255, 0.15); 
+    border-top-color: #2979ff; /* Premium Blue */
+    border-right-color: #2979ff; /* Premium Blue */
+    border-radius: 50%;
+    background-color: #000000; /* Forces the inside to be pure black */
+    animation: spin-ring 1s linear infinite; /* Smooth, continuous spin */
+    /* Outer blue glow only, removed the inset shadow so the inside stays black */
+    box-shadow: 0 0 15px rgba(41, 121, 255, 0.6); 
+}
+
+/* The Loading Text */
+.loader-text {
+    font-family: 'Space Grotesk', 'Courier New', monospace;
+    color: #2979ff; /* Matched the text to the blue ring */
+    letter-spacing: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    animation: pulse-text 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes spin-ring {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse-text {
+    0% { opacity: 0.4; text-shadow: 0 0 5px rgba(41, 121, 255, 0.2); }
+    100% { opacity: 1; text-shadow: 0 0 15px rgba(41, 121, 255, 0.9); }
+}
+/* ========================================= */
+/* ===== 4. SCROLL TO TOP BUTTON ====== */
+/* ========================================= */
+.scroll-top-btn {
+    position: fixed;
+    /* Pushed up to sit exactly above the WhatsApp button */
+    bottom: 105px; 
+    /* Aligned to the center of the WhatsApp button */
+    right: 35px; 
+    width: 50px;
+    height: 50px;
+    background: rgba(11, 14, 20, 0.8); /* Dark glassmorphism */
+    backdrop-filter: blur(8px);
+    color: #00e5ff; /* Cyan icon */
+    border: 1px solid #00e5ff;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Hidden by default until JS adds the 'show' class */
+    opacity: 0;
+    visibility: hidden; 
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
+}
+
+/* Class added by JS when scrolling down */
+.scroll-top-btn.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.scroll-top-btn:hover {
+    background: #00e5ff;
+    color: #0b0e14;
+    box-shadow: 0 0 25px rgba(0, 229, 255, 0.6);
+    transform: translateY(-5px); /* Pops up slightly when hovered */
+}
+
+/* Adjust spacing for mobile so they stack nicely on small screens too */
+@media (max-width: 768px) {
+    .scroll-top-btn {
+        bottom: 85px; /* Stacked above the smaller mobile WA button */
+        right: 25px; /* Centered with the smaller mobile WA button */
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+}
+/* ========================================= */
+/* ===== 5. PORTFOLIO SWIPER SLIDER ======= */
+/* ========================================= */
+.portfolioSwiper {
+    padding-bottom: 60px; /* Gives space for the pagination dots at the bottom */
+    padding-top: 10px;
+}
+
+/* Customizing the Swiper Dots */
+.swiper-pagination-bullet {
+    background: #ffffff;
+    opacity: 0.4;
+    transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+    background: #00e5ff;
+    opacity: 1;
+    transform: scale(1.4);
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.6);
+}
+
+/* Customizing the Swiper Arrows */
+.swiper-button-next, .swiper-button-prev {
+    color: #00e5ff;
+    background: rgba(11, 14, 20, 0.7);
+    backdrop-filter: blur(5px);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.swiper-button-next:hover, .swiper-button-prev:hover {
+    background: #00e5ff;
+    color: #0b0e14;
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.6);
+}
+
+.swiper-button-next::after, .swiper-button-prev::after {
+    font-size: 18px;
+    font-weight: 800;
+}
+
+/* Make the cards compact and uniformly sized */
+.portfolioSwiper .swiper-slide {
+    height: 280px; /* This reduces the height. You can change this number (e.g., 280px or 350px) to get the exact size you want! */
+    display: flex;
+    justify-content: center;
+}
+
+.portfolioSwiper .project-card {
+    width: 100%;
+    height: 100%;
+    max-width: 400px; /* Prevents the cards from getting too wide/stretched on big screens */
+    margin: 0 auto;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.portfolioSwiper .project-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image fills the smaller box perfectly without looking squished */
+    transition: transform 0.5s ease;
+}
+
+/* Optional: Adds a slight zoom effect to the image when you hover over the smaller card */
+.portfolioSwiper .project-card:hover .project-img {
+    transform: scale(1.1);
+}

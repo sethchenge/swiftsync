@@ -256,3 +256,74 @@
 }
 .toast-notification.show { transform: translateX(-50%) translateY(0); }
 .toast-notification .material-icons { color: var(--secondary); }
+/* ========================================= */
+/* ===== FAQ GLASSMORPHISM ACCORDION ===== */
+/* ========================================= */
+
+.glass-accordion {
+    --bs-accordion-bg: transparent;
+    --bs-accordion-border-color: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+}
+
+.glass-accordion .accordion-item {
+    background: rgba(30, 38, 51, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 15px !important;
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.glass-accordion .accordion-item:hover {
+    border-color: rgba(0, 229, 255, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+.glass-accordion .accordion-button {
+    background: transparent;
+    color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding: 20px 25px;
+    box-shadow: none !important;
+    display: flex;
+    align-items: center;
+}
+
+.glass-accordion .accordion-button i {
+    color: #a0a0a0;
+    transition: color 0.3s ease;
+}
+
+/* When the accordion is OPEN */
+.glass-accordion .accordion-button:not(.collapsed) {
+    color: #00e5ff; /* Cyan glowing text */
+    background: rgba(0, 229, 255, 0.05);
+    border-bottom: 1px solid rgba(0, 229, 255, 0.2);
+}
+
+.glass-accordion .accordion-button:not(.collapsed) i {
+    color: #00e5ff;
+}
+
+/* Stylizing the little dropdown arrow icon */
+.glass-accordion .accordion-button::after {
+    filter: invert(1) grayscale(100%) brightness(200%); /* Makes it white by default */
+    transition: all 0.3s ease;
+}
+
+.glass-accordion .accordion-button:not(.collapsed)::after {
+    filter: invert(65%) sepia(88%) saturate(3000%) hue-rotate(150deg) brightness(100%) contrast(100%); /* Turns it cyan when open */
+}
+
+.glass-accordion .accordion-body {
+    color: #b0bec5;
+    padding: 25px;
+    line-height: 1.7;
+    font-size: 1.05rem;
+    background: rgba(11, 14, 20, 0.3);
+}
