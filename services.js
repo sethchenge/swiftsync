@@ -173,22 +173,47 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // 2. Setup the text for the dropping/typing effect
         const textContainer = document.getElementById("auto-type-text");
-        const mainText = "elcome to Swiftsync Modern Tech services, we are ready to get started.";
-        textContainer.innerHTML = ""; // Clear existing text
         
-        // Split text into individual spans for character-level control
+        // Added <br> tag before "services." to force it to the next line
+        const mainText = "elcome to Swiftsync Modern Tech <br> services.";
+        textContainer.innerHTML = ""; 
+        
         const chars = [];
-        for (let i = 0; i < mainText.length; i++) {
-            let char = mainText[i];
-            let span = document.createElement("span");
-            // Inline-block is required to animate transforms (rotation, y-axis)
-            span.style.display = "inline-block"; 
-            span.innerHTML = char === " " ? "&nbsp;" : char;
-            textContainer.appendChild(span);
-            chars.push(span);
-        }
+        const words = mainText.split(" ");
+        
+        words.forEach((word, wordIndex) => {
+            // Check if the word is our line-break trigger
+            if (word === "<br>") {
+                let br = document.createElement("br");
+                textContainer.appendChild(br);
+                return; // Skip standard processing for the line break
+            }
+            
+            // Wrapper for the word to prevent breaking mid-word
+            let wordSpan = document.createElement("span");
+            wordSpan.style.display = "inline-block";
+            wordSpan.style.whiteSpace = "nowrap"; 
+            
+            // Add characters to the word
+            for (let i = 0; i < word.length; i++) {
+                let charSpan = document.createElement("span");
+                charSpan.style.display = "inline-block";
+                charSpan.innerHTML = word[i];
+                wordSpan.appendChild(charSpan);
+                chars.push(charSpan);
+            }
+            
+            textContainer.appendChild(wordSpan);
+            
+            // Add a space after the word (unless it's the last word OR the next word is a line break)
+            if (wordIndex < words.length - 1 && words[wordIndex + 1] !== "<br>") {
+                let spaceSpan = document.createElement("span");
+                spaceSpan.innerHTML = "&nbsp;";
+                textContainer.appendChild(spaceSpan);
+                chars.push(spaceSpan); 
+            }
+        });
 
-        // Make the parent container relative so we can position the flowers inside it
         const welcomeSection = document.getElementById("welcome-text-container");
         welcomeSection.style.position = "relative";
 
@@ -197,22 +222,20 @@ document.addEventListener("DOMContentLoaded", () => {
             { 
                 y: -60, 
                 opacity: 0, 
-                rotationX: -90 // Start slightly flipped up
+                rotationX: -90 
             }, 
             { 
                 y: 0, 
                 opacity: 1, 
                 rotationX: 0,
                 duration: 0.5, 
-                stagger: 0.04, // This creates the "typing" delay between each character
+                stagger: 0.04, 
                 ease: "back.out(1.5)",
                 delay: 0.5,
                 onComplete: () => {
-                    // Hide the typing cursor
                     const cursor = document.querySelector('.cursor');
                     if(cursor) cursor.style.display = 'none';
                     
-                    // Trigger the Flower Burst and Continuous Animations
                     createFlowerBurst(welcomeSection);
                     startContinuousAnimations(chars);
                 }
@@ -231,23 +254,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 particle.style.position = "absolute";
                 particle.style.left = "50%";
                 particle.style.top = "50%";
-                particle.style.fontSize = (Math.random() * 1.5 + 1) + "rem"; // Random size
+                particle.style.fontSize = (Math.random() * 1.5 + 1) + "rem"; 
                 particle.style.pointerEvents = "none";
                 particle.style.zIndex = "100";
                 container.appendChild(particle);
 
-                // Animate outwards and fade out over 1 second
                 gsap.fromTo(particle,
                     { x: 0, y: 0, opacity: 1, scale: 0 },
                     {
-                        x: (Math.random() - 0.5) * 400, // Explode outwards horizontally
-                        y: (Math.random() - 0.5) * 300 - 50, // Explode outwards and slightly upwards
+                        x: (Math.random() - 0.5) * 400, 
+                        y: (Math.random() - 0.5) * 300 - 50, 
                         opacity: 0,
                         scale: Math.random() * 1.5 + 0.5,
                         rotation: Math.random() * 360,
-                        duration: 1 + Math.random() * 0.5, // Around 1 to 1.5 seconds
+                        duration: 1 + Math.random() * 0.5, 
                         ease: "power3.out",
-                        onComplete: () => particle.remove() // Clean up DOM after animation
+                        onComplete: () => particle.remove() 
                     }
                 );
             }
@@ -256,21 +278,18 @@ document.addEventListener("DOMContentLoaded", () => {
         // 5. Function to start the spinning and flipping animations
         function startContinuousAnimations(characterElements) {
             characterElements.forEach((span, index) => {
-                if (span.innerHTML === "&nbsp;") return; // Skip spaces
+                if (span.innerHTML === "&nbsp;") return; 
 
-                // Apply premium, varied animations based on the character's index
                 if (index % 5 === 0) {
-                    // Flip Top to Bottom (rotationX)
                     gsap.to(span, { 
                         rotationX: 360, 
                         duration: 2, 
                         repeat: -1, 
-                        repeatDelay: 1.5, // Pause before flipping again to make it look premium
+                        repeatDelay: 1.5, 
                         ease: "power2.inOut", 
                         delay: index * 0.05 
                     });
                 } else if (index % 5 === 2) {
-                    // Spin like a wheel (rotation)
                     gsap.to(span, { 
                         rotation: 360, 
                         duration: 2, 
@@ -280,7 +299,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         delay: index * 0.05 
                     });
                 } else if (index % 5 === 4) {
-                    // Gentle glowing float
                     gsap.to(span, { 
                         y: -6, 
                         color: "#00e5ff", 
@@ -292,7 +310,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         delay: index * 0.05 
                     });
                 }
-                // The remaining characters stay still to anchor the text and keep it readable!
             });
         }
 
@@ -300,13 +317,12 @@ document.addEventListener("DOMContentLoaded", () => {
         console.warn("GSAP is not loaded. Ensure the CDN link is in the <head>.");
     }
 });
+
 // ===== OVAL CAROUSEL INFINITE SCROLL LOGIC =====
 document.addEventListener("DOMContentLoaded", () => {
     const track = document.getElementById("sectors-track");
     
     if (track) {
-        // Clone the items and append them to the track.
-        // This ensures the CSS animation (-50% translateX) creates a perfect, seamless infinite loop without empty space.
         const items = track.innerHTML;
         track.innerHTML = items + items;
     }

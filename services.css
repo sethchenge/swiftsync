@@ -179,40 +179,40 @@
     opacity: 1;
     color: white;
 }
+
 /* ===== NEW WELCOME TEXT ANIMATION STYLES ===== */
 #welcome-text-section {
     background: radial-gradient(ellipse at center, rgba(0, 229, 255, 0.05) 0%, transparent 70%);
-    margin-top: 80px; /* Offset for navbar */
-    padding-top: 5rem !important; 
-    padding-bottom: 5rem !important;
+    margin-top: 80px; 
+    padding-top: 8rem !important; /* Forces it down from under the navbar */
+    padding-bottom: 4rem !important;
 }
 
-/* .welcome-box has been removed completely to let the text 
-   sit directly on the background like the toolkit icons. 
-*/
-
 .drop-cap {
-    float: left;
-    font-size: 5.5rem;
+    /* float: left; REMOVED so it naturally centers with the sentence */
+    font-size: clamp(4rem, 10vw, 6rem); 
     line-height: 0.8;
-    padding-right: 15px;
+    padding-right: 2px;
     color: #00e5ff;
     font-family: 'Outfit', sans-serif;
     font-weight: 800;
     text-shadow: 0 0 25px rgba(0, 229, 255, 0.6);
     display: inline-block;
-    transform-style: preserve-3d; /* Crucial for the 3D infinite flip */
+    vertical-align: text-bottom; /* Aligns the W perfectly with the smaller text */
+    transform-style: preserve-3d; 
 }
 
 #welcome-text-container {
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 400;
     line-height: 1.5;
-    min-height: 120px; /* Prevents height jumping when typing */
+    min-height: 120px; 
+    font-size: clamp(1.5rem, 4vw, 2.5rem); 
+    text-align: center !important; /* Ensures the second line is centered */
 }
 
 .word-anim {
-    display: inline-block; /* Required for GSAP to animate individual words */
+    display: inline-block; 
 }
 
 .cursor {
@@ -228,15 +228,15 @@
 
 @media (max-width: 768px) {
     .drop-cap {
-        font-size: 4rem;
-        float: none; /* Centers it on mobile */
+        font-size: 3.5rem;
         display: inline-block;
-        margin-right: 5px;
+        margin-right: 2px;
     }
     #welcome-text-container {
         text-align: center !important;
     }
 }
+
 /* ===== SECTORS/INDUSTRIES OVAL CAROUSEL ===== */
 .sectors-section {
     background: transparent; /* Blends perfectly with the main body background like the toolkit */
