@@ -150,3 +150,111 @@ document.addEventListener('DOMContentLoaded', () => {
 
     revealElements.forEach(el => revealObserver.observe(el));
 });
+// ===== 6. ADVANCED MULTI-COLOR TYPEWRITER EFFECT =====
+document.addEventListener('DOMContentLoaded', () => {
+    const typeTarget = document.getElementById('typewriter');
+    
+    if (typeTarget) {
+        // VS Code Colors
+        const colorTag = "#569cd6";    // Cyan/Blue for tags
+        const colorText = "#ce9178";   // Orange for text/strings
+        
+        // Breaking down the code into tokens so the typewriter can color them accurately
+        const codeTokens = [
+            { text: "<!DOCTYPE html>\n", color: colorTag },
+            { text: "<html>\n", color: colorTag },
+            { text: "  <head>\n", color: colorTag },
+            { text: "    <title>", color: colorTag },
+            { text: "Swiftsync Engine", color: colorText },
+            { text: "</title>\n", color: colorTag },
+            { text: "  </head>\n", color: colorTag },
+            { text: "  <body>\n", color: colorTag },
+            { text: "    <header>\n", color: colorTag },
+            { text: "      <h1>", color: colorTag },
+            { text: "Architecting the Future", color: colorText },
+            { text: "</h1>\n", color: colorTag },
+            { text: "    </header>\n", color: colorTag },
+            { text: "    <main>\n", color: colorTag },
+            { text: "      <p>", color: colorTag },
+            { text: "Clean code. Scalable infrastructure.", color: colorText },
+            { text: "</p>\n", color: colorTag },
+            { text: "      <button>", color: colorTag },
+            { text: "Initialize Build", color: colorText },
+            { text: "</button>\n", color: colorTag },
+            { text: "    </main>\n", color: colorTag },
+            { text: "  </body>\n", color: colorTag },
+            { text: "</html>", color: colorTag }
+        ];
+
+        let currentTokenIndex = 0;
+        let currentCharIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 50;
+
+        function renderHTML() {
+            let displayHTML = "";
+            
+            // Render fully completed tokens
+            for(let j = 0; j < currentTokenIndex; j++) {
+                let text = codeTokens[j].text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                displayHTML += `<span style="color: ${codeTokens[j].color};">${text}</span>`;
+            }
+            
+            // Render the token currently being typed
+            if (currentTokenIndex < codeTokens.length) {
+                let currentText = codeTokens[currentTokenIndex].text.substring(0, currentCharIndex);
+                currentText = currentText.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                displayHTML += `<span style="color: ${codeTokens[currentTokenIndex].color};">${currentText}</span>`;
+            }
+            
+            typeTarget.innerHTML = displayHTML;
+        }
+
+        function typeWriter() {
+            if (!isDeleting) {
+                if (currentTokenIndex < codeTokens.length) {
+                    currentCharIndex++;
+                    renderHTML();
+                    
+                    if (currentCharIndex >= codeTokens[currentTokenIndex].text.length) {
+                        currentCharIndex = 0;
+                        currentTokenIndex++;
+                    }
+                    
+                    typingSpeed = Math.random() * 40 + 15; // Natural variable typing speed
+                    setTimeout(typeWriter, typingSpeed);
+                } else {
+                    // Finished typing, pause before deleting
+                    isDeleting = true;
+                    currentTokenIndex = codeTokens.length - 1;
+                    currentCharIndex = codeTokens[currentTokenIndex].text.length;
+                    setTimeout(typeWriter, 5000); 
+                }
+            } else {
+                if (currentTokenIndex >= 0) {
+                    currentCharIndex--;
+                    renderHTML();
+                    
+                    if (currentCharIndex < 0) {
+                        currentTokenIndex--;
+                        if (currentTokenIndex >= 0) {
+                            currentCharIndex = codeTokens[currentTokenIndex].text.length;
+                        }
+                    }
+                    
+                    typingSpeed = 10; // Delete very fast
+                    setTimeout(typeWriter, typingSpeed);
+                } else {
+                    // Finished deleting, pause before typing again
+                    isDeleting = false;
+                    currentTokenIndex = 0;
+                    currentCharIndex = 0;
+                    setTimeout(typeWriter, 1000);
+                }
+            }
+        }
+        
+        // Start animation after slight delay
+        setTimeout(typeWriter, 1500);
+    }
+});

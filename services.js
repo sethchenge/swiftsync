@@ -156,3 +156,147 @@ window.addEventListener('scroll', () => {
         navbar.style.boxShadow = "none";
     }
 });
+// ===== PREMIUM GSAP WELCOME TEXT ANIMATION LOGIC =====
+document.addEventListener("DOMContentLoaded", () => {
+    
+    // Make sure GSAP is loaded
+    if (typeof gsap !== "undefined") {
+        
+        // 1. Infinite Flip Animation for Drop Cap 'W'
+        gsap.to("#drop-w", {
+            rotationY: 360,
+            duration: 3,
+            repeat: -1,
+            ease: "none",
+            transformOrigin: "center center"
+        });
+
+        // 2. Setup the text for the dropping/typing effect
+        const textContainer = document.getElementById("auto-type-text");
+        const mainText = "elcome to Swiftsync Modern Tech services, we are ready to get started.";
+        textContainer.innerHTML = ""; // Clear existing text
+        
+        // Split text into individual spans for character-level control
+        const chars = [];
+        for (let i = 0; i < mainText.length; i++) {
+            let char = mainText[i];
+            let span = document.createElement("span");
+            // Inline-block is required to animate transforms (rotation, y-axis)
+            span.style.display = "inline-block"; 
+            span.innerHTML = char === " " ? "&nbsp;" : char;
+            textContainer.appendChild(span);
+            chars.push(span);
+        }
+
+        // Make the parent container relative so we can position the flowers inside it
+        const welcomeSection = document.getElementById("welcome-text-container");
+        welcomeSection.style.position = "relative";
+
+        // 3. Drop characters from the top as they "type"
+        gsap.fromTo(chars, 
+            { 
+                y: -60, 
+                opacity: 0, 
+                rotationX: -90 // Start slightly flipped up
+            }, 
+            { 
+                y: 0, 
+                opacity: 1, 
+                rotationX: 0,
+                duration: 0.5, 
+                stagger: 0.04, // This creates the "typing" delay between each character
+                ease: "back.out(1.5)",
+                delay: 0.5,
+                onComplete: () => {
+                    // Hide the typing cursor
+                    const cursor = document.querySelector('.cursor');
+                    if(cursor) cursor.style.display = 'none';
+                    
+                    // Trigger the Flower Burst and Continuous Animations
+                    createFlowerBurst(welcomeSection);
+                    startContinuousAnimations(chars);
+                }
+            }
+        );
+
+        // --- CUSTOM FUNCTIONS ---
+
+        // 4. Function to create the Flower Burst
+        function createFlowerBurst(container) {
+            const symbols = ["🌸", "🌺", "🌼", "✨", "💫"];
+            
+            for (let i = 0; i < 25; i++) {
+                let particle = document.createElement("div");
+                particle.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+                particle.style.position = "absolute";
+                particle.style.left = "50%";
+                particle.style.top = "50%";
+                particle.style.fontSize = (Math.random() * 1.5 + 1) + "rem"; // Random size
+                particle.style.pointerEvents = "none";
+                particle.style.zIndex = "100";
+                container.appendChild(particle);
+
+                // Animate outwards and fade out over 1 second
+                gsap.fromTo(particle,
+                    { x: 0, y: 0, opacity: 1, scale: 0 },
+                    {
+                        x: (Math.random() - 0.5) * 400, // Explode outwards horizontally
+                        y: (Math.random() - 0.5) * 300 - 50, // Explode outwards and slightly upwards
+                        opacity: 0,
+                        scale: Math.random() * 1.5 + 0.5,
+                        rotation: Math.random() * 360,
+                        duration: 1 + Math.random() * 0.5, // Around 1 to 1.5 seconds
+                        ease: "power3.out",
+                        onComplete: () => particle.remove() // Clean up DOM after animation
+                    }
+                );
+            }
+        }
+
+        // 5. Function to start the spinning and flipping animations
+        function startContinuousAnimations(characterElements) {
+            characterElements.forEach((span, index) => {
+                if (span.innerHTML === "&nbsp;") return; // Skip spaces
+
+                // Apply premium, varied animations based on the character's index
+                if (index % 5 === 0) {
+                    // Flip Top to Bottom (rotationX)
+                    gsap.to(span, { 
+                        rotationX: 360, 
+                        duration: 2, 
+                        repeat: -1, 
+                        repeatDelay: 1.5, // Pause before flipping again to make it look premium
+                        ease: "power2.inOut", 
+                        delay: index * 0.05 
+                    });
+                } else if (index % 5 === 2) {
+                    // Spin like a wheel (rotation)
+                    gsap.to(span, { 
+                        rotation: 360, 
+                        duration: 2, 
+                        repeat: -1, 
+                        repeatDelay: 2, 
+                        ease: "back.inOut(1.2)", 
+                        delay: index * 0.05 
+                    });
+                } else if (index % 5 === 4) {
+                    // Gentle glowing float
+                    gsap.to(span, { 
+                        y: -6, 
+                        color: "#00e5ff", 
+                        textShadow: "0 0 10px rgba(0, 229, 255, 0.8)",
+                        duration: 1.5, 
+                        repeat: -1, 
+                        yoyo: true, 
+                        ease: "sine.inOut", 
+                        delay: index * 0.05 
+                    });
+                }
+                // The remaining characters stay still to anchor the text and keep it readable!
+            });
+        }
+
+    } else {
+        console.warn("GSAP is not loaded. Ensure the CDN link is in the <head>.");
+    }
+});

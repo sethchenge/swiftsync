@@ -179,3 +179,61 @@
     opacity: 1;
     color: white;
 }
+/* ===== NEW WELCOME TEXT ANIMATION STYLES ===== */
+#welcome-text-section {
+    background: radial-gradient(ellipse at center, rgba(0, 229, 255, 0.05) 0%, transparent 70%);
+    margin-top: 80px; /* Offset for navbar */
+    padding-top: 5rem !important; 
+    padding-bottom: 5rem !important;
+}
+
+/* .welcome-box has been removed completely to let the text 
+   sit directly on the background like the toolkit icons. 
+*/
+
+.drop-cap {
+    float: left;
+    font-size: 5.5rem;
+    line-height: 0.8;
+    padding-right: 15px;
+    color: #00e5ff;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    text-shadow: 0 0 25px rgba(0, 229, 255, 0.6);
+    display: inline-block;
+    transform-style: preserve-3d; /* Crucial for the 3D infinite flip */
+}
+
+#welcome-text-container {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    min-height: 120px; /* Prevents height jumping when typing */
+}
+
+.word-anim {
+    display: inline-block; /* Required for GSAP to animate individual words */
+}
+
+.cursor {
+    color: #00e5ff;
+    font-weight: bold;
+    animation: blinkCursor 0.8s infinite;
+}
+
+@keyframes blinkCursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+@media (max-width: 768px) {
+    .drop-cap {
+        font-size: 4rem;
+        float: none; /* Centers it on mobile */
+        display: inline-block;
+        margin-right: 5px;
+    }
+    #welcome-text-container {
+        text-align: center !important;
+    }
+}

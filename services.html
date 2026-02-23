@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="services.css">
 </head>
@@ -58,9 +61,16 @@
             </div>
         </div>
     </nav>
+<section id="welcome-text-section" class="py-5 border-bottom border-light">
+        <div class="container text-center">
+            <h2 class="display-6 text-white mb-0 text-md-start mx-auto" id="welcome-text-container" style="max-width: 900px;">
+                <span class="drop-cap" id="drop-w">W</span><span id="auto-type-text"></span><span class="cursor">|</span>
+            </h2>
+        </div>
+    </section>
 
-    <section class="services-header text-center pt-5 mt-5">
-        <div class="container mt-5">
+    <section class="services-header text-center pt-5 mt-2">
+        <div class="container mt-4">
             <span class="badge rounded-pill border border-light text-white mb-3 px-3 py-2">Our Capabilities</span>
             <h1 class="display-4 fw-bold text-white">Comprehensive <span class="text-gradient">Solutions</span></h1>
             <p class="lead text-white-50">Precision engineering for every aspect of your digital infrastructure.</p>
