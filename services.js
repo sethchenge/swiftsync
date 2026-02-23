@@ -300,3 +300,14 @@ document.addEventListener("DOMContentLoaded", () => {
         console.warn("GSAP is not loaded. Ensure the CDN link is in the <head>.");
     }
 });
+// ===== OVAL CAROUSEL INFINITE SCROLL LOGIC =====
+document.addEventListener("DOMContentLoaded", () => {
+    const track = document.getElementById("sectors-track");
+    
+    if (track) {
+        // Clone the items and append them to the track.
+        // This ensures the CSS animation (-50% translateX) creates a perfect, seamless infinite loop without empty space.
+        const items = track.innerHTML;
+        track.innerHTML = items + items;
+    }
+});

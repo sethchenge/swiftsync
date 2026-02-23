@@ -237,3 +237,82 @@
         text-align: center !important;
     }
 }
+/* ===== SECTORS/INDUSTRIES OVAL CAROUSEL ===== */
+.sectors-section {
+    background: transparent; /* Blends perfectly with the main body background like the toolkit */
+    overflow: hidden;
+}
+
+.marquee-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 10px 0 30px 0;
+    /* Soft fade on the left and right edges so ovals disappear smoothly */
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marquee-track {
+    display: flex;
+    gap: 25px;
+    width: max-content;
+    animation: scrollMarquee 25s linear infinite;
+}
+
+/* Pause the scrolling when a user hovers over it */
+.marquee-track:hover {
+    animation-play-state: paused;
+}
+
+/* Premium Oval/Pill Shapes */
+.sector-pill {
+    background: rgba(30, 38, 51, 0.6); /* Glassmorphism background */
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px; /* Makes it a perfect oval/pill */
+    padding: 12px 28px;
+    color: #e2e8f0;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    cursor: default;
+}
+
+.sector-pill i {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+/* Hover effect makes the oval glow */
+.sector-pill:hover {
+    border-color: #00e5ff;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.25), inset 0 0 10px rgba(0, 229, 255, 0.1);
+    transform: translateY(-3px);
+}
+
+.sector-pill:hover i {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 8px currentColor); 
+}
+
+/* Specific icon colors */
+.text-cyan { color: #00e5ff; }
+.text-purple { color: #d500f9; }
+.text-orange { color: #ff9100; }
+.text-blue { color: #2979ff; }
+.text-pink { color: #f50057; }
+.text-yellow { color: #ffea00; }
+
+@keyframes scrollMarquee {
+    0% { transform: translateX(0); }
+    /* Moves exactly half the width to create a seamless loop */
+    100% { transform: translateX(-50%); } 
+}
