@@ -156,6 +156,7 @@ window.addEventListener('scroll', () => {
         navbar.style.boxShadow = "none";
     }
 });
+
 // ===== PREMIUM GSAP WELCOME TEXT ANIMATION LOGIC =====
 document.addEventListener("DOMContentLoaded", () => {
     
@@ -236,7 +237,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     const cursor = document.querySelector('.cursor');
                     if(cursor) cursor.style.display = 'none';
                     
-                    createFlowerBurst(welcomeSection);
                     startContinuousAnimations(chars);
                 }
             }
@@ -244,38 +244,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // --- CUSTOM FUNCTIONS ---
 
-        // 4. Function to create the Flower Burst
-        function createFlowerBurst(container) {
-            const symbols = ["🌸", "🌺", "🌼", "✨", "💫"];
-            
-            for (let i = 0; i < 25; i++) {
-                let particle = document.createElement("div");
-                particle.innerText = symbols[Math.floor(Math.random() * symbols.length)];
-                particle.style.position = "absolute";
-                particle.style.left = "50%";
-                particle.style.top = "50%";
-                particle.style.fontSize = (Math.random() * 1.5 + 1) + "rem"; 
-                particle.style.pointerEvents = "none";
-                particle.style.zIndex = "100";
-                container.appendChild(particle);
-
-                gsap.fromTo(particle,
-                    { x: 0, y: 0, opacity: 1, scale: 0 },
-                    {
-                        x: (Math.random() - 0.5) * 400, 
-                        y: (Math.random() - 0.5) * 300 - 50, 
-                        opacity: 0,
-                        scale: Math.random() * 1.5 + 0.5,
-                        rotation: Math.random() * 360,
-                        duration: 1 + Math.random() * 0.5, 
-                        ease: "power3.out",
-                        onComplete: () => particle.remove() 
-                    }
-                );
-            }
-        }
-
-        // 5. Function to start the spinning and flipping animations
+        // 4. Function to start the spinning and flipping animations
         function startContinuousAnimations(characterElements) {
             characterElements.forEach((span, index) => {
                 if (span.innerHTML === "&nbsp;") return; 
@@ -327,6 +296,7 @@ document.addEventListener("DOMContentLoaded", () => {
         track.innerHTML = items + items;
     }
 });
+
 // ===== PAGE PRELOADER LOGIC =====
 window.addEventListener('load', () => {
     const preloader = document.getElementById('preloader');
@@ -343,6 +313,7 @@ window.addEventListener('load', () => {
         }, 500); 
     }
 });
+
 // ===== SCROLL TO TOP BUTTON LOGIC =====
 document.addEventListener("DOMContentLoaded", () => {
     const scrollTopBtn = document.getElementById("scrollTopBtn");
