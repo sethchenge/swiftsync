@@ -1,224 +1,43 @@
-/* ===== SERVICES SPECIFIC STYLES ===== */
+/* ========================================= */
+/* ===== SERVICES SPECIFIC STYLES ========== */
+/* ========================================= */
 
-/* Base overrides for services page */
-.services-header h1 {
-    font-size: 3.5rem;
-    font-weight: 800;
-}
+/* 
+   Note: Layout, card shadows, and base colors are handled globally by styles.css.
+   This file manages the marquee animations, GSAP text effects, and micro-interactions.
+*/
 
-/* ===== PREMIUM CARDS ===== */
-.service-card {
-    background: rgba(30, 38, 51, 0.7); /* Dark Glass */
-    backdrop-filter: blur(10px);
-    padding: 2.5rem 2rem;
-    border-radius: 20px;
-    height: 100%;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position: relative;
-    overflow: hidden;
-    
-    /* Default Border (overridden by colors below) */
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-bottom-width: 4px; /* thick bottom border for color */
-}
-
-/* Hover Effect: Lift & Glow */
-.service-card:hover {
-    transform: translateY(-10px);
-    background: rgba(40, 50, 65, 0.9);
-}
-
-/* FORCE WHITE TEXT */
-.service-card h3 {
-    color: #ffffff !important;
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
-.service-card p {
-    color: rgba(255, 255, 255, 0.9) !important;
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-}
-
-/* Service List Items */
-.service-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 1rem;
-}
-
-.service-list li {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.service-list li i {
-    font-size: 0.8rem;
-    opacity: 0.8;
-}
-
-/* ===== NEW STATS CARD STYLES ===== */
-.stat-card {
-    background: rgba(30, 38, 51, 0.7);
-    backdrop-filter: blur(10px);
-    padding: 2.5rem 2rem;
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-bottom-width: 4px; /* Matches service cards */
-    transition: transform 0.3s;
-}
-
-.stat-card:hover {
-    transform: translateY(-5px);
-    background: rgba(40, 50, 65, 0.9);
-}
-
-.stat-card h2 {
-    font-size: 3.5rem;
-    font-weight: 800;
-    color: #ffffff !important;
-    margin-bottom: 0.5rem;
-    display: block;
-}
-
-.stat-card p {
-    color: rgba(255, 255, 255, 0.7) !important;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 0.9rem;
-    margin: 0;
-    font-weight: 600;
-}
-
-
-/* ===== COLOR CODING (Intuitive Borders) ===== */
-
-/* Cyan (OS) */
-.border-cyan { border-bottom-color: #00e5ff; }
-.service-card.border-cyan:hover, .stat-card.border-cyan:hover { box-shadow: 0 10px 30px rgba(0, 229, 255, 0.2); }
-.service-icon.cyan { color: #00e5ff; background: rgba(0, 229, 255, 0.1); }
-.border-cyan li i { color: #00e5ff; }
-
-/* Purple (Software) */
-.border-purple { border-bottom-color: #d500f9; }
-.service-card.border-purple:hover, .stat-card.border-purple:hover { box-shadow: 0 10px 30px rgba(213, 0, 249, 0.2); }
-.service-icon.purple { color: #d500f9; background: rgba(213, 0, 249, 0.1); }
-.border-purple li i { color: #d500f9; }
-
-/* Orange (Hardware) */
-.border-orange { border-bottom-color: #ff9100; }
-.service-card.border-orange:hover { box-shadow: 0 10px 30px rgba(255, 145, 0, 0.2); }
-.service-icon.orange { color: #ff9100; background: rgba(255, 145, 0, 0.1); }
-.border-orange li i { color: #ff9100; }
-
-/* Blue (Networking) */
-.border-blue { border-bottom-color: #2979ff; }
-.service-card.border-blue:hover, .stat-card.border-blue:hover { box-shadow: 0 10px 30px rgba(41, 121, 255, 0.2); }
-.service-icon.blue { color: #2979ff; background: rgba(41, 121, 255, 0.1); }
-.border-blue li i { color: #2979ff; }
-
-/* Red (Security) */
-.border-red { border-bottom-color: #ff1744; }
-.service-card.border-red:hover { box-shadow: 0 10px 30px rgba(255, 23, 68, 0.2); }
-.service-icon.red { color: #ff1744; background: rgba(255, 23, 68, 0.1); }
-.border-red li i { color: #ff1744; }
-
-/* Green (Autobell) */
-.border-green { border-bottom-color: #00c853; }
-.service-card.border-green:hover { box-shadow: 0 10px 30px rgba(0, 200, 83, 0.2); }
-.service-icon.green { color: #00c853; background: rgba(0, 200, 83, 0.1); }
-.border-green li i { color: #00c853; }
-
-/* Yellow (Diagnostics) */
-.border-yellow { border-bottom-color: #ffea00; }
-.service-card.border-yellow:hover { box-shadow: 0 10px 30px rgba(255, 234, 0, 0.2); }
-.service-icon.yellow { color: #ffea00; background: rgba(255, 234, 0, 0.1); }
-.border-yellow li i { color: #ffea00; }
-
-/* Pink (Web) */
-.border-pink { border-bottom-color: #f50057; }
-.service-card.border-pink:hover { box-shadow: 0 10px 30px rgba(245, 0, 87, 0.2); }
-.service-icon.pink { color: #f50057; background: rgba(245, 0, 87, 0.1); }
-.border-pink li i { color: #f50057; }
-
-/* White (Booking) */
-.border-white { border-bottom-color: #ffffff; }
-.service-card.border-white:hover { box-shadow: 0 10px 30px rgba(255, 255, 255, 0.15); }
-.service-icon.white { color: #ffffff; background: rgba(255, 255, 255, 0.1); }
-
-
-/* Tech Icons Section */
-.tech-icon {
-    font-size: 3rem;
-    color: rgba(255, 255, 255, 0.3);
-    transition: all 0.3s;
-}
-
-.tech-icon small {
-    font-size: 0.9rem;
-    opacity: 0;
-    transition: opacity 0.3s;
-    display: block;
-    margin-top: 5px;
-}
-
-.tech-icon:hover {
-    color: var(--primary);
-    transform: translateY(-5px);
-}
-
-.tech-icon:hover small {
-    opacity: 1;
-    color: white;
-}
-
-/* ===== NEW WELCOME TEXT ANIMATION STYLES ===== */
+/* ===== 1. GSAP Welcome Text & Drop Cap ===== */
 #welcome-text-section {
-    background: radial-gradient(ellipse at center, rgba(0, 229, 255, 0.05) 0%, transparent 70%);
-    margin-top: 60px; 
-    padding-top: 8rem !important; /* Forces it down from under the navbar */
-    padding-bottom: 4rem !important;
+    /* Soft, premium radial glow behind the text */
+    background: radial-gradient(ellipse at center, rgba(99, 91, 255, 0.04) 0%, transparent 60%);
 }
 
 .drop-cap {
-    /* float: left; REMOVED so it naturally centers with the sentence */
     font-size: clamp(4rem, 10vw, 6rem); 
     line-height: 0.8;
     padding-right: 2px;
-    color: #00e5ff;
-    font-family: 'Outfit', sans-serif;
+    color: var(--primary);
+    font-family: var(--font-main);
     font-weight: 800;
-    text-shadow: 0 0 25px rgba(0, 229, 255, 0.6);
+    /* Soft, luxurious shadow instead of harsh neon */
+    text-shadow: 0 4px 15px rgba(99, 91, 255, 0.25);
     display: inline-block;
-    vertical-align: text-bottom; /* Aligns the W perfectly with the smaller text */
+    vertical-align: text-bottom;
     transform-style: preserve-3d; 
 }
 
 #welcome-text-container {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 400;
-    line-height: 1.5;
+    font-family: var(--font-main);
     min-height: 120px; 
-    font-size: clamp(1.5rem, 4vw, 2.5rem); 
-    text-align: center !important; /* Ensures the second line is centered */
+    text-align: center !important; 
 }
 
-.word-anim {
-    display: inline-block; 
-}
-
-.cursor {
-    color: #00e5ff;
+.typed-cursor {
+    color: var(--primary);
     font-weight: bold;
     animation: blinkCursor 0.8s infinite;
+    margin-left: 4px;
 }
 
 @keyframes blinkCursor {
@@ -229,17 +48,13 @@
 @media (max-width: 768px) {
     .drop-cap {
         font-size: 3.5rem;
-        display: inline-block;
         margin-right: 2px;
-    }
-    #welcome-text-container {
-        text-align: center !important;
     }
 }
 
-/* ===== SECTORS/INDUSTRIES OVAL CAROUSEL ===== */
+
+/* ===== 2. Industries Marquee Infinite Scroll ===== */
 .sectors-section {
-    background: transparent; /* Blends perfectly with the main body background like the toolkit */
     overflow: hidden;
 }
 
@@ -247,72 +62,95 @@
     width: 100%;
     overflow: hidden;
     position: relative;
-    padding: 10px 0 30px 0;
-    /* Soft fade on the left and right edges so ovals disappear smoothly */
+    /* Fades the left and right edges so the pills appear and disappear smoothly */
     mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
 .marquee-track {
     display: flex;
-    gap: 25px;
+    gap: 20px;
     width: max-content;
-    animation: scrollMarquee 25s linear infinite;
+    /* 35s creates a smooth, readable enterprise pace */
+    animation: scrollMarquee 35s linear infinite; 
 }
 
-/* Pause the scrolling when a user hovers over it */
 .marquee-track:hover {
     animation-play-state: paused;
 }
 
-/* Premium Oval/Pill Shapes */
-.sector-pill {
-    background: rgba(30, 38, 51, 0.6); /* Glassmorphism background */
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 50px; /* Makes it a perfect oval/pill */
-    padding: 12px 28px;
-    color: #e2e8f0;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 500;
-    font-size: 1.05rem;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    white-space: nowrap;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+/* Marquee Pill Micro-Interactions */
+.marquee-track > div {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     cursor: default;
 }
 
-.sector-pill i {
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
+.marquee-track > div:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(10, 37, 64, 0.08) !important;
+    border-color: rgba(99, 91, 255, 0.2) !important;
+    color: var(--text-slate) !important;
 }
 
-/* Hover effect makes the oval glow */
-.sector-pill:hover {
-    border-color: #00e5ff;
-    color: #fff;
-    box-shadow: 0 0 20px rgba(0, 229, 255, 0.25), inset 0 0 10px rgba(0, 229, 255, 0.1);
-    transform: translateY(-3px);
+.marquee-track > div i {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.sector-pill:hover i {
-    transform: scale(1.1);
-    filter: drop-shadow(0 0 8px currentColor); 
+.marquee-track > div:hover i {
+    transform: scale(1.2) rotate(-5deg);
 }
-
-/* Specific icon colors */
-.text-cyan { color: #00e5ff; }
-.text-purple { color: #d500f9; }
-.text-orange { color: #ff9100; }
-.text-blue { color: #2979ff; }
-.text-pink { color: #f50057; }
-.text-yellow { color: #ffea00; }
 
 @keyframes scrollMarquee {
     0% { transform: translateX(0); }
-    /* Moves exactly half the width to create a seamless loop */
+    /* Moves exactly half the width to loop seamlessly */
     100% { transform: translateX(-50%); } 
+}
+
+
+/* ===== 3. Services Card Micro-Interactions ===== */
+/* Makes the main icon pop when the card is hovered */
+.premium-card .icon-wrapper i {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.premium-card:hover .icon-wrapper i {
+    transform: scale(1.15);
+}
+
+/* Subtly shifts the list checkmarks right when hovering the card */
+.premium-card .list-unstyled li i {
+    transition: transform 0.3s ease;
+}
+
+.premium-card:hover .list-unstyled li i {
+    transform: translateX(4px);
+}
+
+
+/* ===== 4. Tech Toolkit Hover Effects ===== */
+.tech-icon {
+    cursor: default;
+}
+
+.tech-icon i {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease, filter 0.3s ease;
+}
+
+.tech-icon:hover i {
+    transform: translateY(-8px) scale(1.1);
+    color: var(--primary);
+    filter: drop-shadow(0 10px 15px rgba(99, 91, 255, 0.2));
+}
+
+.tech-icon small {
+    opacity: 0.6;
+    transition: opacity 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    display: block;
+    transform: translateY(0);
+}
+
+.tech-icon:hover small {
+    opacity: 1;
+    color: var(--primary);
+    transform: translateY(-2px);
 }

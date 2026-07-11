@@ -9,201 +9,224 @@
     <meta name="description" content="Synchronizing technology with human ambition. We provide OS installation, secure networking, CCTV, and next-gen web development in Kenya.">
     <meta name="keywords" content="Swiftsync, IT solutions Kenya, network setup, web development, OS installation, CCTV installation Nairobi, tech support">
 
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://swiftsync.co.ke/"> <meta property="og:title" content="Swiftsync | Modern Tech Solutions">
-    <meta property="og:description" content="Synchronizing technology with human ambition. Expert IT, networking, and web solutions.">
-    <meta property="og:image" content="https://swiftsync.co.ke/logo.jpg"> 
-
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://swiftsync.co.ke/">
-    <meta property="twitter:title" content="Swiftsync | Modern Tech Solutions">
-    <meta property="twitter:description" content="Expert IT, networking, and web solutions in Kenya.">
-    <meta property="twitter:image" content="https://swiftsync.co.ke/logo.jpg">
+    <!-- Open Graph & Twitter Meta Tags omitted for brevity (keep your originals here) -->
     
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Stripe-esque Typography: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <link rel="stylesheet" href="styles.css">
+    <!-- You may need to clear out dark-theme specific code from staff.css, 
+         as most of the heavy lifting is now done by styles.css -->
     <link rel="stylesheet" href="staff.css">
 </head>
-<body>
-<div id="preloader">
-        <div class="loader-content">
-            <div class="neon-ring"></div>
-            <div class="loader-text">INITIALIZING...</div>
+<body class="bg-light-surface">
+
+    <!-- Premium Minimalist Preloader -->
+    <div id="preloader" class="premium-loader-wrapper">
+        <div class="premium-loader">
+            <svg class="spinner" viewBox="0 0 50 50">
+                <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="4"></circle>
+            </svg>
+            <div class="loader-text">Loading Team</div>
         </div>
     </div>
-    <canvas id="neuron-canvas"></canvas>
+    
+    <!-- Soft Animated Gradient Background -->
+    <canvas id="gradient-canvas"></canvas>
 
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <nav class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <a class="navbar-brand d-flex align-items-center" href="index.html">
-                <img src="logo.jpg" alt="Logo">
+    <!-- Sidebar (Light Theme) -->
+    <nav class="sidebar bg-white shadow-lg" id="sidebar">
+        <div class="sidebar-header border-bottom">
+            <a class="navbar-brand d-flex align-items-center text-dark fw-bold" href="index.html">
+                <img src="logo.jpg" alt="Swiftsync Logo" class="rounded logo-sm">
                 <span class="ms-2">Swiftsync</span>
             </a>
-            <button class="sidebar-close" id="sidebarClose">
+            <button class="btn btn-light rounded-circle sidebar-close" id="sidebarClose">
                 <span class="material-icons">close</span>
             </button>
         </div>
-        <ul class="sidebar-nav">
-            <li class="nav-item"><a class="nav-link" href="index.html"><span class="material-icons">house</span> Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="services.html"><span class="material-icons">hub</span> Services</a></li>
-            <li class="nav-item"><a class="nav-link active" href="staff.html"><span class="material-icons">groups</span> Team</a></li>
-            <li class="nav-item"><a class="nav-link" href="contact.html"><span class="material-icons">contact_mail</span> Contact</a></li>
-            <li class="nav-item"><a class="nav-link" href="cv.html"><span class="material-icons">description</span> CV</a></li>
+        <ul class="sidebar-nav pt-3">
+            <li class="nav-item"><a class="nav-link text-secondary" href="index.html"><span class="material-icons me-2">house</span> Home</a></li>
+            <li class="nav-item"><a class="nav-link text-secondary" href="services.html"><span class="material-icons me-2">hub</span> Services</a></li>
+            <li class="nav-item"><a class="nav-link text-dark fw-medium" href="staff.html"><span class="material-icons text-primary me-2">groups</span> Team</a></li>
+            <li class="nav-item"><a class="nav-link text-secondary" href="contact.html"><span class="material-icons me-2">contact_mail</span> Contact</a></li>
         </ul>
     </nav>
 
-    <nav class="navbar navbar-expand-lg fixed-top">
+    <!-- Glassmorphism Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top premium-navbar">
         <div class="container">
-            <button class="sidebar-toggle me-3" type="button" id="sidebarToggle">
+            <button class="btn btn-light d-lg-none me-3 shadow-sm rounded-circle p-2 d-flex align-items-center justify-content-center" type="button" id="sidebarToggle">
                 <span class="material-icons">menu</span>
             </button>
-            <a class="navbar-brand d-flex align-items-center" href="index.html">
-                <img src="logo.jpg" alt="Logo">
-                <span class="ms-2">Swiftsync</span>
+            <a class="navbar-brand d-flex align-items-center fw-bold text-dark" href="index.html">
+                <img src="logo.jpg" alt="Logo" class="rounded logo-sm">
+                <span class="ms-2 brand-text">Swiftsync</span>
             </a>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html"><i class="material-icons">house</i> Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="services.html"><i class="material-icons">hub</i> Services</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="staff.html"><i class="material-icons">groups</i> Team</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html"><i class="material-icons">contact_mail</i> Contact</a></li>
+                <ul class="navbar-nav ms-auto fw-medium">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="staff.html">Team</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                 </ul>
-                <a href="contact.html" class="btn btn-primary ms-3 btn-sm rounded-pill">Hire Us</a>
+                <a href="contact.html" class="btn btn-primary premium-btn ms-4">Hire Us <i class="fas fa-arrow-right ms-1"></i></a>
             </div>
         </div>
     </nav>
 
-    <section class="staff-hero text-center">
-        <div class="container">
-            <div class="fade-in-up">
-                <span class="badge rounded-pill border border-light text-white mb-3 px-3 py-2">The Architects</span>
-                <h2 class="mb-4 text-white">
+    <!-- Team Hero Section -->
+    <section class="staff-hero text-center pt-6 pb-5 mt-5">
+        <div class="container pt-5">
+            <div class="reveal active">
+                <span class="badge badge-soft-primary rounded-pill mb-3 px-3 py-2 fw-semibold">The Architects</span>
+                <h2 class="display-4 fw-extrabold text-slate mb-4">
                     Minds Behind <br>
-                    <span class="text-gradient">Swiftsync</span>
+                    <span class="text-gradient-primary">Swiftsync</span>
                 </h2>
-                <p class="lead text-white-50 mx-auto" style="max-width: 700px;">
+                <p class="lead text-muted mx-auto" style="max-width: 700px;">
                     We are a collective of certified engineers, developers, and cloud architects dedicated to synchronizing the world with the future of technology.
                 </p>
             </div>
             
-            <div class="row justify-content-center mt-5 fade-in-up delay-200">
-                <div class="col-md-3 col-6 mb-4">
-                    <div class="stat-card border-blue">
-                        <h2 class="text-white">15+</h2>
-                        <p>Years Experience</p>
+            <div class="row justify-content-center mt-5 reveal delay-200">
+                <div class="col-md-4 col-12 mb-4">
+                    <div class="card premium-card border-0 p-4 h-100">
+                        <h2 class="display-5 fw-extrabold text-primary mb-2">15+</h2>
+                        <p class="text-slate fw-semibold mb-0">Years Experience</p>
                     </div>
                 </div>
-                <div class="col-md-3 col-6 mb-4">
-                    <div class="stat-card border-cyan">
-                        <h2 class="text-white">500+</h2>
-                        <p>Projects Deployed</p>
+                <div class="col-md-4 col-12 mb-4">
+                    <div class="card premium-card border-0 p-4 h-100">
+                        <h2 class="display-5 fw-extrabold text-info mb-2">500+</h2>
+                        <p class="text-slate fw-semibold mb-0">Projects Deployed</p>
                     </div>
                 </div>
-                <div class="col-md-3 col-6 mb-4">
-                    <div class="stat-card border-purple">
-                        <h2 class="text-white">100%</h2>
-                        <p>Uptime Record</p>
+                <div class="col-md-4 col-12 mb-4">
+                    <div class="card premium-card border-0 p-4 h-100">
+                        <h2 class="display-5 fw-extrabold text-success mb-2">100%</h2>
+                        <p class="text-slate fw-semibold mb-0">Uptime Record</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="leadership-section section-padding">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-5 mb-5 mb-lg-0 scroll-reveal">
-                    <div class="ceo-card glass-card border-cyan">
-                        <div class="ceo-image-wrapper">
-                            <img src="ICT teacher.jpg" alt="Seth Chenge" class="ceo-img">
-                            <div class="verified-badge"><i class="fas fa-check"></i></div>
-                        </div>
-                        <div class="ceo-info text-center mt-4">
-                            <h3 class="text-white">Seth Chenge</h3>
-                            <span class="role-badge">FOUNDER & CEO</span>
-                            <div class="skills-row mt-3">
-                                <span class="skill-pill">CISCO</span>
-                                <span class="skill-pill">AWS</span>
-                                <span class="skill-pill">Linux</span>
+    <!-- Leadership Section -->
+    <section class="leadership-section py-6 bg-white">
+        <div class="container py-5">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-5 mb-5 mb-lg-0 reveal">
+                    <div class="card premium-card border-0 p-3">
+                        <div class="card-body text-center">
+                            <div class="position-relative d-inline-block mb-4 mt-3">
+                                <img src="ICT teacher.jpg" alt="Seth Chenge" class="rounded-4 shadow-sm" style="width: 220px; height: 220px; object-fit: cover; border: 4px solid #f8fafc;">
+                                <div class="position-absolute bottom-0 end-0 bg-success text-white rounded-circle d-flex align-items-center justify-content-center border border-3 border-white shadow-sm" style="width: 35px; height: 35px; transform: translate(25%, 25%);">
+                                    <i class="fas fa-check small"></i>
+                                </div>
+                            </div>
+                            <h3 class="fw-bold text-slate mb-1">Seth Chenge</h3>
+                            <span class="badge badge-soft-primary px-3 py-2 text-uppercase tracking-wider mt-2">FOUNDER & CEO</span>
+                            <div class="d-flex justify-content-center gap-2 mt-4 flex-wrap">
+                                <span class="badge bg-light text-slate border px-3 py-2">CISCO</span>
+                                <span class="badge bg-light text-slate border px-3 py-2">AWS</span>
+                                <span class="badge bg-light text-slate border px-3 py-2">Linux</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="col-lg-7 ps-lg-5 scroll-reveal delay-100">
-                    <h2 class="mb-4 text-white">Visionary <span class="text-gradient">Leadership</span></h2>
-                    <p class="text-white-50 mb-4">
+                <div class="col-lg-7 ps-lg-5 reveal delay-100">
+                    <h2 class="h1 fw-bold text-slate mb-4">Visionary <span class="text-gradient-primary">Leadership</span></h2>
+                    <p class="text-muted lead mb-5">
                         Founded in 2019, Swiftsync emerged from a singular vision: to democratize enterprise-grade IT solutions. Starting as a solo operation, Seth transformed technical challenges into seamless solutions, navigating the digital shift of 2020 to build a powerhouse of innovation.
                     </p>
-                    <div class="milestone-timeline">
-                        <div class="milestone">
-                            <span class="year">2019</span>
-                            <p>Foundation established. Mission protocols initiated.</p>
+                    
+                    <div class="border-start border-2 border-primary ps-4 py-2 ms-2">
+                        <div class="mb-4 position-relative">
+                            <div class="position-absolute bg-primary rounded-circle" style="width: 12px; height: 12px; left: -29px; top: 6px;"></div>
+                            <span class="text-primary fw-bold mb-1 d-block">2019</span>
+                            <p class="text-slate fw-medium mb-0">Foundation established. Mission protocols initiated.</p>
                         </div>
-                        <div class="milestone">
-                            <span class="year">2021</span>
-                            <p>Achieved CISCO & AWS elite certifications.</p>
+                        <div class="mb-4 position-relative">
+                            <div class="position-absolute bg-info rounded-circle" style="width: 12px; height: 12px; left: -29px; top: 6px;"></div>
+                            <span class="text-info fw-bold mb-1 d-block">2021</span>
+                            <p class="text-slate fw-medium mb-0">Achieved CISCO & AWS elite certifications.</p>
                         </div>
-                        <div class="milestone">
-                            <span class="year">2024</span>
-                            <p>Team expansion into Cybersec & Cloud divisions.</p>
+                        <div class="position-relative">
+                            <div class="position-absolute bg-success rounded-circle" style="width: 12px; height: 12px; left: -29px; top: 6px;"></div>
+                            <span class="text-success fw-bold mb-1 d-block">2024</span>
+                            <p class="text-slate fw-medium mb-0">Team expansion into Cybersec & Cloud divisions.</p>
                         </div>
                     </div>
-                    <div class="mt-4">
-                        <a href="contact.html" class="btn btn-outline-light"><i class="fas fa-envelope me-2"></i> Contact Seth</a>
+                    
+                    <div class="mt-5">
+                        <a href="contact.html" class="btn btn-outline-secondary premium-btn-outline"><i class="fas fa-envelope me-2"></i> Contact Seth</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="squad-section section-padding">
-        <div class="container">
-            <h2 class="text-center mb-5 text-white scroll-reveal">Elite <span class="text-gradient">Specialists</span></h2>
+    <!-- Squad Section -->
+    <section class="squad-section py-6 bg-light-surface">
+        <div class="container py-4">
+            <div class="text-center mb-5 reveal">
+                <span class="badge badge-soft-secondary rounded-pill mb-3 px-3 py-2 fw-semibold">The Team</span>
+                <h2 class="h1 fw-bold text-slate">Elite <span class="text-gradient-primary">Specialists</span></h2>
+            </div>
             
             <div class="row g-4 justify-content-center">
                 
-                <div class="col-md-6 col-lg-4 scroll-reveal">
-                    <div class="member-card glass-card border-pink">
-                        <div class="member-header">
-                            <div class="avatar-placeholder gradient-1">PK</div>
-                            <div class="member-role">
-                                <h4 class="text-white">Purity Kyalo</h4>
-                                <span class="text-secondary">Full Stack Developer</span>
+                <!-- Member 1 -->
+                <div class="col-md-6 col-lg-5 reveal">
+                    <div class="card premium-card border-0 h-100 p-2">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center border-bottom pb-4 mb-4">
+                                <div class="bg-soft-primary text-primary fw-bold fs-4 rounded-circle d-flex align-items-center justify-content-center me-3 shadow-sm" style="width: 65px; height: 65px;">
+                                    PK
+                                </div>
+                                <div>
+                                    <h4 class="fw-bold text-slate mb-1">Purity Kyalo</h4>
+                                    <span class="text-primary small fw-semibold text-uppercase tracking-wider">Full Stack Developer</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="member-body">
-                            <p>Expert web developer specializing in high-performance sites and SEO. Masters the stack from Django backends to polished WordPress frontends.</p>
-                            <ul class="specs-list">
-                                <li><i class="fab fa-wordpress"></i> WordPress Dev</li>
-                                <li><i class="fab fa-python"></i> Django / Python</li>
-                                <li><i class="fas fa-search-dollar"></i> Advanced SEO</li>
+                            <p class="text-muted mb-4">Expert web developer specializing in high-performance sites and SEO. Masters the stack from Django backends to polished WordPress frontends.</p>
+                            <ul class="list-unstyled text-slate fw-medium small mb-0">
+                                <li class="mb-3 d-flex align-items-center"><i class="fab fa-wordpress text-primary me-3 fs-5"></i> WordPress Dev</li>
+                                <li class="mb-3 d-flex align-items-center"><i class="fab fa-python text-primary me-3 fs-5"></i> Django / Python</li>
+                                <li class="d-flex align-items-center"><i class="fas fa-search-dollar text-primary me-3 fs-5"></i> Advanced SEO</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-4 scroll-reveal delay-100">
-                    <div class="member-card glass-card border-blue">
-                        <div class="member-header">
-                            <div class="avatar-placeholder gradient-2">WO</div>
-                            <div class="member-role">
-                                <h4 class="text-white">Webster Onsando</h4>
-                                <span class="text-primary">Cloud Architect</span>
+                <!-- Member 2 -->
+                <div class="col-md-6 col-lg-5 reveal delay-100">
+                    <div class="card premium-card border-0 h-100 p-2">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center border-bottom pb-4 mb-4">
+                                <div class="bg-soft-info text-info fw-bold fs-4 rounded-circle d-flex align-items-center justify-content-center me-3 shadow-sm" style="width: 65px; height: 65px;">
+                                    WO
+                                </div>
+                                <div>
+                                    <h4 class="fw-bold text-slate mb-1">Webster Onsando</h4>
+                                    <span class="text-info small fw-semibold text-uppercase tracking-wider">Cloud Architect</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="member-body">
-                            <p>Cloud infrastructure engineer focused on scalability and AWS/Azure integration. Building the sky-high servers of tomorrow.</p>
-                            <ul class="specs-list">
-                                <li><i class="fab fa-aws"></i> AWS Certified</li>
-                                <li><i class="fas fa-server"></i> DevOps</li>
-                                <li><i class="fas fa-database"></i> Big Data</li>
+                            <p class="text-muted mb-4">Cloud infrastructure engineer focused on scalability and AWS/Azure integration. Building the sky-high servers of tomorrow.</p>
+                            <ul class="list-unstyled text-slate fw-medium small mb-0">
+                                <li class="mb-3 d-flex align-items-center"><i class="fab fa-aws text-info me-3 fs-5"></i> AWS Certified</li>
+                                <li class="mb-3 d-flex align-items-center"><i class="fas fa-server text-info me-3 fs-5"></i> DevOps</li>
+                                <li class="d-flex align-items-center"><i class="fas fa-database text-info me-3 fs-5"></i> Big Data</li>
                             </ul>
                         </div>
                     </div>
@@ -213,50 +236,62 @@
         </div>
     </section>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
+    <!-- Footer -->
+    <footer class="footer bg-white border-top py-5">
+        <div class="container pt-4">
+            <div class="row g-5">
+                <div class="col-lg-4">
                     <div class="d-flex align-items-center mb-3">
-                        <img src="logo.jpg" alt="Logo" class="rounded-circle me-2" style="width:30px; border:1px solid #333;">
-                        <h5 class="m-0">Swiftsync</h5>
+                        <img src="logo.jpg" alt="Logo" class="rounded logo-sm">
+                        <h5 class="m-0 ms-2 fw-bold text-slate">Swiftsync</h5>
                     </div>
-                    <p class="text-white-50">Synchronizing technology with human ambition.</p>
+                    <p class="text-muted pe-4">Synchronizing technology with human ambition. Providing world-class IT solutions tailored for modern businesses.</p>
                 </div>
-                <div class="col-md-4">
-                    <h5 class="text-white">Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="index.html" class="text-white-50 text-decoration-none">Home</a></li>
-                        <li><a href="services.html" class="text-white-50 text-decoration-none">Services</a></li>
-                        <li><a href="staff.html" class="text-white-50 text-decoration-none">Team</a></li>
-                        <li><a href="contact.html" class="text-white-50 text-decoration-none">Contact</a></li>
+                <div class="col-lg-2 col-6">
+                    <h6 class="text-slate fw-bold mb-3">Solutions</h6>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="services.html" class="text-muted text-decoration-none">OS Installation</a></li>
+                        <li><a href="services.html" class="text-muted text-decoration-none">Networking</a></li>
+                        <li><a href="services.html" class="text-muted text-decoration-none">Web Development</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4">
-                    <h5 class="text-white">Connect</h5>
-                    <div class="d-flex gap-3">
-                        <a href="#" class="text-white"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-white"><i class="fab fa-linkedin"></i></a>
+                <div class="col-lg-2 col-6">
+                    <h6 class="text-slate fw-bold mb-3">Company</h6>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="index.html" class="text-muted text-decoration-none">About Us</a></li>
+                        <li><a href="staff.html" class="text-muted text-decoration-none">Our Team</a></li>
+                        <li><a href="contact.html" class="text-muted text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h6 class="text-slate fw-bold mb-3">Connect</h6>
+                    <div class="d-flex gap-3 mb-4">
+                        <a href="#" class="btn btn-light rounded-circle text-muted"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="btn btn-light rounded-circle text-muted"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="btn btn-light rounded-circle text-muted"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
-            <hr class="border-secondary my-4">
-            <div class="text-center text-white-50">
-                <small>&copy; 2025 Swiftsync. All rights reserved.</small>
+            <div class="row border-top mt-5 pt-4">
+                <div class="col-12 text-center">
+                    <p class="text-muted small m-0">&copy; 2025 Swiftsync. All rights reserved.</p>
+                </div>
             </div>
         </div>
     </footer>
-<a href="https://wa.me/254721156350?text=Hello%20Swiftsync,%20I%20would%20like%20to%20inquire%20about%20your%20services." 
-       class="whatsapp-float" 
-       target="_blank" 
-       rel="noopener noreferrer"
-       title="Chat with us on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/254721156350?text=Hello%20Swiftsync,%20I%20would%20like%20to%20inquire%20about%20your%20services." 
+       class="whatsapp-float bg-success text-white rounded-circle shadow-lg d-flex align-items-center justify-content-center" 
+       target="_blank" rel="noopener noreferrer" title="Chat with us">
+        <i class="fab fa-whatsapp fs-3"></i>
     </a>
+
+    <!-- Scroll to Top -->
     <button id="scrollTopBtn" class="scroll-top-btn" title="Go to top">
         <i class="fas fa-chevron-up"></i>
     </button>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="staff.js"></script>
 </body>

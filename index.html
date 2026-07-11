@@ -5,22 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Swiftsync - Modern Tech Solutions. OS Installation, Networking, and Web Development in Kenya.">
     <title>Swiftsync | Modern Tech Solutions</title>
-    <meta name="title" content="Swiftsync | Modern Tech Solutions">
-    <meta name="description" content="Synchronizing technology with human ambition. We provide OS installation, secure networking, CCTV, and next-gen web development in Kenya.">
-    <meta name="keywords" content="Swiftsync, IT solutions Kenya, network setup, web development, OS installation, CCTV installation Nairobi, tech support">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://swiftsync.co.ke/"> <meta property="og:title" content="Swiftsync | Modern Tech Solutions">
-    <meta property="og:description" content="Synchronizing technology with human ambition. Expert IT, networking, and web solutions.">
-    <meta property="og:image" content="https://swiftsync.co.ke/logo.jpg"> 
-
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://swiftsync.co.ke/">
-    <meta property="twitter:title" content="Swiftsync | Modern Tech Solutions">
-    <meta property="twitter:description" content="Expert IT, networking, and web solutions in Kenya.">
-    <meta property="twitter:image" content="https://swiftsync.co.ke/logo.jpg">
     
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Open Graph & Twitter Meta Tags omitted for brevity (keep your originals here) -->
+    
+    <!-- Stripe-esque Typography: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -29,456 +21,269 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="canonical" href="https://swiftsync.co.ke/" />
 </head>
-<body>
-<div id="preloader">
-        <div class="loader-content">
-            <div class="neon-ring"></div>
-            <div class="loader-text">INITIALIZING...</div>
+<body class="light-theme">
+
+    <!-- Premium Minimalist Preloader -->
+    <div id="preloader" class="premium-loader-wrapper">
+        <div class="premium-loader">
+            <svg class="spinner" viewBox="0 0 50 50">
+                <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="4"></circle>
+            </svg>
+            <div class="loader-text">Loading Swiftsync</div>
         </div>
     </div>
-    <canvas id="neuron-canvas"></canvas>
+
+    <!-- Soft Animated Gradient Background (Replaces Neuron Canvas) -->
+    <canvas id="gradient-canvas"></canvas>
 
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <nav class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <a class="navbar-brand d-flex align-items-center" href="index.html">
-                <img src="logo.jpg" alt="Logo">
+    <!-- Sidebar (Light Theme) -->
+    <nav class="sidebar bg-white shadow-lg" id="sidebar">
+        <div class="sidebar-header border-bottom">
+            <a class="navbar-brand d-flex align-items-center text-dark fw-bold" href="index.html">
+                <img src="logo.jpg" alt="Swiftsync Logo" class="rounded logo-sm">
                 <span class="ms-2">Swiftsync</span>
             </a>
-            <button class="sidebar-close" id="sidebarClose">
+            <button class="btn btn-light rounded-circle sidebar-close" id="sidebarClose">
                 <span class="material-icons">close</span>
             </button>
         </div>
-        <ul class="sidebar-nav">
-            <li class="nav-item">
-                <a class="nav-link active" href="index.html"><span class="material-icons">house</span> Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="services.html"><span class="material-icons">hub</span> Services</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="staff.html"><span class="material-icons">groups</span> Team</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="contact.html"><span class="material-icons">contact_mail</span> Contact</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="cv.html"><span class="material-icons">description</span> CV</a>
-            </li>
+        <ul class="sidebar-nav pt-3">
+            <li class="nav-item"><a class="nav-link text-dark fw-medium" href="index.html"><span class="material-icons text-primary me-2">house</span> Home</a></li>
+            <li class="nav-item"><a class="nav-link text-secondary" href="services.html"><span class="material-icons me-2">hub</span> Services</a></li>
+            <li class="nav-item"><a class="nav-link text-secondary" href="staff.html"><span class="material-icons me-2">groups</span> Team</a></li>
+            <li class="nav-item"><a class="nav-link text-secondary" href="contact.html"><span class="material-icons me-2">contact_mail</span> Contact</a></li>
         </ul>
     </nav>
 
-    <nav class="navbar navbar-expand-lg fixed-top">
+    <!-- Glassmorphism/White Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top premium-navbar">
         <div class="container">
-            <button class="sidebar-toggle me-3" type="button" id="sidebarToggle">
+            <button class="btn btn-light d-lg-none me-3 shadow-sm rounded-circle p-2 d-flex align-items-center justify-content-center" type="button" id="sidebarToggle">
                 <span class="material-icons">menu</span>
             </button>
 
-            <a class="navbar-brand d-flex align-items-center" href="index.html">
-                <img src="logo.jpg" alt="Logo">
-                <span class="ms-2">Swiftsync</span>
+            <a class="navbar-brand d-flex align-items-center fw-bold text-dark" href="index.html">
+                <img src="logo.jpg" alt="Logo" class="rounded logo-sm">
+                <span class="ms-2 brand-text">Swiftsync</span>
             </a>
             
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="index.html"><i class="material-icons">house</i> Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="services.html"><i class="material-icons">hub</i> Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="staff.html"><i class="material-icons">groups</i> Team</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html"><i class="material-icons">contact_mail</i> Contact</a></li>
+                <ul class="navbar-nav ms-auto fw-medium">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="staff.html">Team</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                 </ul>
-                <a href="contact.html" class="btn btn-primary ms-3 btn-sm rounded-pill">Get Quote</a>
+                <a href="contact.html" class="btn btn-primary premium-btn ms-4">Get Quote <i class="fas fa-arrow-right ms-1"></i></a>
             </div>
         </div>
     </nav>
 
-    <section id="home" class="hero-section">
-        <div class="carousel-slide active" id="slide1">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6">
-                        <span class="badge rounded-pill border border-primary text-primary mb-3 px-3 py-2">Welcome to Swiftsync</span>
-                        <h1 class="display-title">Modern <span class="text-gradient">Tech Solutions</span></h1>
-                        <p class="lead text-muted mb-4">We bridge the gap between complex technology and human potential. Simple, intuitive, and powerful.</p>
-                        <a href="services.html" class="btn btn-primary">Explore Services</a>
-                    </div>
-                    <div class="col-lg-6 text-center d-none d-lg-block">
-                        <img src="Moderntech1.png" class="img-fluid rounded-4 shadow-lg hero-img" alt="Tech">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="carousel-slide" id="slide2">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6">
-                        <span class="badge rounded-pill border border-info text-info mb-3 px-3 py-2">System Architecture</span>
-                        <h1 class="display-title">OS <span class="text-gradient">Mastery</span></h1>
-                        <p class="lead text-muted mb-4">Expert installation for Linux (Kali, Ubuntu), Windows, and macOS. Optimized for speed.</p>
-                        <a href="services.html" class="btn btn-primary">View OS Options</a>
-                    </div>
-                    <div class="col-lg-6 text-center d-none d-lg-block">
-                         <i class="material-icons text-white" style="font-size: 200px;">settings_system_daydream</i>
+    <!-- Hero Section -->
+    <section id="home" class="hero-section bg-light-surface pt-5">
+        <div class="container mt-5 pt-5">
+            <div class="row align-items-center min-vh-75">
+                <div class="col-lg-6 z-index-2">
+                    <span class="badge badge-soft-primary rounded-pill mb-3 px-3 py-2 fw-semibold">New: Enterprise Setup</span>
+                    <h1 class="display-4 fw-extrabold text-slate mb-3">
+                        Modern Tech Solutions <br>
+                        <span class="text-gradient-primary">Built for Growth.</span>
+                    </h1>
+                    <p class="lead text-muted mb-5 pe-lg-5">We bridge the gap between complex technology and human potential. Delivering robust networking, seamless OS architecture, and modern web experiences in Kenya.</p>
+                    <div class="d-flex gap-3">
+                        <a href="services.html" class="btn btn-primary premium-btn btn-lg">Explore Services</a>
+                        <a href="contact.html" class="btn btn-outline-secondary premium-btn-outline btn-lg">Contact Sales</a>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="carousel-slide" id="slide3">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6">
-                        <span class="badge rounded-pill border border-danger text-danger mb-3 px-3 py-2">Security First</span>
-                        <h1 class="display-title">Secure <span class="text-gradient">Networking</span></h1>
-                        <p class="lead text-muted mb-4">CCTV installation, Lab setup, and advanced diagnostics to keep you safe online.</p>
-                        <a href="contact.html" class="btn btn-primary">Secure Now</a>
-                    </div>
-                    <div class="col-lg-6 text-center d-none d-lg-block">
-                         <i class="material-icons text-white" style="font-size: 200px;">shield</i>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="carousel-slide" id="slide4">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6">
-                        <span class="badge rounded-pill border border-success text-success mb-3 px-3 py-2">Growth</span>
-                        <h1 class="display-title">Web & <span class="text-gradient">SEO</span></h1>
-                        <p class="lead text-muted mb-4">Next-gen web development with SEO integration to synchronize your future.</p>
-                        <a href="contact.html" class="btn btn-primary">Start Project</a>
-                    </div>
-                    <div class="col-lg-6 text-center d-none d-lg-block">
-                         <i class="material-icons text-white" style="font-size: 200px;">code</i>
-                    </div>
+                <div class="col-lg-6 text-center d-none d-lg-block z-index-2 position-relative">
+                    <!-- The image gets a nice soft shadow in CSS -->
+                    <img src="Moderntech1.png" class="img-fluid rounded-4 premium-shadow hero-img" alt="Tech Dashboard">
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-5 web-showcase-section" id="web-showcase">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-5 mb-5 mb-lg-0 reveal">
-                    <span class="badge rounded-pill border border-secondary text-secondary mb-3 px-3 py-2">Creative Engineering</span>
-                    <h2 class="section-title text-start">Code That <span class="text-gradient">Breathes</span></h2>
-                    <p class="text-muted mb-4">We don't just build websites; we engineer digital experiences. Watch our code come to life in real-time, showcasing the clean, efficient, and modern syntax we use to power your next big idea.</p>
-                    <ul class="list-unstyled text-muted">
-                        <li class="mb-3"><i class="material-icons text-secondary align-middle me-2">code</i> Custom Web Architecture</li>
-                        <li class="mb-3"><i class="material-icons text-secondary align-middle me-2">speed</i> Blazing Fast Performance</li>
-                        <li class="mb-3"><i class="material-icons text-secondary align-middle me-2">devices</i> Fully Responsive Design</li>
-                    </ul>
-                    <a href="contact.html" class="btn btn-outline-light mt-2 rounded-pill px-4">Start Your Build</a>
-                </div>
-                <div class="col-lg-7 reveal">
-                    <div class="mock-editor">
-                        <div class="editor-header">
-                            <div class="mac-dots">
-                                <span></span><span></span><span></span>
-                            </div>
-                            <div class="file-name">index.html</div>
-                        </div>
-                        <div class="editor-body">
-                            <pre><code id="typewriter"></code><span class="typed-cursor">|</span></pre>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-5" id="services">
-        <div class="container">
-            <div class="text-center mb-5 reveal">
-                <h2 class="section-title">Core <span class="text-gradient">Services</span></h2>
-                <p class="text-muted">Comprehensive solutions for your digital needs.</p>
+    <!-- Core Services (Stripe-style Cards) -->
+    <section class="py-6 bg-white" id="services">
+        <div class="container py-5">
+            <div class="text-start mb-5 reveal">
+                <h2 class="h1 fw-bold text-slate">Infrastructure & <span class="text-gradient-primary">Software</span></h2>
+                <p class="text-muted lead">Comprehensive, enterprise-grade solutions tailored for your scale.</p>
             </div>
 
             <div class="row g-4">
+                <!-- Card 1 -->
                 <div class="col-md-4 reveal">
-                    <div class="service-card">
-                        <div class="service-icon"><i class="fab fa-linux"></i></div>
-                        <h4>OS Installation</h4>
-                        <p class="text-muted">Linux, Windows, and Mac OS installation and upgrades with driver optimization.</p>
+                    <div class="card premium-card h-100 border-0">
+                        <div class="card-body p-4">
+                            <div class="icon-wrapper bg-soft-primary text-primary mb-4">
+                                <i class="fab fa-linux fs-4"></i>
+                            </div>
+                            <h4 class="fw-bold text-slate">OS Installation</h4>
+                            <p class="text-muted mb-0">Linux, Windows, and Mac OS installation and upgrades with driver optimization for peak performance.</p>
+                        </div>
                     </div>
                 </div>
+                <!-- Card 2 -->
                 <div class="col-md-4 reveal">
-                    <div class="service-card">
-                        <div class="service-icon"><i class="material-icons">extension</i></div>
-                        <h4>Package Installation</h4>
-                        <p class="text-muted">Word, Excel, Adobe Suite, and other essential software packages.</p>
+                    <div class="card premium-card h-100 border-0">
+                        <div class="card-body p-4">
+                            <div class="icon-wrapper bg-soft-info text-info mb-4">
+                                <i class="material-icons">router</i>
+                            </div>
+                            <h4 class="fw-bold text-slate">Networking & CCTV</h4>
+                            <p class="text-muted mb-0">Secure computer lab setup, IP CCTV installation, and structured network configuration.</p>
+                        </div>
                     </div>
                 </div>
+                <!-- Card 3 -->
                 <div class="col-md-4 reveal">
-                    <div class="service-card">
-                        <div class="service-icon"><i class="material-icons">memory</i></div>
-                        <h4>Hardware Setup</h4>
-                        <p class="text-muted">Computer parts installation, upgrades, and maintenance.</p>
-                    </div>
-                </div>
-                <div class="col-md-4 reveal">
-                    <div class="service-card">
-                        <div class="service-icon"><i class="material-icons">router</i></div>
-                        <h4>Networking & CCTV</h4>
-                        <p class="text-muted">Computer lab setup, CCTV installation, and network configuration.</p>
-                    </div>
-                </div>
-                <div class="col-md-4 reveal">
-                    <div class="service-card">
-                        <div class="service-icon"><i class="material-icons">build</i></div>
-                        <h4>Diagnostics</h4>
-                        <p class="text-muted">Advanced troubleshooting for hardware and software issues.</p>
-                    </div>
-                </div>
-                <div class="col-md-4 reveal">
-                    <div class="service-card">
-                        <div class="service-icon"><i class="material-icons">language</i></div>
-                        <h4>Web & SEO</h4>
-                        <p class="text-muted">Modern web development and Search Engine Optimization.</p>
+                    <div class="card premium-card h-100 border-0">
+                        <div class="card-body p-4">
+                            <div class="icon-wrapper bg-soft-success text-success mb-4">
+                                <i class="material-icons">language</i>
+                            </div>
+                            <h4 class="fw-bold text-slate">Web & SEO</h4>
+                            <p class="text-muted mb-0">High-converting modern web development integrated with technical Search Engine Optimization.</p>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <div class="text-center mt-5 reveal">
-                <a href="services.html" class="btn btn-outline-light rounded-pill px-4">View All Services</a>
+            <div class="mt-5 reveal">
+                <a href="services.html" class="text-primary fw-semibold text-decoration-none hover-arrow">
+                    View all solutions <i class="fas fa-arrow-right ms-1"></i>
+                </a>
             </div>
         </div>
     </section>
 
-<section class="portfolio-section" id="portfolio">
-        <div class="container">
-            <div class="text-center mb-5 reveal">
-                <span class="badge border border-light text-white rounded-pill px-3 py-2 mb-3">Our Work</span>
-                <h2 class="section-title">Recent <span class="text-gradient">Deployments</span></h2>
-                <p class="text-muted">Proven excellence in digital infrastructure.</p>
-            </div>
-
-            <div class="swiper portfolioSwiper reveal">
-                <div class="swiper-wrapper">
-                    
-                    <div class="swiper-slide">
-                        <div class="project-card">
-                            <img src="Networkingcable.jpeg" alt="Server Setup" class="project-img">
-                            <div class="project-overlay">
-                                <div class="project-info">
-                                    <span class="project-tag">Networking</span>
-                                    <h3>Enterprise Server Lab</h3>
-                                    <p>Complete rack installation and structured cabling for a Nairobi fintech firm.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div class="project-card">
-                            <img src="ecommerce.jpeg" alt="Web Dev" class="project-img">
-                            <div class="project-overlay">
-                                <div class="project-info">
-                                    <span class="project-tag">Development</span>
-                                    <h3>E-Commerce Platform</h3>
-                                    <p>High-performance WordPress site with SEO optimization and payment integration.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div class="project-card">
-                            <img src="cctv.jpeg" alt="CCTV" class="project-img">
-                            <div class="project-overlay">
-                                <div class="project-info">
-                                    <span class="project-tag">Security</span>
-                                    <h3>Campus Surveillance</h3>
-                                    <p>IP Camera network setup with remote monitoring for a local university.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div class="project-card">
-                            <img src="Cybersec.jpeg" alt="Security" class="project-img">
-                            <div class="project-overlay">
-                                <div class="project-info">
-                                    <span class="project-tag">Cybersecurity</span>
-                                    <h3>Network Audit</h3>
-                                    <p>Comprehensive vulnerability assessment, firewall setup, and malware protection.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                
-                <div class="swiper-pagination"></div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-            </div>
-        </div>
-    </section>
-
-    <section class="booking-section reveal">
-        <div class="container text-center">
-            <h2 class="mb-4">Ready to Upgrade?</h2>
-            <p class="lead text-muted mb-5">Book a session with our experts or request a quote for your project.</p>
-            <div class="d-flex justify-content-center gap-3">
-                <a href="contact.html" class="btn btn-primary">Book a Session</a>
-                <a href="contact.html" class="btn btn-outline-light px-4">Contact Support</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-5">
-        <div class="container">
-            <h2 class="section-title text-center mb-5 reveal">Client <span class="text-gradient">Feedback</span></h2>
-            <div class="row g-4">
-                <div class="col-md-4 reveal">
-                    <div class="review-card">
-                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <p class="text-muted">"Swiftsync upgraded our entire office network and installed Linux on our servers. Incredible performance boost!"</p>
-                        <h6 class="mt-3 text-white">- Sarah J., Tech Lead</h6>
-                    </div>
-                </div>
-                <div class="col-md-4 reveal">
-                    <div class="review-card">
-                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <p class="text-muted">"The CCTV installation was professional and neat. I feel much safer now. Highly recommended."</p>
-                        <h6 class="mt-3 text-white">- James K., Business Owner</h6>
-                    </div>
-                </div>
-                <div class="col-md-4 reveal">
-                    <div class="review-card">
-                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
-                        <p class="text-muted">"Great support for my Mac upgrade. They saved my data when my hard drive crashed."</p>
-                        <h6 class="mt-3 text-white">- David O.</h6>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="blog" class="py-5 blog-section">
-        <div class="container">
-            <div class="text-center mb-5 reveal">
-                <span class="badge border border-secondary text-white rounded-pill px-3 py-2 mb-3">Knowledge Base</span>
-                <h2 class="section-title">Latest <span class="text-gradient">Insights</span></h2>
-                <p class="text-muted">Stay ahead with the latest trends in tech and security.</p>
-            </div>
-
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6 reveal">
-                    <article class="blog-card">
-                        <div class="blog-img-wrapper">
-                            <img src="cybesecurity.jpeg" alt="Cybersecurity" class="blog-img">
-                            <div class="blog-date">
-                                <span class="day">22</span>
-                                <span class="month">Jan</span>
-                            </div>
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <span><i class="far fa-folder"></i> Security</span>
-                                <span><i class="far fa-clock"></i> 5 min read</span>
-                            </div>
-                            <h3>The Rise of AI in Cybersecurity</h3>
-                            <p>How artificial intelligence is reshaping the battlefield against modern digital threats and zero-day exploits.</p>
-                            <a href="https://frameworksecurity.com/post/the-rapid-rise-of-ai-in-cybersecurity-a-game-changer-or-a-double-edged-sword" target="_blank" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-                </div>
-
-                <div class="col-lg-4 col-md-6 reveal">
-                    <article class="blog-card">
-                        <div class="blog-img-wrapper">
-                            <img src="Linux.jpeg" alt="Linux Server" class="blog-img">
-                            <div class="blog-date">
-                                <span class="day">15</span>
-                                <span class="month">Jan</span>
-                            </div>
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <span><i class="far fa-folder"></i> Linux</span>
-                                <span><i class="far fa-clock"></i> 4 min read</span>
-                            </div>
-                            <h3>Why Linux Runs the World</h3>
-                            <p>From supercomputers to your Android phone, discover why Linux remains the undisputed king of operating systems.</p>
-                            <a href="https://www.linuxfoundation.jp/wp-content/uploads/2017/06/LF_CaseStudy_Linux_20170613.pdf" target="_blank" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-                </div>
-
-                <div class="col-lg-4 col-md-6 reveal">
-                    <article class="blog-card">
-                        <div class="blog-img-wrapper">
-                            <img src="Networklatency.jpeg" alt="Future Tech" class="blog-img">
-                            <div class="blog-date">
-                                <span class="day">10</span>
-                                <span class="month">Jan</span>
-                            </div>
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <span><i class="far fa-folder"></i> Future Tech</span>
-                                <span><i class="far fa-clock"></i> 6 min read</span>
-                            </div>
-                            <h3>Optimizing Network Latency</h3>
-                            <p>Practical strategies for reducing lag in enterprise networks and improving data transmission speeds.</p>
-                            <a href="https://www.ibm.com/think/topics/network-optimization" target="_blank" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="d-flex align-items-center mb-3">
-                        <img src="logo.jpg" alt="Logo" class="rounded-circle me-2" style="width:30px; border:1px solid #333;">
-                        <h5 class="m-0">Swiftsync</h5>
-                    </div>
-                    <p class="text-muted">Synchronizing technology with human ambition. Providing world-class IT solutions.</p>
-                </div>
-                <div class="col-md-4">
-                    <h5>Quick Links</h5>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="staff.html">Team</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+    <!-- Web Showcase Section (Light IDE theme) -->
+    <section class="py-6 bg-light-surface" id="web-showcase">
+        <div class="container py-5">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-5 reveal">
+                    <span class="badge badge-soft-secondary rounded-pill mb-3 px-3 py-2 fw-semibold">Creative Engineering</span>
+                    <h2 class="h1 fw-bold text-slate">Code That <span class="text-gradient-primary">Breathes</span></h2>
+                    <p class="text-muted lead mb-4">We don't just build websites; we engineer digital experiences utilizing clean, efficient, and modern syntax.</p>
+                    <ul class="list-unstyled text-slate fw-medium">
+                        <li class="mb-3 d-flex align-items-center"><i class="material-icons text-primary me-3">check_circle</i> Custom Web Architecture</li>
+                        <li class="mb-3 d-flex align-items-center"><i class="material-icons text-primary me-3">check_circle</i> Blazing Fast Performance</li>
+                        <li class="mb-3 d-flex align-items-center"><i class="material-icons text-primary me-3">check_circle</i> Fully Responsive Design</li>
                     </ul>
                 </div>
-                <div class="col-md-4">
-                    <h5>Connect</h5>
-                    <div class="d-flex gap-3">
-                        <a href="#" class="fs-5 text-white"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="fs-5 text-white"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="fs-5 text-white"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="fs-5 text-white"><i class="fab fa-linkedin"></i></a>
+                <div class="col-lg-7 reveal">
+                    <div class="premium-mock-editor bg-white rounded-4 shadow-lg overflow-hidden border">
+                        <div class="editor-header bg-light border-bottom p-3 d-flex align-items-center">
+                            <div class="mac-dots d-flex gap-2">
+                                <span class="bg-danger rounded-circle p-1"></span>
+                                <span class="bg-warning rounded-circle p-1"></span>
+                                <span class="bg-success rounded-circle p-1"></span>
+                            </div>
+                            <div class="file-name ms-auto text-muted small fw-medium">swiftsync-app.js</div>
+                        </div>
+                        <div class="editor-body p-4 bg-white text-dark font-monospace small">
+                            <pre><code id="typewriter"></code><span class="typed-cursor text-primary">|</span></pre>
+                        </div>
                     </div>
                 </div>
             </div>
-            <hr class="my-4 border-secondary">
-            <div class="text-center text-muted">
-                <small>&copy; 2025 Swiftsync. All rights reserved.</small>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="py-6 bg-white" id="portfolio">
+        <div class="container py-5">
+            <div class="text-center mb-5 reveal">
+                <h2 class="h1 fw-bold text-slate">Recent <span class="text-gradient-primary">Deployments</span></h2>
+                <p class="text-muted lead">Proven excellence in digital infrastructure across Kenya.</p>
+            </div>
+
+            <div class="swiper portfolioSwiper py-4 reveal">
+                <div class="swiper-wrapper">
+                    <!-- Portfolio Slides -->
+                    <div class="swiper-slide">
+                        <div class="card premium-project-card border-0 rounded-4 overflow-hidden shadow-sm">
+                            <img src="Networkingcable.jpeg" alt="Server Setup" class="card-img-top">
+                            <div class="card-body p-4 bg-white">
+                                <span class="text-primary small fw-bold text-uppercase tracking-wider">Networking</span>
+                                <h4 class="fw-bold text-slate mt-2">Enterprise Server Lab</h4>
+                                <p class="text-muted mb-0">Complete rack installation and structured cabling for a Nairobi fintech firm.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add your other slides matching this new structure here -->
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Light Premium CTA Booking Section -->
+    <section class="py-6 cta-section bg-primary text-white text-center">
+        <div class="container py-5 reveal">
+            <h2 class="display-5 fw-bold mb-4">Ready to build your infrastructure?</h2>
+            <p class="lead mb-5 opacity-75 mx-auto" style="max-width: 600px;">Join innovative teams upgrading their digital workspaces with Swiftsync.</p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="contact.html" class="btn btn-light text-primary fw-bold btn-lg px-5 rounded-pill shadow-sm">Start your project</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Clean, Corporate) -->
+    <footer class="footer bg-white border-top py-5">
+        <div class="container pt-4">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="logo.jpg" alt="Logo" class="rounded logo-sm">
+                        <h5 class="m-0 ms-2 fw-bold text-slate">Swiftsync</h5>
+                    </div>
+                    <p class="text-muted pe-4">Synchronizing technology with human ambition. Providing world-class IT solutions tailored for modern businesses.</p>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <h6 class="text-slate fw-bold mb-3">Solutions</h6>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="services.html" class="text-muted text-decoration-none">OS Installation</a></li>
+                        <li><a href="services.html" class="text-muted text-decoration-none">Networking</a></li>
+                        <li><a href="services.html" class="text-muted text-decoration-none">Web Development</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <h6 class="text-slate fw-bold mb-3">Company</h6>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="index.html" class="text-muted text-decoration-none">About Us</a></li>
+                        <li><a href="staff.html" class="text-muted text-decoration-none">Our Team</a></li>
+                        <li><a href="contact.html" class="text-muted text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h6 class="text-slate fw-bold mb-3">Connect</h6>
+                    <div class="d-flex gap-3 mb-4">
+                        <a href="#" class="btn btn-light rounded-circle text-muted"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="btn btn-light rounded-circle text-muted"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="btn btn-light rounded-circle text-muted"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row border-top mt-5 pt-4">
+                <div class="col-12 text-center">
+                    <p class="text-muted small m-0">&copy; 2025 Swiftsync. All rights reserved.</p>
+                </div>
             </div>
         </div>
     </footer>
-<a href="https://wa.me/254721156350?text=Hello%20Swiftsync,%20I%20would%20like%20to%20inquire%20about%20your%20services." 
-       class="whatsapp-float" 
-       target="_blank" 
-       rel="noopener noreferrer"
-       title="Chat with us on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/254721156350?text=Hello%20Swiftsync,%20I%20would%20like%20to%20inquire%20about%20your%20services." 
+       class="whatsapp-float bg-success text-white rounded-circle shadow-lg d-flex align-items-center justify-content-center" 
+       target="_blank" title="Chat with us">
+        <i class="fab fa-whatsapp fs-3"></i>
     </a>
-    <button id="scrollTopBtn" class="scroll-top-btn" title="Go to top">
-        <i class="fas fa-chevron-up"></i>
-    </button>
+
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>

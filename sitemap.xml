@@ -1,33 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+   
+   <!-- 1. Home Page -->
    <url>
       <loc>https://swiftsync.co.ke/</loc>
-      <lastmod>2026-01-25</lastmod>
+      <lastmod>2026-07-11</lastmod>
       <changefreq>weekly</changefreq>
       <priority>1.0</priority>
+      <!-- Indexing core brand images -->
+      <image:image>
+         <image:loc>https://swiftsync.co.ke/logo.jpg</image:loc>
+         <image:title>Swiftsync Modern Tech Solutions Logo</image:title>
+      </image:image>
+      <image:image>
+         <image:loc>https://swiftsync.co.ke/Moderntech1.png</image:loc>
+         <image:title>Swiftsync Technology Infrastructure</image:title>
+      </image:image>
    </url>
+   
+   <!-- 2. Services Page -->
    <url>
       <loc>https://swiftsync.co.ke/services.html</loc>
-      <lastmod>2026-01-25</lastmod>
+      <lastmod>2026-07-11</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.9</priority>
+   </url>
+   
+   <!-- 3. Team/Staff Page -->
+   <url>
+      <loc>https://swiftsync.co.ke/staff.html</loc>
+      <lastmod>2026-07-11</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+      <!-- Indexing leadership headshot -->
+      <image:image>
+         <image:loc>https://swiftsync.co.ke/ICT%20teacher.jpg</image:loc>
+         <image:title>Seth Chenge - Founder and CEO of Swiftsync</image:title>
+      </image:image>
+   </url>
+   
+   <!-- 4. Contact Page -->
+   <url>
+      <loc>https://swiftsync.co.ke/contact.html</loc>
+      <lastmod>2026-07-11</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.8</priority>
    </url>
-   <url>
-      <loc>https://swiftsync.co.ke/staff.html</loc>
-      <lastmod>2026-01-25</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.7</priority>
-   </url>
-   <url>
-      <loc>https://swiftsync.co.ke/contact.html</loc>
-      <lastmod>2026-01-25</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.7</priority>
-   </url>
+   
+   <!-- 5. CV/Resume Page -->
    <url>
       <loc>https://swiftsync.co.ke/cv.html</loc>
-      <lastmod>2026-01-25</lastmod>
-      <changefreq>yearly</changefreq>
-      <priority>0.5</priority>
+      <lastmod>2026-07-11</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.6</priority>
    </url>
+
 </urlset>

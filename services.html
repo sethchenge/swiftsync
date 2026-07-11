@@ -7,20 +7,12 @@
     
     <meta name="title" content="Swiftsync | Modern Tech Solutions">
     <meta name="description" content="Synchronizing technology with human ambition. We provide OS installation, secure networking, CCTV, and next-gen web development in Kenya.">
-    <meta name="keywords" content="Swiftsync, IT solutions Kenya, network setup, web development, OS installation, CCTV installation Nairobi, tech support">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://swiftsync.co.ke/"> <meta property="og:title" content="Swiftsync | Modern Tech Solutions">
-    <meta property="og:description" content="Synchronizing technology with human ambition. Expert IT, networking, and web solutions.">
-    <meta property="og:image" content="https://swiftsync.co.ke/logo.jpg"> 
-
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://swiftsync.co.ke/">
-    <meta property="twitter:title" content="Swiftsync | Modern Tech Solutions">
-    <meta property="twitter:description" content="Expert IT, networking, and web solutions in Kenya.">
-    <meta property="twitter:image" content="https://swiftsync.co.ke/logo.jpg">
-
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Stripe-esque Typography: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -31,217 +23,209 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="services.css">
 </head>
-<body>
-<div id="preloader">
-        <div class="loader-content">
-            <div class="neon-ring"></div>
-            <div class="loader-text">INITIALIZING...</div>
+<body class="bg-light-surface">
+
+    <!-- Premium Minimalist Preloader -->
+    <div id="preloader" class="premium-loader-wrapper">
+        <div class="premium-loader">
+            <svg class="spinner" viewBox="0 0 50 50">
+                <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="4"></circle>
+            </svg>
+            <div class="loader-text">Loading Services</div>
         </div>
     </div>
-    <canvas id="neuron-canvas"></canvas>
+
+    <!-- Soft Animated Gradient Background -->
+    <canvas id="gradient-canvas"></canvas>
 
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <nav class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <a class="navbar-brand d-flex align-items-center" href="index.html">
-                <img src="logo.jpg" alt="Logo">
+    <!-- Sidebar (Light Theme) -->
+    <nav class="sidebar bg-white shadow-lg" id="sidebar">
+        <div class="sidebar-header border-bottom">
+            <a class="navbar-brand d-flex align-items-center text-dark fw-bold" href="index.html">
+                <img src="logo.jpg" alt="Swiftsync Logo" class="rounded logo-sm">
                 <span class="ms-2">Swiftsync</span>
             </a>
-            <button class="sidebar-close" id="sidebarClose">
+            <button class="btn btn-light rounded-circle sidebar-close" id="sidebarClose">
                 <span class="material-icons">close</span>
             </button>
         </div>
-        <ul class="sidebar-nav">
-            <li class="nav-item"><a class="nav-link" href="index.html"><span class="material-icons">house</span> Home</a></li>
-            <li class="nav-item"><a class="nav-link active" href="services.html"><span class="material-icons">hub</span> Services</a></li>
-            <li class="nav-item"><a class="nav-link" href="staff.html"><span class="material-icons">groups</span> Team</a></li>
-            <li class="nav-item"><a class="nav-link" href="contact.html"><span class="material-icons">contact_mail</span> Contact</a></li>
-            <li class="nav-item"><a class="nav-link" href="cv.html"><span class="material-icons">description</span> CV</a></li>
+        <ul class="sidebar-nav pt-3">
+            <li class="nav-item"><a class="nav-link text-secondary" href="index.html"><span class="material-icons me-2">house</span> Home</a></li>
+            <li class="nav-item"><a class="nav-link text-dark fw-medium" href="services.html"><span class="material-icons text-primary me-2">hub</span> Services</a></li>
+            <li class="nav-item"><a class="nav-link text-secondary" href="staff.html"><span class="material-icons me-2">groups</span> Team</a></li>
+            <li class="nav-item"><a class="nav-link text-secondary" href="contact.html"><span class="material-icons me-2">contact_mail</span> Contact</a></li>
         </ul>
     </nav>
 
-    <nav class="navbar navbar-expand-lg fixed-top">
+    <!-- Glassmorphism Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top premium-navbar">
         <div class="container">
-            <button class="sidebar-toggle me-3" type="button" id="sidebarToggle">
+            <button class="btn btn-light d-lg-none me-3 shadow-sm rounded-circle p-2 d-flex align-items-center justify-content-center" type="button" id="sidebarToggle">
                 <span class="material-icons">menu</span>
             </button>
-            <a class="navbar-brand d-flex align-items-center" href="index.html">
-                <img src="logo.jpg" alt="Logo">
-                <span class="ms-2">Swiftsync</span>
+
+            <a class="navbar-brand d-flex align-items-center fw-bold text-dark" href="index.html">
+                <img src="logo.jpg" alt="Logo" class="rounded logo-sm">
+                <span class="ms-2 brand-text">Swiftsync</span>
             </a>
+            
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html"><i class="material-icons">house</i> Home</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="services.html"><i class="material-icons">hub</i> Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="staff.html"><i class="material-icons">groups</i> Team</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html"><i class="material-icons">contact_mail</i> Contact</a></li>
+                <ul class="navbar-nav ms-auto fw-medium">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="staff.html">Team</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                 </ul>
-                <a href="contact.html" class="btn btn-primary ms-3 btn-sm rounded-pill">Get Quote</a>
+                <a href="contact.html" class="btn btn-primary premium-btn ms-4">Get Quote <i class="fas fa-arrow-right ms-1"></i></a>
             </div>
         </div>
     </nav>
 
-<section id="welcome-text-section" class="py-5">
-        <div class="container text-center">
-            <h2 class="display-6 text-white mb-0 mx-auto" id="welcome-text-container" style="max-width: 900px;">
-                <span class="drop-cap" id="drop-w">W</span><span id="auto-type-text"></span><span class="cursor">|</span>
+    <!-- Welcome Header -->
+    <section id="welcome-text-section" class="pt-6 pb-4 mt-5">
+        <div class="container text-center pt-5">
+            <h2 class="display-5 fw-extrabold text-slate mb-0 mx-auto" id="welcome-text-container" style="max-width: 900px;">
+                <span class="text-primary" id="drop-w">W</span><span id="auto-type-text"></span><span class="typed-cursor">|</span>
             </h2>
         </div>
     </section>
     
-<section class="py-5 sectors-section">
-        <div class="container text-center mb-5">
-            <h2 class="mb-2 text-white">Industries We <span class="text-gradient">Empower</span></h2>
-            <p class="text-white-50">Extending our cutting-edge tech infrastructure across diverse fields.</p>
+    <!-- Industries Marquee (Updated for Light Theme) -->
+    <section class="py-4 sectors-section">
+        <div class="container text-center mb-4">
+            <h6 class="text-uppercase tracking-wider text-muted fw-bold mb-2">Industries We Empower</h6>
         </div>
         
-        <div class="marquee-container">
-            <div class="marquee-track" id="sectors-track">
-                <div class="sector-pill">
-                    <i class="fas fa-graduation-cap text-cyan"></i> Educational Institutions
+        <div class="marquee-container overflow-hidden py-3">
+            <div class="marquee-track d-flex gap-3" id="sectors-track" style="white-space: nowrap;">
+                <!-- Replaced dark pills with clean light pills -->
+                <div class="bg-white shadow-sm rounded-pill px-4 py-2 border text-slate fw-medium d-inline-flex align-items-center gap-2">
+                    <i class="fas fa-graduation-cap text-primary"></i> Educational Institutions
                 </div>
-                <div class="sector-pill">
-                    <i class="fas fa-building text-purple"></i> Corporate Organizations
+                <div class="bg-white shadow-sm rounded-pill px-4 py-2 border text-slate fw-medium d-inline-flex align-items-center gap-2">
+                    <i class="fas fa-building text-info"></i> Corporate Organizations
                 </div>
-                <div class="sector-pill">
-                    <i class="fas fa-city text-orange"></i> Residential Apartments
+                <div class="bg-white shadow-sm rounded-pill px-4 py-2 border text-slate fw-medium d-inline-flex align-items-center gap-2">
+                    <i class="fas fa-city text-success"></i> Residential Apartments
                 </div>
-                <div class="sector-pill">
-                    <i class="fas fa-landmark text-blue"></i> Government & Public Sector
+                <div class="bg-white shadow-sm rounded-pill px-4 py-2 border text-slate fw-medium d-inline-flex align-items-center gap-2">
+                    <i class="fas fa-landmark text-primary"></i> Government & Public Sector
                 </div>
-                <div class="sector-pill">
-                    <i class="fas fa-hospital text-pink"></i> Healthcare Facilities
+                <div class="bg-white shadow-sm rounded-pill px-4 py-2 border text-slate fw-medium d-inline-flex align-items-center gap-2">
+                    <i class="fas fa-hospital text-info"></i> Healthcare Facilities
                 </div>
-                <div class="sector-pill">
-                    <i class="fas fa-industry text-yellow"></i> Industrial & Manufacturing
+                <div class="bg-white shadow-sm rounded-pill px-4 py-2 border text-slate fw-medium d-inline-flex align-items-center gap-2">
+                    <i class="fas fa-industry text-success"></i> Industrial & Manufacturing
                 </div>
             </div>
         </div>
     </section>
     
-    <section class="services-header text-center pt-5 mt-2">
-        <div class="container mt-4">
-            <span class="badge rounded-pill border border-light text-white mb-3 px-3 py-2">Our Capabilities</span>
-            <h2 class="mb-3 text-white">Comprehensive <span class="text-gradient">Solutions</span></h2>
-            <p class="lead text-white-50">Precision engineering for every aspect of your digital infrastructure.</p>
+    <section class="services-header text-center pt-5">
+        <div class="container">
+            <span class="badge badge-soft-primary rounded-pill mb-3 px-3 py-2 fw-semibold">Our Capabilities</span>
+            <h2 class="h1 fw-bold text-slate mb-3">Comprehensive <span class="text-gradient-primary">Solutions</span></h2>
+            <p class="lead text-muted max-w-75 mx-auto">Precision engineering for every aspect of your digital infrastructure.</p>
         </div>
     </section>
 
-    <section class="py-5">
+    <!-- Services Grid -->
+    <section class="py-5 mb-5">
         <div class="container">
             <div class="row g-4">
                 
                 <div class="col-lg-4 col-md-6 reveal">
-                    <div class="service-card border-cyan">
-                        <div class="card-glow"></div>
-                        <div class="service-icon cyan"><i class="fab fa-linux"></i></div>
-                        <h3>OS Architecture</h3>
-                        <p>Expert installation and upgrades for Linux (Kali, Ubuntu), Windows (10/11), and macOS. We configure dual-boot systems and optimize drivers for peak performance.</p>
-                        <ul class="service-list">
-                            <li><i class="fas fa-check"></i> Zero-latency config</li>
-                            <li><i class="fas fa-check"></i> Custom Shells</li>
-                        </ul>
+                    <div class="card premium-card h-100 border-0 p-2">
+                        <div class="card-body p-4">
+                            <div class="icon-wrapper bg-soft-info text-info mb-4">
+                                <i class="fab fa-linux fs-4"></i>
+                            </div>
+                            <h4 class="fw-bold text-slate">OS Architecture</h4>
+                            <p class="text-muted mb-4">Expert installation and upgrades for Linux, Windows, and macOS. We configure dual-boot systems and optimize drivers.</p>
+                            <ul class="list-unstyled text-slate fw-medium small border-top pt-3">
+                                <li class="mb-2 d-flex align-items-center"><i class="material-icons text-primary me-2 fs-6">check_circle</i> Zero-latency config</li>
+                                <li class="d-flex align-items-center"><i class="material-icons text-primary me-2 fs-6">check_circle</i> Custom Shells</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6 reveal">
-                    <div class="service-card border-purple">
-                        <div class="card-glow"></div>
-                        <div class="service-icon purple"><i class="fas fa-box-open"></i></div>
-                        <h3>Software Suites</h3>
-                        <p>Full deployment of essential software ecosystems. From Microsoft Office (Word, Excel) to Adobe Creative Cloud and specialized development IDEs.</p>
-                        <ul class="service-list">
-                            <li><i class="fas fa-check"></i> Licensed Setup</li>
-                            <li><i class="fas fa-check"></i> Dev Environments</li>
-                        </ul>
+                    <div class="card premium-card h-100 border-0 p-2">
+                        <div class="card-body p-4">
+                            <div class="icon-wrapper bg-soft-primary text-primary mb-4">
+                                <i class="fas fa-box-open fs-4"></i>
+                            </div>
+                            <h4 class="fw-bold text-slate">Software Suites</h4>
+                            <p class="text-muted mb-4">Full deployment of essential software ecosystems. From MS Office to Adobe Creative Cloud and development IDEs.</p>
+                            <ul class="list-unstyled text-slate fw-medium small border-top pt-3">
+                                <li class="mb-2 d-flex align-items-center"><i class="material-icons text-primary me-2 fs-6">check_circle</i> Licensed Setup</li>
+                                <li class="d-flex align-items-center"><i class="material-icons text-primary me-2 fs-6">check_circle</i> Dev Environments</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6 reveal">
-                    <div class="service-card border-orange">
-                        <div class="card-glow"></div>
-                        <div class="service-icon orange"><i class="fas fa-microchip"></i></div>
-                        <h3>Hardware Ops</h3>
-                        <p>Precision component installation. We handle Motherboards, GPUs, RAM upgrades, SSD migration, and custom PC building with cable management.</p>
-                        <ul class="service-list">
-                            <li><i class="fas fa-check"></i> Thermal Optimization</li>
-                            <li><i class="fas fa-check"></i> Parts Replacement</li>
-                        </ul>
+                    <div class="card premium-card h-100 border-0 p-2">
+                        <div class="card-body p-4">
+                            <div class="icon-wrapper bg-soft-secondary text-secondary mb-4">
+                                <i class="fas fa-microchip fs-4"></i>
+                            </div>
+                            <h4 class="fw-bold text-slate">Hardware Ops</h4>
+                            <p class="text-muted mb-4">Precision component installation. Motherboards, GPUs, RAM upgrades, SSD migration, and custom PC builds.</p>
+                            <ul class="list-unstyled text-slate fw-medium small border-top pt-3">
+                                <li class="mb-2 d-flex align-items-center"><i class="material-icons text-primary me-2 fs-6">check_circle</i> Thermal Optimization</li>
+                                <li class="d-flex align-items-center"><i class="material-icons text-primary me-2 fs-6">check_circle</i> Parts Replacement</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6 reveal">
-                    <div class="service-card border-blue">
-                        <div class="card-glow"></div>
-                        <div class="service-icon blue"><i class="fas fa-network-wired"></i></div>
-                        <h3>Lab & Networking</h3>
-                        <p>Complete Computer Lab setup for institutions. Structured cabling, switch configuration, router setup, and secure LAN/WAN deployment.</p>
-                        <ul class="service-list">
-                            <li><i class="fas fa-check"></i> Server Racks</li>
-                            <li><i class="fas fa-check"></i> Network Topology</li>
-                        </ul>
+                    <div class="card premium-card h-100 border-0 p-2">
+                        <div class="card-body p-4">
+                            <div class="icon-wrapper bg-soft-primary text-primary mb-4">
+                                <i class="fas fa-network-wired fs-4"></i>
+                            </div>
+                            <h4 class="fw-bold text-slate">Lab & Networking</h4>
+                            <p class="text-muted mb-4">Complete Computer Lab setup for institutions. Structured cabling, switch configuration, and secure LAN/WAN.</p>
+                            <ul class="list-unstyled text-slate fw-medium small border-top pt-3">
+                                <li class="mb-2 d-flex align-items-center"><i class="material-icons text-primary me-2 fs-6">check_circle</i> Server Racks</li>
+                                <li class="d-flex align-items-center"><i class="material-icons text-primary me-2 fs-6">check_circle</i> Network Topology</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6 reveal">
-                    <div class="service-card border-red">
-                        <div class="card-glow"></div>
-                        <div class="service-icon red"><i class="fas fa-video"></i></div>
-                        <h3>CCTV Security</h3>
-                        <p>Advanced surveillance integration. Installation of IP Cameras, DVR/NVR systems, and configuration for remote mobile viewing.</p>
-                        <ul class="service-list">
-                            <li><i class="fas fa-check"></i> Night Vision</li>
-                            <li><i class="fas fa-check"></i> Remote Access</li>
-                        </ul>
+                    <div class="card premium-card h-100 border-0 p-2">
+                        <div class="card-body p-4">
+                            <div class="icon-wrapper bg-soft-success text-success mb-4">
+                                <i class="fas fa-video fs-4"></i>
+                            </div>
+                            <h4 class="fw-bold text-slate">CCTV Security</h4>
+                            <p class="text-muted mb-4">Advanced surveillance integration. Installation of IP Cameras, NVR systems, and configuration for remote viewing.</p>
+                            <ul class="list-unstyled text-slate fw-medium small border-top pt-3">
+                                <li class="mb-2 d-flex align-items-center"><i class="material-icons text-primary me-2 fs-6">check_circle</i> Night Vision</li>
+                                <li class="d-flex align-items-center"><i class="material-icons text-primary me-2 fs-6">check_circle</i> Remote Access</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6 reveal">
-                    <div class="service-card border-green">
-                        <div class="card-glow"></div>
-                        <div class="service-icon green"><i class="fas fa-bell"></i></div>
-                        <h3>Autobell Systems</h3>
-                        <p>Automated timing solutions for schools and factories. Programmable logic controllers for precise bell schedules and alerts.</p>
-                        <ul class="service-list">
-                            <li><i class="fas fa-check"></i> Custom Schedules</li>
-                            <li><i class="fas fa-check"></i> Hardware Install</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 reveal">
-                    <div class="service-card border-yellow">
-                        <div class="card-glow"></div>
-                        <div class="service-icon yellow"><i class="fas fa-stethoscope"></i></div>
-                        <h3>Diagnostics</h3>
-                        <p>Deep system analysis for critical failures. We troubleshoot hardware bottlenecks, software bugs, and perform data recovery.</p>
-                        <ul class="service-list">
-                            <li><i class="fas fa-check"></i> Data Recovery</li>
-                            <li><i class="fas fa-check"></i> Error Logs</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 reveal">
-                    <div class="service-card border-pink">
-                        <div class="card-glow"></div>
-                        <div class="service-icon pink"><i class="fas fa-code"></i></div>
-                        <h3>Web & SEO</h3>
-                        <p>Next-gen web development with built-in SEO. We build responsive, fast, and high-ranking websites to boost your digital presence.</p>
-                        <ul class="service-list">
-                            <li><i class="fas fa-check"></i> E-commerce</li>
-                            <li><i class="fas fa-check"></i> SEO Optimization</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 reveal">
-                    <div class="service-card border-white text-center d-flex flex-column justify-content-center">
-                        <div class="service-icon white mx-auto"><i class="fas fa-calendar-check"></i></div>
-                        <h3>Book a Session</h3>
-                        <p>Need personalized training or consultation? Schedule a one-on-one session with our experts.</p>
-                        <a href="contact.html" class="btn btn-primary mt-3">Book Now</a>
+                    <div class="card premium-card h-100 border-0 p-2 bg-primary text-white text-center d-flex flex-column justify-content-center shadow-lg">
+                        <div class="card-body p-4 d-flex flex-column justify-content-center align-items-center">
+                            <div class="icon-wrapper bg-white text-primary mb-4 shadow-sm" style="width: 70px; height: 70px;">
+                                <i class="fas fa-calendar-check fs-3"></i>
+                            </div>
+                            <h4 class="fw-bold text-white">Book a Session</h4>
+                            <p class="text-white-50 mb-4">Need personalized training or consultation? Schedule a one-on-one session with our experts.</p>
+                            <a href="contact.html" class="btn btn-light text-primary fw-bold px-4 rounded-pill">Book Now</a>
+                        </div>
                     </div>
                 </div>
 
@@ -249,89 +233,115 @@
         </div>
     </section>
 
-    <section class="py-5 border-top border-light">
-        <div class="container text-center">
-            <h2 class="mb-5 text-white">Our Technology <span class="text-gradient">Toolkit</span></h2>
+    <!-- Technology Toolkit -->
+    <section class="py-5 bg-white border-top border-bottom border-light">
+        <div class="container text-center py-4">
+            <h3 class="fw-bold text-slate mb-5">Our Technology <span class="text-gradient-primary">Toolkit</span></h3>
             <div class="row justify-content-center g-4">
-                <div class="col-4 col-md-2 tech-icon"><i class="fab fa-linux"></i><br><small>Linux</small></div>
-                <div class="col-4 col-md-2 tech-icon"><i class="fab fa-windows"></i><br><small>Windows</small></div>
-                <div class="col-4 col-md-2 tech-icon"><i class="fab fa-apple"></i><br><small>MacOS</small></div>
-                <div class="col-4 col-md-2 tech-icon"><i class="fab fa-python"></i><br><small>Python</small></div>
-                <div class="col-4 col-md-2 tech-icon"><i class="fas fa-shield-alt"></i><br><small>Security</small></div>
-                <div class="col-4 col-md-2 tech-icon"><i class="fab fa-html5"></i><br><small>Web</small></div>
+                <div class="col-4 col-md-2 tech-icon text-slate opacity-75 hover-opacity-100 transition-all">
+                    <i class="fab fa-linux fs-1 mb-2"></i><br><small class="fw-medium">Linux</small>
+                </div>
+                <div class="col-4 col-md-2 tech-icon text-slate opacity-75 hover-opacity-100 transition-all">
+                    <i class="fab fa-windows fs-1 mb-2"></i><br><small class="fw-medium">Windows</small>
+                </div>
+                <div class="col-4 col-md-2 tech-icon text-slate opacity-75 hover-opacity-100 transition-all">
+                    <i class="fab fa-apple fs-1 mb-2"></i><br><small class="fw-medium">MacOS</small>
+                </div>
+                <div class="col-4 col-md-2 tech-icon text-slate opacity-75 hover-opacity-100 transition-all">
+                    <i class="fab fa-python fs-1 mb-2"></i><br><small class="fw-medium">Python</small>
+                </div>
+                <div class="col-4 col-md-2 tech-icon text-slate opacity-75 hover-opacity-100 transition-all">
+                    <i class="fas fa-shield-alt fs-1 mb-2"></i><br><small class="fw-medium">Security</small>
+                </div>
+                <div class="col-4 col-md-2 tech-icon text-slate opacity-75 hover-opacity-100 transition-all">
+                    <i class="fab fa-html5 fs-1 mb-2"></i><br><small class="fw-medium">Web</small>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="py-5">
-        <div class="container">
+    <!-- Stats Section -->
+    <section class="py-6 bg-light-surface">
+        <div class="container py-4">
             <div class="row g-4 text-center">
                 <div class="col-md-4 reveal">
-                    <div class="stat-card border-cyan">
-                        <h2 class="counter" data-target="500">0</h2>
-                        <p>Projects Completed</p>
+                    <div class="card premium-card border-0 p-4">
+                        <h2 class="display-4 fw-extrabold text-primary mb-2 counter" data-target="500">0</h2>
+                        <p class="text-slate fw-semibold mb-0">Projects Completed</p>
                     </div>
                 </div>
                 <div class="col-md-4 reveal">
-                    <div class="stat-card border-purple">
-                        <h2 class="counter" data-target="98">0</h2>
-                        <p>Client Satisfaction (%)</p>
+                    <div class="card premium-card border-0 p-4">
+                        <h2 class="display-4 fw-extrabold text-info mb-2 counter" data-target="98">0</h2>
+                        <p class="text-slate fw-semibold mb-0">Client Satisfaction (%)</p>
                     </div>
                 </div>
                 <div class="col-md-4 reveal">
-                    <div class="stat-card border-blue">
-                        <h2 class="counter" data-target="24">0</h2>
-                        <p>Hours Support / 7</p>
+                    <div class="card premium-card border-0 p-4">
+                        <h2 class="display-4 fw-extrabold text-success mb-2 counter" data-target="24">0</h2>
+                        <p class="text-slate fw-semibold mb-0">Hours Support / 7</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
+    <!-- Footer -->
+    <footer class="footer bg-white border-top py-5">
+        <div class="container pt-4">
+            <div class="row g-5">
+                <div class="col-lg-4">
                     <div class="d-flex align-items-center mb-3">
-                        <img src="logo.jpg" alt="Logo" class="rounded-circle me-2" style="width:30px; border:1px solid #333;">
-                        <h5 class="m-0">Swiftsync</h5>
+                        <img src="logo.jpg" alt="Logo" class="rounded logo-sm">
+                        <h5 class="m-0 ms-2 fw-bold text-slate">Swiftsync</h5>
                     </div>
-                    <p class="text-white-50">Synchronizing technology with human ambition.</p>
+                    <p class="text-muted pe-4">Synchronizing technology with human ambition. Providing world-class IT solutions tailored for modern businesses.</p>
                 </div>
-                <div class="col-md-4">
-                    <h5 class="text-white">Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="index.html" class="text-white-50 text-decoration-none">Home</a></li>
-                        <li><a href="services.html" class="text-white-50 text-decoration-none">Services</a></li>
-                        <li><a href="staff.html" class="text-white-50 text-decoration-none">Team</a></li>
-                        <li><a href="contact.html" class="text-white-50 text-decoration-none">Contact</a></li>
+                <div class="col-lg-2 col-6">
+                    <h6 class="text-slate fw-bold mb-3">Solutions</h6>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="services.html" class="text-muted text-decoration-none">OS Installation</a></li>
+                        <li><a href="services.html" class="text-muted text-decoration-none">Networking</a></li>
+                        <li><a href="services.html" class="text-muted text-decoration-none">Web Development</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4">
-                    <h5 class="text-white">Connect</h5>
-                    <div class="d-flex gap-3">
-                        <a href="#" class="text-white"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-white"><i class="fab fa-linkedin"></i></a>
+                <div class="col-lg-2 col-6">
+                    <h6 class="text-slate fw-bold mb-3">Company</h6>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="index.html" class="text-muted text-decoration-none">About Us</a></li>
+                        <li><a href="staff.html" class="text-muted text-decoration-none">Our Team</a></li>
+                        <li><a href="contact.html" class="text-muted text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h6 class="text-slate fw-bold mb-3">Connect</h6>
+                    <div class="d-flex gap-3 mb-4">
+                        <a href="#" class="btn btn-light rounded-circle text-muted"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="btn btn-light rounded-circle text-muted"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="btn btn-light rounded-circle text-muted"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
-            <hr class="border-secondary my-4">
-            <div class="text-center text-white-50">
-                <small>&copy; 2025 Swiftsync. All rights reserved.</small>
+            <div class="row border-top mt-5 pt-4">
+                <div class="col-12 text-center">
+                    <p class="text-muted small m-0">&copy; 2025 Swiftsync. All rights reserved.</p>
+                </div>
             </div>
         </div>
     </footer>
-<a href="https://wa.me/254721156350?text=Hello%20Swiftsync,%20I%20would%20like%20to%20inquire%20about%20your%20services." 
-       class="whatsapp-float" 
-       target="_blank" 
-       rel="noopener noreferrer"
-       title="Chat with us on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/254721156350?text=Hello%20Swiftsync,%20I%20would%20like%20to%20inquire%20about%20your%20services." 
+       class="whatsapp-float bg-success text-white rounded-circle shadow-lg d-flex align-items-center justify-content-center" 
+       target="_blank" rel="noopener noreferrer" title="Chat with us">
+        <i class="fab fa-whatsapp fs-3"></i>
     </a>
+
+    <!-- Scroll to Top -->
     <button id="scrollTopBtn" class="scroll-top-btn" title="Go to top">
         <i class="fas fa-chevron-up"></i>
     </button>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="services.js"></script>
 </body>

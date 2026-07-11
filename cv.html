@@ -4,210 +4,286 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Seth Chenge - Professional CV. Computer Technician & IT Professional. View qualifications, experience, and certifications.">
-    <meta name="theme-color" content="#0a0a0a">
+    <meta name="theme-color" content="#f6f9fc">
     
     <title>Digital Resume | Swiftsync</title>
     
+    <!-- Stripe-esque Typography: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <!-- Note: Remove dark-theme code from cv.css if applicable -->
     <link rel="stylesheet" href="cv.css">
+    
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
+    
+    <style>
+        /* Minimal inline print styles to ensure the premium look exports perfectly to PDF */
+        @media print {
+            body { background: white !important; }
+            .premium-navbar, .sidebar, .fab-container, #gradient-canvas, #preloader { display: none !important; }
+            .cv-card { box-shadow: none !important; border: none !important; padding: 0 !important; margin: 0 !important; max-width: 100% !important; }
+            .cv-wrapper { padding-top: 0 !important; }
+        }
+    </style>
 </head>
-<body class="dark-theme">
+<body class="bg-light-surface">
 
-    <div class="loader-wrapper">
-        <div class="loader-content">
-            <h2 class="loader-text">LOADING DOSSIER</h2>
-            <div class="loader-bar"></div>
+    <!-- Premium Minimalist Preloader -->
+    <div id="preloader" class="premium-loader-wrapper">
+        <div class="premium-loader">
+            <svg class="spinner" viewBox="0 0 50 50">
+                <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="4"></circle>
+            </svg>
+            <div class="loader-text">Loading Dossier</div>
         </div>
     </div>
 
-    <canvas id="neuron-canvas"></canvas>
+    <!-- Soft Animated Gradient Background -->
+    <canvas id="gradient-canvas"></canvas>
 
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <nav class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <a class="navbar-brand" href="index.html">
-                <img src="logo.jpg" alt="Swiftsync Logo" class="footer-logo">
-                <span class="brand-text">Swiftsync</span>
+    <!-- Sidebar (Light Theme) -->
+    <nav class="sidebar bg-white shadow-lg" id="sidebar">
+        <div class="sidebar-header border-bottom">
+            <a class="navbar-brand d-flex align-items-center text-dark fw-bold" href="index.html">
+                <img src="logo.jpg" alt="Swiftsync Logo" class="rounded logo-sm">
+                <span class="ms-2">Swiftsync</span>
             </a>
-            <button class="sidebar-close" id="sidebarClose">
+            <button class="btn btn-light rounded-circle sidebar-close" id="sidebarClose">
                 <span class="material-icons">close</span>
             </button>
         </div>
-        <ul class="sidebar-nav">
-            <li class="nav-item"><a class="nav-link" href="index.html"><span class="material-icons">home</span> Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="services.html"><span class="material-icons">hub</span> Services</a></li>
-            <li class="nav-item"><a class="nav-link" href="staff.html"><span class="material-icons">groups</span> Team</a></li>
-            <li class="nav-item"><a class="nav-link" href="contact.html"><span class="material-icons">contact_mail</span> Contact</a></li>
-            <li class="nav-item"><a class="nav-link active" href="cv.html"><span class="material-icons">description</span> CV</a></li>
+        <ul class="sidebar-nav pt-3">
+            <li class="nav-item"><a class="nav-link text-secondary" href="index.html"><span class="material-icons me-2">house</span> Home</a></li>
+            <li class="nav-item"><a class="nav-link text-secondary" href="services.html"><span class="material-icons me-2">hub</span> Services</a></li>
+            <li class="nav-item"><a class="nav-link text-secondary" href="staff.html"><span class="material-icons me-2">groups</span> Team</a></li>
+            <li class="nav-item"><a class="nav-link text-secondary" href="contact.html"><span class="material-icons me-2">contact_mail</span> Contact</a></li>
+            <li class="nav-item"><a class="nav-link text-dark fw-medium" href="cv.html"><span class="material-icons text-primary me-2">description</span> CV</a></li>
         </ul>
     </nav>
 
-    <nav class="navbar navbar-expand-lg fixed-top">
+    <!-- Glassmorphism Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top premium-navbar">
         <div class="container">
-            <button class="navbar-toggler sidebar-toggle" type="button" id="sidebarToggle">
+            <button class="btn btn-light d-lg-none me-3 shadow-sm rounded-circle p-2 d-flex align-items-center justify-content-center" type="button" id="sidebarToggle">
                 <span class="material-icons">menu</span>
             </button>
-            
-            <a class="navbar-brand" href="index.html">
-                <img src="logo.jpg" alt="Swiftsync Logo" class="footer-logo">
-                <span class="brand-text">Swiftsync</span>
+            <a class="navbar-brand d-flex align-items-center fw-bold text-dark" href="index.html">
+                <img src="logo.jpg" alt="Logo" class="rounded logo-sm">
+                <span class="ms-2 brand-text">Swiftsync</span>
             </a>
-            
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ms-auto fw-medium">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="staff.html">Team</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link active btn-glow" href="cv.html">CV</a></li>
+                    <li class="nav-item"><a class="nav-link active text-primary fw-bold" href="cv.html">CV</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="cv-wrapper">
-        <div class="container">
+    <!-- CV Document Wrapper -->
+    <div class="cv-wrapper pt-6 pb-5 mt-5">
+        <div class="container pt-4">
             
-            <div class="cv-card glass-card" id="printable-area">
-                <header class="cv-header">
-                    <div class="row align-items-center">
+            <!-- Premium Resume Card -->
+            <div class="card premium-card border-0 p-4 p-md-5 mx-auto reveal" id="printable-area" style="max-width: 1000px;">
+                
+                <!-- CV Header -->
+                <header class="cv-header border-bottom pb-4 mb-4">
+                    <div class="row align-items-center g-4">
                         <div class="col-md-3 text-center text-md-start">
-                            <div class="profile-frame">
-                                <img src="ICT teacher.jpg" alt="Seth Chenge" class="profile-img">
-                                <div class="scan-line"></div>
+                            <div class="position-relative d-inline-block">
+                                <img src="ICT teacher.jpg" alt="Seth Chenge" class="rounded-circle shadow-sm" style="width: 160px; height: 160px; object-fit: cover; border: 4px solid #f6f9fc;">
                             </div>
                         </div>
                         <div class="col-md-9 text-center text-md-start">
-                            <h1 class="name">SETH CHENGE</h1>
-                            <p class="role-title">Computer Technician & IT Professional</p>
+                            <h1 class="display-5 fw-extrabold text-slate mb-1">SETH CHENGE</h1>
+                            <p class="text-primary fw-bold text-uppercase tracking-wider mb-3">Computer Technician & IT Professional</p>
                             
-                            <div class="contact-grid">
-                                <div class="contact-pill">
-                                    <i class="fas fa-envelope"></i> chengeseth25@gmail.com
+                            <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-md-start">
+                                <div class="badge bg-light text-slate border px-3 py-2 fw-medium d-flex align-items-center">
+                                    <i class="fas fa-envelope text-primary me-2"></i> chengeseth25@gmail.com
                                 </div>
-                                <div class="contact-pill">
-                                    <i class="fas fa-phone"></i> +254 721 156 350
+                                <div class="badge bg-light text-slate border px-3 py-2 fw-medium d-flex align-items-center">
+                                    <i class="fas fa-phone text-primary me-2"></i> +254 721 156 350
                                 </div>
-                                <div class="contact-pill">
-                                    <i class="fas fa-map-marker-alt"></i> Eldoret, Kenya
+                                <div class="badge bg-light text-slate border px-3 py-2 fw-medium d-flex align-items-center">
+                                    <i class="fas fa-map-marker-alt text-primary me-2"></i> Eldoret, Kenya
                                 </div>
                             </div>
                         </div>
                     </div>
                 </header>
 
+                <!-- CV Body -->
                 <div class="cv-body">
-                    <div class="row">
-                        <div class="col-lg-4 cv-sidebar-col">
+                    <div class="row g-5">
+                        
+                        <!-- Left Sidebar Column -->
+                        <div class="col-lg-4">
                             
-                            <section class="cv-section">
-                                <h3 class="cv-heading"><i class="material-icons">fingerprint</i> Profile</h3>
-                                <p class="summary-text">
+                            <!-- Profile Section -->
+                            <section class="mb-5">
+                                <h4 class="fw-bold text-slate mb-3 pb-2 border-bottom d-flex align-items-center">
+                                    <i class="material-icons text-primary me-2 fs-5">fingerprint</i> Profile
+                                </h4>
+                                <p class="text-muted small lh-lg text-justify">
                                     Experienced Computer Technician with comprehensive knowledge in IT, ready to explore innovative solutions with AI tools. Proven expertise in customer service, system troubleshooting, and project management with a strong foundation in data analysis.
                                 </p>
                             </section>
 
-                            <section class="cv-section">
-                                <h3 class="cv-heading"><i class="material-icons">memory</i> Technical Capabilities</h3>
+                            <!-- Technical Skills Section -->
+                            <section class="mb-5">
+                                <h4 class="fw-bold text-slate mb-3 pb-2 border-bottom d-flex align-items-center">
+                                    <i class="material-icons text-primary me-2 fs-5">memory</i> Technical Capabilities
+                                </h4>
                                 <div class="skill-list">
-                                    <div class="skill-item">
-                                        <div class="d-flex justify-content-between">
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between small fw-semibold text-slate mb-1">
                                             <span>Computer Networking</span>
                                             <span class="text-primary">95%</span>
                                         </div>
-                                        <div class="progress"><div class="progress-bar" style="width: 95%"></div></div>
+                                        <div class="progress bg-light" style="height: 6px;">
+                                            <div class="progress-bar bg-primary rounded-pill" style="width: 95%"></div>
+                                        </div>
                                     </div>
-                                    <div class="skill-item">
-                                        <div class="d-flex justify-content-between">
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between small fw-semibold text-slate mb-1">
                                             <span>Data Analysis</span>
-                                            <span class="text-secondary">90%</span>
+                                            <span class="text-info">90%</span>
                                         </div>
-                                        <div class="progress"><div class="progress-bar sec" style="width: 90%"></div></div>
+                                        <div class="progress bg-light" style="height: 6px;">
+                                            <div class="progress-bar bg-info rounded-pill" style="width: 90%"></div>
+                                        </div>
                                     </div>
-                                    <div class="skill-item">
-                                        <div class="d-flex justify-content-between">
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between small fw-semibold text-slate mb-1">
                                             <span>Microsoft Office</span>
-                                            <span class="text-accent">92%</span>
+                                            <span class="text-success">92%</span>
                                         </div>
-                                        <div class="progress"><div class="progress-bar acc" style="width: 92%"></div></div>
+                                        <div class="progress bg-light" style="height: 6px;">
+                                            <div class="progress-bar bg-success rounded-pill" style="width: 92%"></div>
+                                        </div>
                                     </div>
-                                    <div class="skill-item">
-                                        <div class="d-flex justify-content-between">
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between small fw-semibold text-slate mb-1">
                                             <span>Web Development</span>
                                             <span class="text-primary">85%</span>
                                         </div>
-                                        <div class="progress"><div class="progress-bar" style="width: 85%"></div></div>
+                                        <div class="progress bg-light" style="height: 6px;">
+                                            <div class="progress-bar bg-primary rounded-pill" style="width: 85%"></div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="badges-grid mt-3">
-                                    <span class="tech-badge">Cisco Certified</span>
-                                    <span class="tech-badge">Cloud Computing</span>
-                                    <span class="tech-badge">Cybersecurity</span>
-                                    <span class="tech-badge">Customer Service</span>
+                                
+                                <div class="d-flex flex-wrap gap-2 mt-4">
+                                    <span class="badge badge-soft-primary px-2 py-1">Cisco Certified</span>
+                                    <span class="badge badge-soft-primary px-2 py-1">Cloud Computing</span>
+                                    <span class="badge badge-soft-primary px-2 py-1">Cybersecurity</span>
+                                    <span class="badge badge-soft-primary px-2 py-1">Customer Service</span>
                                 </div>
                             </section>
 
-                            <section class="cv-section">
-                                <h3 class="cv-heading"><i class="material-icons">translate</i> Languages</h3>
-                                <ul class="lang-list">
-                                    <li>English <span>(Proficient)</span></li>
-                                    <li>Kiswahili <span>(Fluent)</span></li>
-                                    <li>French <span>(Basic)</span></li>
+                            <!-- Languages Section -->
+                            <section>
+                                <h4 class="fw-bold text-slate mb-3 pb-2 border-bottom d-flex align-items-center">
+                                    <i class="material-icons text-primary me-2 fs-5">translate</i> Languages
+                                </h4>
+                                <ul class="list-unstyled text-muted small lh-lg mb-0">
+                                    <li class="d-flex justify-content-between border-bottom pb-2 mb-2">
+                                        <span class="fw-semibold text-slate">English</span>
+                                        <span>Proficient</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between border-bottom pb-2 mb-2">
+                                        <span class="fw-semibold text-slate">Kiswahili</span>
+                                        <span>Fluent</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <span class="fw-semibold text-slate">French</span>
+                                        <span>Basic</span>
+                                    </li>
                                 </ul>
                             </section>
                         </div>
 
-                        <div class="col-lg-8 cv-main-col">
+                        <!-- Right Main Column -->
+                        <div class="col-lg-8">
                             
-                            <section class="cv-section">
-                                <h3 class="cv-heading"><i class="material-icons">history</i> Professional Experience</h3>
-                                <div class="timeline">
+                            <!-- Experience Section -->
+                            <section class="mb-5">
+                                <h4 class="fw-bold text-slate mb-4 pb-2 border-bottom d-flex align-items-center">
+                                    <i class="material-icons text-primary me-2 fs-5">work_history</i> Professional Experience
+                                </h4>
+                                
+                                <!-- Premium Timeline -->
+                                <div class="border-start border-2 border-primary ps-4 py-2 ms-2">
                                     
-                                    <div class="timeline-item">
-                                        <span class="date-badge">Present</span>
-                                        <h4>Computer Technician</h4>
-                                        <span class="company">Freelance | Eldoret, Kenya</span>
-                                        <p>Specialized in customer service and Microsoft Office assistance. Responsible for troubleshooting hardware/software, OS installations, and IT infrastructure maintenance.</p>
+                                    <div class="mb-5 position-relative">
+                                        <div class="position-absolute bg-primary rounded-circle border border-3 border-white shadow-sm" style="width: 16px; height: 16px; left: -33px; top: 2px;"></div>
+                                        <div class="d-flex flex-wrap justify-content-between align-items-baseline mb-2">
+                                            <h5 class="fw-bold text-slate mb-0">Computer Technician</h5>
+                                            <span class="badge badge-soft-primary rounded-pill">Present</span>
+                                        </div>
+                                        <div class="text-primary fw-medium small mb-3"><i class="fas fa-building me-1"></i> Freelance | Eldoret, Kenya</div>
+                                        <p class="text-muted small lh-lg">Specialized in customer service and Microsoft Office assistance. Responsible for troubleshooting hardware/software, OS installations, and IT infrastructure maintenance to ensure optimal client operations.</p>
                                     </div>
 
-                                    <div class="timeline-item">
-                                        <span class="date-badge">2021 - 2022</span>
-                                        <h4>Project Manager</h4>
-                                        <span class="company">Project Lead | Kitale, Kenya</span>
-                                        <p>Managed team coordination and project delivery. Developed essential skills in timeline management and collaborative leadership to achieve objectives within deadlines.</p>
+                                    <div class="mb-5 position-relative">
+                                        <div class="position-absolute bg-info rounded-circle border border-3 border-white shadow-sm" style="width: 16px; height: 16px; left: -33px; top: 2px;"></div>
+                                        <div class="d-flex flex-wrap justify-content-between align-items-baseline mb-2">
+                                            <h5 class="fw-bold text-slate mb-0">Project Manager</h5>
+                                            <span class="badge bg-light text-muted border rounded-pill">2021 - 2022</span>
+                                        </div>
+                                        <div class="text-info fw-medium small mb-3"><i class="fas fa-sitemap me-1"></i> Project Lead | Kitale, Kenya</div>
+                                        <p class="text-muted small lh-lg">Managed team coordination and project delivery. Developed essential skills in timeline management and collaborative leadership to achieve objectives within strict deadlines and budget constraints.</p>
                                     </div>
 
-                                    <div class="timeline-item">
-                                        <span class="date-badge">2019 - 2020</span>
-                                        <h4>Data Analyst</h4>
-                                        <span class="company">Government of Kenya | Bungoma</span>
-                                        <p>Conducted national census data analysis using statistical methods. Handled large datasets to ensure accuracy and generate meaningful insights for government systems.</p>
+                                    <div class="position-relative">
+                                        <div class="position-absolute bg-success rounded-circle border border-3 border-white shadow-sm" style="width: 16px; height: 16px; left: -33px; top: 2px;"></div>
+                                        <div class="d-flex flex-wrap justify-content-between align-items-baseline mb-2">
+                                            <h5 class="fw-bold text-slate mb-0">Data Analyst</h5>
+                                            <span class="badge bg-light text-muted border rounded-pill">2019 - 2020</span>
+                                        </div>
+                                        <div class="text-success fw-medium small mb-3"><i class="fas fa-chart-line me-1"></i> Government of Kenya | Bungoma</div>
+                                        <p class="text-muted small lh-lg mb-0">Conducted national census data analysis using advanced statistical methods. Handled large, complex datasets to ensure accuracy and generate meaningful insights for public sector systems.</p>
                                     </div>
 
                                 </div>
                             </section>
 
-                            <section class="cv-section">
-                                <h3 class="cv-heading"><i class="material-icons">school</i> Education</h3>
-                                <div class="edu-card">
-                                    <h4>Bachelor of Education (Maths/Comp Sci)</h4>
-                                    <p class="school">Meru University of Science and Technology</p>
-                                    <span class="edu-date">Present</span>
+                            <!-- Education Section -->
+                            <section>
+                                <h4 class="fw-bold text-slate mb-4 pb-2 border-bottom d-flex align-items-center">
+                                    <i class="material-icons text-primary me-2 fs-5">school</i> Education
+                                </h4>
+                                
+                                <div class="bg-light-surface border rounded-4 p-4 mb-3 hover-shadow-sm transition-all">
+                                    <div class="d-flex flex-wrap justify-content-between align-items-start mb-2">
+                                        <h5 class="fw-bold text-slate mb-1">Bachelor of Education (Maths/Comp Sci)</h5>
+                                        <span class="badge badge-soft-primary">Present</span>
+                                    </div>
+                                    <p class="text-primary fw-medium small mb-0"><i class="fas fa-university me-1"></i> Meru University of Science and Technology</p>
                                 </div>
-                                <div class="edu-card mt-3">
-                                    <h4>High School Diploma</h4>
-                                    <p class="school">Friends Bwake Boys High School, Kitale</p>
-                                    <span class="edu-date">Graduated: Nov 2021</span>
+
+                                <div class="bg-light-surface border rounded-4 p-4 hover-shadow-sm transition-all">
+                                    <div class="d-flex flex-wrap justify-content-between align-items-start mb-2">
+                                        <h5 class="fw-bold text-slate mb-1">High School Diploma</h5>
+                                        <span class="badge bg-white text-muted border">Graduated: Nov 2021</span>
+                                    </div>
+                                    <p class="text-muted fw-medium small mb-0"><i class="fas fa-school me-1"></i> Friends Bwake Boys High School, Kitale</p>
                                 </div>
                             </section>
 
@@ -215,22 +291,25 @@
                     </div>
                 </div>
 
-                <footer class="cv-footer text-center">
-                    <p>Generated by Swiftsync AI Systems | &copy; 2025 Seth Chenge</p>
+                <footer class="cv-footer text-center mt-5 pt-4 border-top">
+                    <p class="text-muted small fw-medium mb-0">Generated by Swiftsync Systems | &copy; 2025 Seth Chenge</p>
                 </footer>
             </div>
 
         </div>
     </div>
 
-    <div class="fab-container">
-        <button class="fab-btn" onclick="window.print()" title="Print / Save PDF">
-            <i class="material-icons">print</i>
+    <!-- Floating Action Buttons (Light Theme) -->
+    <div class="fab-container position-fixed bottom-0 end-0 p-4 d-flex flex-column gap-3" style="z-index: 1000;">
+        <button class="btn btn-primary rounded-circle shadow-lg d-flex align-items-center justify-content-center" style="width: 55px; height: 55px;" id="downloadBtn" title="Download CV">
+            <i class="material-icons fs-4">download</i>
         </button>
-        <button class="fab-btn secondary" id="downloadBtn" title="Download CV">
-            <i class="material-icons">download</i>
+        <button class="btn btn-white bg-white text-primary border rounded-circle shadow-lg d-flex align-items-center justify-content-center hover-bg-light" style="width: 55px; height: 55px;" onclick="window.print()" title="Print / Save PDF">
+            <i class="material-icons fs-4">print</i>
         </button>
     </div>
+
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="cv.js"></script>
 </body>

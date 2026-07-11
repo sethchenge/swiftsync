@@ -7,94 +7,98 @@
     
     <meta name="title" content="Swiftsync | Modern Tech Solutions">
     <meta name="description" content="Synchronizing technology with human ambition. We provide OS installation, secure networking, CCTV, and next-gen web development in Kenya.">
-    <meta name="keywords" content="Swiftsync, IT solutions Kenya, network setup, web development, OS installation, CCTV installation Nairobi, tech support">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://swiftsync.co.ke/"> <meta property="og:title" content="Swiftsync | Modern Tech Solutions">
-    <meta property="og:description" content="Synchronizing technology with human ambition. Expert IT, networking, and web solutions.">
-    <meta property="og:image" content="https://swiftsync.co.ke/logo.jpg"> 
-
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://swiftsync.co.ke/">
-    <meta property="twitter:title" content="Swiftsync | Modern Tech Solutions">
-    <meta property="twitter:description" content="Expert IT, networking, and web solutions in Kenya.">
-    <meta property="twitter:image" content="https://swiftsync.co.ke/logo.jpg">
     
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Open Graph & Twitter Meta Tags omitted for brevity (keep your originals here) -->
+    
+    <!-- Stripe-esque Typography: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <link rel="stylesheet" href="styles.css">
+    <!-- Note: You will need to strip the dark-mode specifics from contact.css, 
+         as styles.css now handles the premium card and background looks. -->
     <link rel="stylesheet" href="contact.css">
 </head>
-<body>
+<body class="bg-light-surface">
 
-    <div id="preloader">
-        <div class="loader-content">
-            <div class="neon-ring"></div>
-            <div class="loader-text">INITIALIZING...</div>
+    <!-- Premium Minimalist Preloader -->
+    <div id="preloader" class="premium-loader-wrapper">
+        <div class="premium-loader">
+            <svg class="spinner" viewBox="0 0 50 50">
+                <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="4"></circle>
+            </svg>
+            <div class="loader-text">Loading Contact</div>
         </div>
     </div>
 
-    <canvas id="neuron-canvas"></canvas>
+    <!-- Soft Animated Gradient Background -->
+    <canvas id="gradient-canvas"></canvas>
 
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <nav class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <a class="navbar-brand d-flex align-items-center" href="index.html">
-                <img src="logo.jpg" alt="Logo">
+    <!-- Sidebar (Light Theme) -->
+    <nav class="sidebar bg-white shadow-lg" id="sidebar">
+        <div class="sidebar-header border-bottom">
+            <a class="navbar-brand d-flex align-items-center text-dark fw-bold" href="index.html">
+                <img src="logo.jpg" alt="Swiftsync Logo" class="rounded logo-sm">
                 <span class="ms-2">Swiftsync</span>
             </a>
-            <button class="sidebar-close" id="sidebarClose">
+            <button class="btn btn-light rounded-circle sidebar-close" id="sidebarClose">
                 <span class="material-icons">close</span>
             </button>
         </div>
-        <ul class="sidebar-nav">
-            <li class="nav-item"><a class="nav-link" href="index.html"><span class="material-icons">house</span> Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="services.html"><span class="material-icons">hub</span> Services</a></li>
-            <li class="nav-item"><a class="nav-link" href="staff.html"><span class="material-icons">groups</span> Team</a></li>
-            <li class="nav-item"><a class="nav-link active" href="contact.html"><span class="material-icons">contact_mail</span> Contact</a></li>
-            <li class="nav-item"><a class="nav-link" href="cv.html"><span class="material-icons">description</span> CV</a></li>
+        <ul class="sidebar-nav pt-3">
+            <li class="nav-item"><a class="nav-link text-secondary" href="index.html"><span class="material-icons me-2">house</span> Home</a></li>
+            <li class="nav-item"><a class="nav-link text-secondary" href="services.html"><span class="material-icons me-2">hub</span> Services</a></li>
+            <li class="nav-item"><a class="nav-link text-secondary" href="staff.html"><span class="material-icons me-2">groups</span> Team</a></li>
+            <li class="nav-item"><a class="nav-link text-dark fw-medium" href="contact.html"><span class="material-icons text-primary me-2">contact_mail</span> Contact</a></li>
         </ul>
     </nav>
 
-    <nav class="navbar navbar-expand-lg fixed-top">
+    <!-- Glassmorphism Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top premium-navbar">
         <div class="container">
-            <button class="sidebar-toggle me-3" type="button" id="sidebarToggle">
+            <button class="btn btn-light d-lg-none me-3 shadow-sm rounded-circle p-2 d-flex align-items-center justify-content-center" type="button" id="sidebarToggle">
                 <span class="material-icons">menu</span>
             </button>
-            <a class="navbar-brand d-flex align-items-center" href="index.html">
-                <img src="logo.jpg" alt="Logo">
-                <span class="ms-2">Swiftsync</span>
+            <a class="navbar-brand d-flex align-items-center fw-bold text-dark" href="index.html">
+                <img src="logo.jpg" alt="Logo" class="rounded logo-sm">
+                <span class="ms-2 brand-text">Swiftsync</span>
             </a>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html"><i class="material-icons">house</i> Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="services.html"><i class="material-icons">hub</i> Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="staff.html"><i class="material-icons">groups</i> Team</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="contact.html"><i class="material-icons">contact_mail</i> Contact</a></li>
+                <ul class="navbar-nav ms-auto fw-medium">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="staff.html">Team</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
                 </ul>
-                <a href="contact.html" class="btn btn-primary ms-3 btn-sm rounded-pill">Get Quote</a>
+                <a href="contact.html" class="btn btn-primary premium-btn ms-4">Get Quote <i class="fas fa-arrow-right ms-1"></i></a>
             </div>
         </div>
     </nav>
 
-    <section class="contact-hero">
-        <div class="container">
+    <!-- Contact Hero -->
+    <section class="contact-hero pt-6 pb-4 mt-5">
+        <div class="container pt-5">
             <div class="row align-items-center">
-                <div class="col-lg-6 hero-text fade-in-up">
-                    <span class="badge rounded-pill border border-primary text-primary mb-3 px-3 py-2">Contact Us</span>
-                    <h1 class="display-3 fw-bold text-white mb-4">
-                        Get in <span class="text-gradient">Touch</span>
+                <div class="col-lg-6 hero-text reveal">
+                    <span class="badge badge-soft-primary rounded-pill mb-3 px-3 py-2 fw-semibold">Connect</span>
+                    <h1 class="display-4 fw-extrabold text-slate mb-4">
+                        Get in <span class="text-gradient-primary">Touch</span>
                     </h1>
-                    <p class="lead text-white-50">
-                        Ready to start? We are here to provide expert solutions tailored to your business needs.
+                    <p class="lead text-muted max-w-75">
+                        Ready to start? We are here to provide expert solutions tailored to your business needs. Reach out to our team today.
                     </p>
                 </div>
                 
-                <div class="col-lg-6 hero-visual text-center fade-in-up delay-200">
+                <div class="col-lg-6 hero-visual text-center reveal delay-200">
+                    <!-- Kept your custom envelope structure intact for your CSS animations, 
+                         but it will look sharp against the light background -->
                     <div class="scene">
                         <div class="envelope-container">
                             <div class="envelope">
@@ -117,121 +121,124 @@
         </div>
     </section>
 
-    <section class="contact-interface section-padding">
+    <!-- Contact Interface Panels -->
+    <section class="contact-interface py-5">
         <div class="container">
             <div class="row g-5">
                 
-                <div class="col-lg-5 scroll-reveal">
-                    <div class="info-panel glass-card border-cyan">
-                        <h3 class="mb-4 text-white">Contact Details</h3>
-                        
-                        <div class="contact-item">
-                            <div class="icon-box cyan">
-                                <span class="material-icons">call</span>
+                <!-- Info Panel -->
+                <div class="col-lg-5 reveal">
+                    <div class="card premium-card border-0 p-4 h-100">
+                        <div class="card-body">
+                            <h3 class="fw-bold text-slate mb-5">Contact Details</h3>
+                            
+                            <div class="d-flex align-items-center mb-4">
+                                <div class="icon-wrapper bg-soft-info text-info me-3 shadow-sm rounded-circle" style="width: 50px; height: 50px;">
+                                    <span class="material-icons">call</span>
+                                </div>
+                                <div>
+                                    <span class="d-block text-muted small fw-semibold text-uppercase tracking-wider">Phone</span>
+                                    <a href="tel:+254721156350" class="text-slate fw-bold text-decoration-none fs-5 hover-text-primary transition-all">+254 721 156 350</a>
+                                </div>
                             </div>
-                            <div class="details">
-                                <span>Phone</span>
-                                <a href="tel:+254721156350">+254 721 156 350</a>
-                            </div>
-                        </div>
 
-                        <div class="contact-item">
-                            <div class="icon-box purple">
-                                <span class="material-icons">email</span>
+                            <div class="d-flex align-items-center mb-4">
+                                <div class="icon-wrapper bg-soft-primary text-primary me-3 shadow-sm rounded-circle" style="width: 50px; height: 50px;">
+                                    <span class="material-icons">email</span>
+                                </div>
+                                <div>
+                                    <span class="d-block text-muted small fw-semibold text-uppercase tracking-wider">Email</span>
+                                    <a href="mailto:chengeseth25@gmail.com" class="text-slate fw-bold text-decoration-none hover-text-primary transition-all">chengeseth25@gmail.com</a>
+                                </div>
                             </div>
-                            <div class="details">
-                                <span>Email</span>
-                                <a href="mailto:chengeseth25@gmail.com">chengeseth25@gmail.com</a>
-                            </div>
-                        </div>
 
-                        <div class="contact-item">
-                            <div class="icon-box blue">
-                                <span class="material-icons">place</span>
+                            <div class="d-flex align-items-center mb-4">
+                                <div class="icon-wrapper bg-soft-success text-success me-3 shadow-sm rounded-circle" style="width: 50px; height: 50px;">
+                                    <span class="material-icons">place</span>
+                                </div>
+                                <div>
+                                    <span class="d-block text-muted small fw-semibold text-uppercase tracking-wider">Location</span>
+                                    <p class="text-slate fw-bold mb-0">Nairobi, Kenya</p>
+                                </div>
                             </div>
-                            <div class="details">
-                                <span>Location</span>
-                                <p>Nairobi, Kenya</p>
-                            </div>
-                        </div>
 
-                        <div class="contact-item">
-                            <div class="icon-box orange">
-                                <span class="material-icons">schedule</span>
+                            <div class="d-flex align-items-center mb-5">
+                                <div class="icon-wrapper bg-soft-secondary text-secondary me-3 shadow-sm rounded-circle" style="width: 50px; height: 50px;">
+                                    <span class="material-icons">schedule</span>
+                                </div>
+                                <div>
+                                    <span class="d-block text-muted small fw-semibold text-uppercase tracking-wider">Working Hours</span>
+                                    <p class="text-slate fw-bold mb-0">Mon - Sat: 8:00 AM - 6:00 PM</p>
+                                </div>
                             </div>
-                            <div class="details">
-                                <span>Working Hours</span>
-                                <p>Mon - Sat: 8:00 AM - 6:00 PM</p>
-                            </div>
-                        </div>
 
-                        <div class="social-connect mt-5">
-                            <h5 class="text-white mb-3">Follow Us</h5>
-                            <div class="social-icons">
-                                <a href="https://www.facebook.com/share/17JafkpZ9f/" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="https://wa.me/254721156350" class="social-icon" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                            <div class="border-top pt-4 mt-4">
+                                <h6 class="text-slate fw-bold mb-3">Follow Us</h6>
+                                <div class="d-flex gap-3">
+                                    <a href="https://www.facebook.com/share/17JafkpZ9f/" class="btn btn-light text-primary rounded-circle shadow-sm" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#" class="btn btn-light text-info rounded-circle shadow-sm"><i class="fab fa-twitter"></i></a>
+                                    <a href="#" class="btn btn-light text-primary rounded-circle shadow-sm"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="https://wa.me/254721156350" class="btn btn-light text-success rounded-circle shadow-sm" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-7 scroll-reveal delay-100">
-                    <div class="form-wrapper glass-card border-blue">
-                        <h3 class="mb-4 text-white">Send a Message</h3>
-                        <form id="contactForm">
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="name" required placeholder=" ">
-                                        <label for="name">Full Name</label>
-                                        <span class="focus-border"></span>
+                <!-- Form Panel -->
+                <div class="col-lg-7 reveal delay-100">
+                    <div class="card premium-card border-0 p-4 h-100">
+                        <div class="card-body">
+                            <h3 class="fw-bold text-slate mb-4">Send a Message</h3>
+                            <form id="contactForm">
+                                <div class="row g-4">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="name" class="form-label text-slate fw-semibold small">Full Name</label>
+                                            <input type="text" class="form-control bg-light border-light p-3" id="name" required placeholder="John Doe">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="email" class="form-label text-slate fw-semibold small">Email Address</label>
+                                            <input type="email" class="form-control bg-light border-light p-3" id="email" required placeholder="john@example.com">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="phone" class="form-label text-slate fw-semibold small">Phone Number</label>
+                                            <input type="tel" class="form-control bg-light border-light p-3" id="phone" placeholder="+254 7XX XXX XXX">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="service" class="form-label text-slate fw-semibold small">Select Service</label>
+                                            <select class="form-select bg-light border-light p-3 text-muted" id="service" required>
+                                                <option value="" selected disabled>Choose an option...</option>
+                                                <option value="OS Installation">OS Installation</option>
+                                                <option value="Consultation">Consultation</option>
+                                                <option value="System Troubleshooting">System Troubleshooting</option>
+                                                <option value="Cybersecurity">Cybersecurity Audit</option>
+                                                <option value="Web Development">Web Development</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="message" class="form-label text-slate fw-semibold small">Message</label>
+                                            <textarea class="form-control bg-light border-light p-3" id="message" style="height: 140px" required placeholder="How can we help you?"></textarea>
+                                        </div>
+                                        <div class="char-count text-end text-muted mt-1 small">0/1000</div>
+                                    </div>
+                                    <div class="col-12 mt-2">
+                                        <button type="submit" class="btn btn-primary premium-btn btn-lg w-100 py-3">
+                                            <span class="material-icons align-middle me-2">send</span> Send Message
+                                        </button>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" id="email" required placeholder=" ">
-                                        <label for="email">Email Address</label>
-                                        <span class="focus-border"></span>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type="tel" class="form-control" id="phone" placeholder=" ">
-                                        <label for="phone">Phone Number</label>
-                                        <span class="focus-border"></span>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <select class="form-select" id="service" required>
-                                            <option value="" selected disabled>Select Service</option>
-                                            <option value="OS Installation">OS Installation</option>
-                                            <option value="Consultation">Consultation</option>
-                                            <option value="System Troubleshooting">System Troubleshooting</option>
-                                            <option value="Cybersecurity">Cybersecurity Audit</option>
-                                            <option value="Web Development">Web Development</option>
-                                        </select>
-                                        <span class="focus-border"></span>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <textarea class="form-control" id="message" style="height: 150px" required placeholder=" "></textarea>
-                                        <label for="message">Message</label>
-                                        <span class="focus-border"></span>
-                                    </div>
-                                    <div class="char-count text-end text-muted mt-1"><small>0/1000</small></div>
-                                </div>
-                                <div class="col-12 mt-4">
-                                    <button type="submit" class="btn btn-primary btn-lg w-100 glow-effect">
-                                        <span class="material-icons me-2">send</span> Send Message
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                        <div id="formMessage" class="form-alert mt-3"></div>
+                            </form>
+                            <div id="formMessage" class="form-alert mt-3 rounded p-3 text-center" style="display:none;"></div>
+                        </div>
                     </div>
                 </div>
 
@@ -239,65 +246,66 @@
         </div>
     </section>
 
-    <section class="faq-section section-padding">
-        <div class="container">
-            <div class="text-center mb-5 scroll-reveal">
-                <span class="badge rounded-pill border border-info text-info mb-3 px-3 py-2">Got Questions?</span>
-                <h2 class="section-title text-white">Frequently Asked <span class="text-gradient">Questions</span></h2>
-                <p class="text-white-50">Find quick answers to common queries about our services.</p>
+    <!-- FAQ Section -->
+    <section class="faq-section py-6 bg-white">
+        <div class="container py-4">
+            <div class="text-center mb-5 reveal">
+                <span class="badge badge-soft-info rounded-pill mb-3 px-3 py-2 fw-semibold">Got Questions?</span>
+                <h2 class="h1 fw-bold text-slate mb-3">Frequently Asked <span class="text-gradient-primary">Questions</span></h2>
+                <p class="lead text-muted">Find quick answers to common queries about our services.</p>
             </div>
 
             <div class="row justify-content-center">
-                <div class="col-lg-9 scroll-reveal delay-100">
-                    <div class="accordion glass-accordion" id="faqAccordion">
+                <div class="col-lg-9 reveal delay-100">
+                    <div class="accordion" id="faqAccordion">
                         
-                        <div class="accordion-item">
+                        <div class="accordion-item border-0 mb-3 shadow-sm rounded-4 overflow-hidden">
                             <h2 class="accordion-header" id="headingOne">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    <i class="material-icons me-3">build</i> Do you offer on-site repairs and installations?
+                                <button class="accordion-button bg-light-surface text-slate fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <i class="material-icons text-primary me-3">build</i> Do you offer on-site repairs and installations?
                                 </button>
                             </h2>
                             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">
+                                <div class="accordion-body bg-white text-muted p-4 border-top">
                                     Yes! We provide comprehensive on-site services including hardware setup, computer lab networking, and CCTV installations across Nairobi and surrounding areas. For software-only issues, we can often assist remotely.
                                 </div>
                             </div>
                         </div>
 
-                        <div class="accordion-item">
+                        <div class="accordion-item border-0 mb-3 shadow-sm rounded-4 overflow-hidden">
                             <h2 class="accordion-header" id="headingTwo">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    <i class="material-icons me-3">code</i> How long does a typical web development project take?
+                                <button class="accordion-button collapsed bg-light-surface text-slate fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <i class="material-icons text-info me-3">code</i> How long does a typical web development project take?
                                 </button>
                             </h2>
                             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">
+                                <div class="accordion-body bg-white text-muted p-4 border-top">
                                     A standard professional website usually takes between 2 to 4 weeks from initial consultation to final deployment. E-commerce or complex platforms may take slightly longer. We always provide a clear timeline before starting any work.
                                 </div>
                             </div>
                         </div>
 
-                        <div class="accordion-item">
+                        <div class="accordion-item border-0 mb-3 shadow-sm rounded-4 overflow-hidden">
                             <h2 class="accordion-header" id="headingThree">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    <i class="material-icons me-3">laptop_mac</i> Can you upgrade my old Windows laptop to run faster?
+                                <button class="accordion-button collapsed bg-light-surface text-slate fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    <i class="material-icons text-success me-3">laptop_mac</i> Can you upgrade my old Windows laptop to run faster?
                                 </button>
                             </h2>
                             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">
+                                <div class="accordion-body bg-white text-muted p-4 border-top">
                                     Absolutely. The most common solution is migrating your hard drive to an SSD (Solid State Drive) and upgrading your RAM, paired with a fresh OS installation. This typically makes an old computer run up to 10x faster.
                                 </div>
                             </div>
                         </div>
 
-                        <div class="accordion-item">
+                        <div class="accordion-item border-0 mb-3 shadow-sm rounded-4 overflow-hidden">
                             <h2 class="accordion-header" id="headingFour">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                    <i class="material-icons me-3">security</i> Do you provide cybersecurity audits for small businesses?
+                                <button class="accordion-button collapsed bg-light-surface text-slate fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    <i class="material-icons text-primary me-3">security</i> Do you provide cybersecurity audits for small businesses?
                                 </button>
                             </h2>
                             <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">
+                                <div class="accordion-body bg-white text-muted p-4 border-top">
                                     Yes, we specialize in securing digital infrastructure. We can test your network for vulnerabilities, setup secure firewalls, install robust antivirus packages, and ensure your team's data is backed up safely against ransomware.
                                 </div>
                             </div>
@@ -309,39 +317,40 @@
         </div>
     </section>
 
-    <section class="support-section section-padding">
-        <div class="container">
-            <div class="text-center mb-5 scroll-reveal">
-                <h2 class="section-title text-white">Support <span class="text-gradient">Us</span></h2>
-                <p class="text-white-50">Support our work and help us grow.</p>
+    <!-- Support Section -->
+    <section class="support-section py-6 bg-light-surface border-top border-light">
+        <div class="container py-4">
+            <div class="text-center mb-5 reveal">
+                <h2 class="h1 fw-bold text-slate mb-3">Support <span class="text-gradient-primary">Us</span></h2>
+                <p class="lead text-muted">Support our work and help us grow our infrastructure.</p>
             </div>
 
             <div class="row justify-content-center g-4">
-                <div class="col-md-5 scroll-reveal delay-100">
-                    <div class="payment-card glass-card border-purple">
-                        <div class="payment-header">
-                            <img src="Skrill.png" alt="Skrill" class="payment-logo">
-                            <h4 class="text-white">Skrill</h4>
+                <div class="col-md-5 reveal delay-100">
+                    <div class="card premium-card border-0 p-4">
+                        <div class="d-flex align-items-center mb-4 pb-3 border-bottom">
+                            <img src="Skrill.png" alt="Skrill" class="rounded shadow-sm me-3 border" style="height: 40px; width: auto; object-fit: contain; background: white;">
+                            <h4 class="fw-bold text-slate mb-0">Skrill</h4>
                         </div>
-                        <div class="copy-box">
-                            <input type="text" value="nyongesaseth25@gmail.com" readonly id="skrill-input">
-                            <button class="btn-copy" data-target="skrill-input">
-                                <span class="material-icons">content_copy</span>
+                        <div class="d-flex align-items-center bg-light rounded p-2 border">
+                            <input type="text" class="form-control bg-transparent border-0 text-slate fw-medium shadow-none" value="nyongesaseth25@gmail.com" readonly id="skrill-input">
+                            <button class="btn btn-primary rounded btn-copy d-flex align-items-center justify-content-center" data-target="skrill-input" style="width: 40px; height: 40px;" title="Copy to clipboard">
+                                <span class="material-icons fs-5">content_copy</span>
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-5 scroll-reveal delay-200">
-                    <div class="payment-card glass-card border-green">
-                        <div class="payment-header">
-                            <img src="neteller.jpg" alt="Neteller" class="payment-logo">
-                            <h4 class="text-white">Neteller</h4>
+                <div class="col-md-5 reveal delay-200">
+                    <div class="card premium-card border-0 p-4">
+                        <div class="d-flex align-items-center mb-4 pb-3 border-bottom">
+                            <img src="neteller.jpg" alt="Neteller" class="rounded shadow-sm me-3 border" style="height: 40px; width: auto; object-fit: contain; background: white;">
+                            <h4 class="fw-bold text-slate mb-0">Neteller</h4>
                         </div>
-                        <div class="copy-box">
-                            <input type="text" value="nyongesaseth25@gmail.com" readonly id="neteller-input">
-                            <button class="btn-copy" data-target="neteller-input">
-                                <span class="material-icons">content_copy</span>
+                        <div class="d-flex align-items-center bg-light rounded p-2 border">
+                            <input type="text" class="form-control bg-transparent border-0 text-slate fw-medium shadow-none" value="nyongesaseth25@gmail.com" readonly id="neteller-input">
+                            <button class="btn btn-success rounded btn-copy d-flex align-items-center justify-content-center" data-target="neteller-input" style="width: 40px; height: 40px;" title="Copy to clipboard">
+                                <span class="material-icons fs-5">content_copy</span>
                             </button>
                         </div>
                     </div>
@@ -350,51 +359,71 @@
         </div>
     </section>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
+    <!-- Footer -->
+    <footer class="footer bg-white border-top py-5">
+        <div class="container pt-4">
+            <div class="row g-5">
+                <div class="col-lg-4">
                     <div class="d-flex align-items-center mb-3">
-                        <img src="logo.jpg" alt="Logo" class="rounded-circle me-2" style="width:30px; border:1px solid #333;">
-                        <h5 class="m-0">Swiftsync</h5>
+                        <img src="logo.jpg" alt="Logo" class="rounded logo-sm">
+                        <h5 class="m-0 ms-2 fw-bold text-slate">Swiftsync</h5>
                     </div>
-                    <p class="text-white-50">Synchronizing technology with human ambition.</p>
+                    <p class="text-muted pe-4">Synchronizing technology with human ambition. Providing world-class IT solutions tailored for modern businesses.</p>
                 </div>
-                <div class="col-md-4">
-                    <h5 class="text-white">Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="index.html" class="text-white-50 text-decoration-none">Home</a></li>
-                        <li><a href="services.html" class="text-white-50 text-decoration-none">Services</a></li>
-                        <li><a href="staff.html" class="text-white-50 text-decoration-none">Team</a></li>
-                        <li><a href="contact.html" class="text-white-50 text-decoration-none">Contact</a></li>
+                <div class="col-lg-2 col-6">
+                    <h6 class="text-slate fw-bold mb-3">Solutions</h6>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="services.html" class="text-muted text-decoration-none">OS Installation</a></li>
+                        <li><a href="services.html" class="text-muted text-decoration-none">Networking</a></li>
+                        <li><a href="services.html" class="text-muted text-decoration-none">Web Development</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4">
-                    <h5 class="text-white">Connect</h5>
-                    <div class="d-flex gap-3">
-                        <a href="#" class="text-white"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-white"><i class="fab fa-linkedin"></i></a>
+                <div class="col-lg-2 col-6">
+                    <h6 class="text-slate fw-bold mb-3">Company</h6>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="index.html" class="text-muted text-decoration-none">About Us</a></li>
+                        <li><a href="staff.html" class="text-muted text-decoration-none">Our Team</a></li>
+                        <li><a href="contact.html" class="text-muted text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h6 class="text-slate fw-bold mb-3">Connect</h6>
+                    <div class="d-flex gap-3 mb-4">
+                        <a href="#" class="btn btn-light rounded-circle text-muted"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="btn btn-light rounded-circle text-muted"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="btn btn-light rounded-circle text-muted"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
-            <hr class="border-secondary my-4">
-            <div class="text-center text-white-50">
-                <small>&copy; 2025 Swiftsync. All rights reserved.</small>
+            <div class="row border-top mt-5 pt-4">
+                <div class="col-12 text-center">
+                    <p class="text-muted small m-0">&copy; 2025 Swiftsync. All rights reserved.</p>
+                </div>
             </div>
         </div>
     </footer>
 
-    <div id="toast-notification" class="toast-notification">
-        <span class="material-icons">info</span>
-        <span id="toast-message">Notification</span>
+    <!-- Toast Notification (Bootstrap style) -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1055;">
+        <div id="toast-notification" class="toast align-items-center text-white bg-primary border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body d-flex align-items-center">
+                    <span class="material-icons me-2">info</span>
+                    <span id="toast-message">Notification</span>
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
     </div>
 
+    <!-- WhatsApp Float -->
     <a href="https://wa.me/254721156350?text=Hello%20Swiftsync,%20I%20would%20like%20to%20inquire%20about%20your%20services." 
-       class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Chat with us on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
+       class="whatsapp-float bg-success text-white rounded-circle shadow-lg d-flex align-items-center justify-content-center" 
+       target="_blank" rel="noopener noreferrer" title="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp fs-3"></i>
     </a>
 
+    <!-- Scroll to Top -->
     <button id="scrollTopBtn" class="scroll-top-btn" title="Go to top">
         <i class="fas fa-chevron-up"></i>
     </button>

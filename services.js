@@ -1,89 +1,103 @@
-// ===== LIGHTWEIGHT LOADER =====
+// ==========================================
+// ===== 1. PREMIUM PRELOADER LOGIC =====
+// ==========================================
 window.addEventListener('load', () => {
-    const loader = document.querySelector('.loader-wrapper');
-    if (loader) {
-        // Smooth fade out
-        loader.style.opacity = '0';
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        // Slight delay so the user sees the smooth spinner
         setTimeout(() => {
-            loader.style.display = 'none';
-        }, 500);
+            preloader.style.opacity = '0';
+            preloader.style.visibility = 'hidden';
+            
+            // Remove from DOM after fade out
+            setTimeout(() => {
+                preloader.remove();
+            }, 500);
+        }, 400); 
     }
 });
 
-// ===== PARTICLE BACKGROUND (Blue/Cyan Theme) =====
-const canvas = document.getElementById('neuron-canvas');
+// ==========================================
+// ===== 2. STRIPE-STYLE MESH GRADIENT =====
+// ==========================================
+// Replaces the harsh particle network with a premium, slow-moving soft gradient
+const canvas = document.getElementById('gradient-canvas');
 if (canvas) {
     const ctx = canvas.getContext('2d');
     let width, height;
-    let particles = [];
+    let time = 0;
 
     function resize() {
         width = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
     }
 
-    class Particle {
-        constructor() {
-            this.x = Math.random() * width;
-            this.y = Math.random() * height;
-            this.vx = (Math.random() - 0.5) * 0.5; // Slow, floating movement
-            this.vy = (Math.random() - 0.5) * 0.5;
-            this.size = Math.random() * 2 + 1;
-        }
-        update() {
-            this.x += this.vx;
-            this.y += this.vy;
-            if (this.x < 0 || this.x > width) this.vx *= -1;
-            if (this.y < 0 || this.y > height) this.vy *= -1;
-        }
-        draw() {
-            // Primary Blue Particles
-            ctx.fillStyle = 'rgba(41, 121, 255, 0.5)';
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
-        }
-    }
-
-    function initParticles() {
-        particles = [];
-        // Reduce particle count on mobile for performance
-        const count = window.innerWidth < 768 ? 30 : 60;
-        for (let i = 0; i < count; i++) particles.push(new Particle());
-    }
-
-    function animateParticles() {
+    function animateGradient() {
         ctx.clearRect(0, 0, width, height);
-        for (let i = 0; i < particles.length; i++) {
-            particles[i].update();
-            particles[i].draw();
-            
-            // Draw connecting lines
-            for (let j = i; j < particles.length; j++) {
-                const dx = particles[i].x - particles[j].x;
-                const dy = particles[i].y - particles[j].y;
-                const dist = Math.sqrt(dx*dx + dy*dy);
-                
-                if (dist < 150) {
-                    // Cyan Connection Lines
-                    ctx.beginPath();
-                    ctx.strokeStyle = `rgba(0, 229, 255, ${0.1 - dist/1500})`;
-                    ctx.lineWidth = 1;
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.stroke();
-                }
-            }
-        }
-        requestAnimationFrame(animateParticles);
+        time += 0.002; // Very slow, luxurious movement
+
+        // Orbiting coordinates for the gradients
+        const x1 = width / 2 + Math.cos(time) * (width / 3);
+        const y1 = height / 2 + Math.sin(time) * (height / 3);
+        
+        const x2 = width / 2 + Math.sin(time + Math.PI) * (width / 3);
+        const y2 = height / 2 + Math.cos(time + Math.PI) * (height / 3);
+
+        // Primary "Blurple" soft glow
+        const grd1 = ctx.createRadialGradient(x1, y1, 0, x1, y1, width * 0.8);
+        grd1.addColorStop(0, 'rgba(99, 91, 255, 0.04)'); 
+        grd1.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+        // Secondary Cyan soft glow
+        const grd2 = ctx.createRadialGradient(x2, y2, 0, x2, y2, width * 0.8);
+        grd2.addColorStop(0, 'rgba(0, 212, 255, 0.04)'); 
+        grd2.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+        // Fill background base
+        ctx.fillStyle = '#f6f9fc'; 
+        ctx.fillRect(0, 0, width, height);
+        
+        // Overlay moving gradients
+        ctx.fillStyle = grd1;
+        ctx.fillRect(0, 0, width, height);
+        
+        ctx.fillStyle = grd2;
+        ctx.fillRect(0, 0, width, height);
+
+        requestAnimationFrame(animateGradient);
     }
 
-    window.addEventListener('resize', () => { resize(); initParticles(); });
-    resize(); initParticles(); animateParticles();
+    window.addEventListener('resize', resize);
+    resize();
+    animateGradient();
 }
 
-// ===== SCROLL REVEAL & COUNTERS =====
-const observerOptions = { threshold: 0.1 };
+// ==========================================
+// ===== 3. LIGHT THEME NAVBAR GLASS =====
+// ==========================================
+const navbar = document.querySelector('.premium-navbar') || document.querySelector('.navbar');
+if (navbar) {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            navbar.style.boxShadow = "0 4px 15px rgba(10, 37, 64, 0.05)";
+            navbar.style.borderBottom = "1px solid transparent";
+        } else {
+            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            navbar.style.boxShadow = "0 1px 2px rgba(0,0,0,0.03)";
+            navbar.style.borderBottom = "1px solid rgba(10, 37, 64, 0.05)";
+        }
+    });
+}
+
+// ==========================================
+// ===== 4. SCROLL REVEAL & COUNTERS =====
+// ==========================================
+const observerOptions = { 
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px"
+};
+
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -100,7 +114,7 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+document.querySelectorAll('.reveal, .scroll-reveal').forEach(el => observer.observe(el));
 
 // Counter Animation Logic
 function animateCounter(counter) {
@@ -121,43 +135,9 @@ function animateCounter(counter) {
     updateCount();
 }
 
-
-// ===== SIDEBAR LOGIC (Mobile) =====
-const sidebarToggle = document.getElementById('sidebarToggle');
-const sidebarClose = document.getElementById('sidebarClose');
-const sidebar = document.getElementById('sidebar');
-const sidebarOverlay = document.getElementById('sidebarOverlay');
-
-function openSidebar() {
-    sidebar.classList.add('active');
-    sidebarOverlay.classList.add('active');
-    document.body.style.overflow = 'hidden'; 
-}
-
-function closeSidebar() {
-    sidebar.classList.remove('active');
-    sidebarOverlay.classList.remove('active');
-    document.body.style.overflow = '';
-}
-
-if (sidebarToggle) sidebarToggle.addEventListener('click', openSidebar);
-if (sidebarClose) sidebarClose.addEventListener('click', closeSidebar);
-if (sidebarOverlay) sidebarOverlay.addEventListener('click', closeSidebar);
-
-
-// ===== NAVBAR SCROLL EFFECT =====
-const navbar = document.querySelector('.navbar');
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        navbar.style.background = "rgba(11, 14, 20, 0.98)"; // Dark Navy
-        navbar.style.boxShadow = "0 4px 6px rgba(0,0,0,0.3)";
-    } else {
-        navbar.style.background = "rgba(11, 14, 20, 0.9)"; // Slightly transparent at top
-        navbar.style.boxShadow = "none";
-    }
-});
-
-// ===== PREMIUM GSAP WELCOME TEXT ANIMATION LOGIC =====
+// ==========================================
+// ===== 5. GSAP PREMIUM TEXT ANIMATION =====
+// ==========================================
 document.addEventListener("DOMContentLoaded", () => {
     
     // Make sure GSAP is loaded
@@ -174,154 +154,154 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // 2. Setup the text for the dropping/typing effect
         const textContainer = document.getElementById("auto-type-text");
-        
-        // Added <br> tag before "services." to force it to the next line
-        const mainText = "elcome to Swiftsync Modern Tech <br> services.";
-        textContainer.innerHTML = ""; 
-        
-        const chars = [];
-        const words = mainText.split(" ");
-        
-        words.forEach((word, wordIndex) => {
-            // Check if the word is our line-break trigger
-            if (word === "<br>") {
-                let br = document.createElement("br");
-                textContainer.appendChild(br);
-                return; // Skip standard processing for the line break
-            }
+        if(textContainer) {
+            const mainText = "elcome to Swiftsync Modern Tech <br> services.";
+            textContainer.innerHTML = ""; 
             
-            // Wrapper for the word to prevent breaking mid-word
-            let wordSpan = document.createElement("span");
-            wordSpan.style.display = "inline-block";
-            wordSpan.style.whiteSpace = "nowrap"; 
+            const chars = [];
+            const words = mainText.split(" ");
             
-            // Add characters to the word
-            for (let i = 0; i < word.length; i++) {
-                let charSpan = document.createElement("span");
-                charSpan.style.display = "inline-block";
-                charSpan.innerHTML = word[i];
-                wordSpan.appendChild(charSpan);
-                chars.push(charSpan);
-            }
-            
-            textContainer.appendChild(wordSpan);
-            
-            // Add a space after the word (unless it's the last word OR the next word is a line break)
-            if (wordIndex < words.length - 1 && words[wordIndex + 1] !== "<br>") {
-                let spaceSpan = document.createElement("span");
-                spaceSpan.innerHTML = "&nbsp;";
-                textContainer.appendChild(spaceSpan);
-                chars.push(spaceSpan); 
-            }
-        });
-
-        const welcomeSection = document.getElementById("welcome-text-container");
-        welcomeSection.style.position = "relative";
-
-        // 3. Drop characters from the top as they "type"
-        gsap.fromTo(chars, 
-            { 
-                y: -60, 
-                opacity: 0, 
-                rotationX: -90 
-            }, 
-            { 
-                y: 0, 
-                opacity: 1, 
-                rotationX: 0,
-                duration: 0.5, 
-                stagger: 0.04, 
-                ease: "back.out(1.5)",
-                delay: 0.5,
-                onComplete: () => {
-                    const cursor = document.querySelector('.cursor');
-                    if(cursor) cursor.style.display = 'none';
-                    
-                    startContinuousAnimations(chars);
+            words.forEach((word, wordIndex) => {
+                if (word === "<br>") {
+                    let br = document.createElement("br");
+                    textContainer.appendChild(br);
+                    return; 
                 }
-            }
-        );
-
-        // --- CUSTOM FUNCTIONS ---
-
-        // 4. Function to start the spinning and flipping animations
-        function startContinuousAnimations(characterElements) {
-            characterElements.forEach((span, index) => {
-                if (span.innerHTML === "&nbsp;") return; 
-
-                if (index % 5 === 0) {
-                    gsap.to(span, { 
-                        rotationX: 360, 
-                        duration: 2, 
-                        repeat: -1, 
-                        repeatDelay: 1.5, 
-                        ease: "power2.inOut", 
-                        delay: index * 0.05 
-                    });
-                } else if (index % 5 === 2) {
-                    gsap.to(span, { 
-                        rotation: 360, 
-                        duration: 2, 
-                        repeat: -1, 
-                        repeatDelay: 2, 
-                        ease: "back.inOut(1.2)", 
-                        delay: index * 0.05 
-                    });
-                } else if (index % 5 === 4) {
-                    gsap.to(span, { 
-                        y: -6, 
-                        color: "#00e5ff", 
-                        textShadow: "0 0 10px rgba(0, 229, 255, 0.8)",
-                        duration: 1.5, 
-                        repeat: -1, 
-                        yoyo: true, 
-                        ease: "sine.inOut", 
-                        delay: index * 0.05 
-                    });
+                
+                let wordSpan = document.createElement("span");
+                wordSpan.style.display = "inline-block";
+                wordSpan.style.whiteSpace = "nowrap"; 
+                
+                for (let i = 0; i < word.length; i++) {
+                    let charSpan = document.createElement("span");
+                    charSpan.style.display = "inline-block";
+                    charSpan.innerHTML = word[i];
+                    wordSpan.appendChild(charSpan);
+                    chars.push(charSpan);
+                }
+                
+                textContainer.appendChild(wordSpan);
+                
+                if (wordIndex < words.length - 1 && words[wordIndex + 1] !== "<br>") {
+                    let spaceSpan = document.createElement("span");
+                    spaceSpan.innerHTML = "&nbsp;";
+                    textContainer.appendChild(spaceSpan);
+                    chars.push(spaceSpan); 
                 }
             });
-        }
 
+            const welcomeSection = document.getElementById("welcome-text-container");
+            welcomeSection.style.position = "relative";
+
+            // 3. Drop characters from the top as they "type"
+            gsap.fromTo(chars, 
+                { y: -60, opacity: 0, rotationX: -90 }, 
+                { 
+                    y: 0, 
+                    opacity: 1, 
+                    rotationX: 0,
+                    duration: 0.5, 
+                    stagger: 0.04, 
+                    ease: "back.out(1.5)",
+                    delay: 0.5,
+                    onComplete: () => {
+                        const cursor = document.querySelector('.typed-cursor') || document.querySelector('.cursor');
+                        if(cursor) cursor.style.display = 'none';
+                        startContinuousAnimations(chars);
+                    }
+                }
+            );
+
+            // 4. Function to start the spinning and flipping animations (Adjusted for Light Theme)
+            function startContinuousAnimations(characterElements) {
+                characterElements.forEach((span, index) => {
+                    if (span.innerHTML === "&nbsp;") return; 
+
+                    if (index % 5 === 0) {
+                        gsap.to(span, { 
+                            rotationX: 360, 
+                            duration: 2, 
+                            repeat: -1, 
+                            repeatDelay: 1.5, 
+                            ease: "power2.inOut", 
+                            delay: index * 0.05 
+                        });
+                    } else if (index % 5 === 2) {
+                        gsap.to(span, { 
+                            rotation: 360, 
+                            duration: 2, 
+                            repeat: -1, 
+                            repeatDelay: 2, 
+                            ease: "back.inOut(1.2)", 
+                            delay: index * 0.05 
+                        });
+                    } else if (index % 5 === 4) {
+                        gsap.to(span, { 
+                            y: -6, 
+                            color: "#635bff", // Stripe Blurple
+                            textShadow: "0 4px 10px rgba(99, 91, 255, 0.3)", // Soft premium shadow instead of neon
+                            duration: 1.5, 
+                            repeat: -1, 
+                            yoyo: true, 
+                            ease: "sine.inOut", 
+                            delay: index * 0.05 
+                        });
+                    }
+                });
+            }
+        }
     } else {
         console.warn("GSAP is not loaded. Ensure the CDN link is in the <head>.");
     }
 });
 
-// ===== OVAL CAROUSEL INFINITE SCROLL LOGIC =====
+// ==========================================
+// ===== 6. MARQUEE INFINITE SCROLL =====
+// ==========================================
 document.addEventListener("DOMContentLoaded", () => {
     const track = document.getElementById("sectors-track");
-    
     if (track) {
         const items = track.innerHTML;
-        track.innerHTML = items + items;
+        track.innerHTML = items + items; // Duplicate for seamless infinite scrolling
     }
 });
 
-// ===== PAGE PRELOADER LOGIC =====
-window.addEventListener('load', () => {
-    const preloader = document.getElementById('preloader');
-    if (preloader) {
-        // We add a tiny 500ms delay so the user gets a glimpse of the cool animation 
-        // even if the page loads instantly.
-        setTimeout(() => {
-            preloader.classList.add('preloader-hidden');
-            
-            // Completely remove it from the DOM after the fade transition completes (600ms)
-            setTimeout(() => {
-                preloader.remove();
-            }, 600);
-        }, 500); 
-    }
-});
+// ==========================================
+// ===== 7. MOBILE SIDEBAR LOGIC =====
+// ==========================================
+const sidebarToggle = document.getElementById('sidebarToggle');
+const sidebarClose = document.getElementById('sidebarClose');
+const sidebar = document.getElementById('sidebar');
+const sidebarOverlay = document.getElementById('sidebarOverlay');
 
-// ===== SCROLL TO TOP BUTTON LOGIC =====
+function openSidebar() {
+    if(sidebar && sidebarOverlay) {
+        sidebar.classList.add('active');
+        sidebarOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden'; 
+    }
+}
+
+function closeSidebar() {
+    if(sidebar && sidebarOverlay) {
+        sidebar.classList.remove('active');
+        sidebarOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+if (sidebarToggle) sidebarToggle.addEventListener('click', openSidebar);
+if (sidebarClose) sidebarClose.addEventListener('click', closeSidebar);
+if (sidebarOverlay) sidebarOverlay.addEventListener('click', closeSidebar);
+
+// ==========================================
+// ===== 8. SCROLL TO TOP BUTTON =====
+// ==========================================
 document.addEventListener("DOMContentLoaded", () => {
     const scrollTopBtn = document.getElementById("scrollTopBtn");
     
     if (scrollTopBtn) {
-        // 1. Show/Hide button based on scroll position
         window.addEventListener("scroll", () => {
-            // If user scrolls down more than 300 pixels, show the button
             if (window.scrollY > 300) {
                 scrollTopBtn.classList.add("show");
             } else {
@@ -329,7 +309,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // 2. Smooth scroll to top when clicked
         scrollTopBtn.addEventListener("click", () => {
             window.scrollTo({
                 top: 0,

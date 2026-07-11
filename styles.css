@@ -1,26 +1,34 @@
-/* ===== VARIABLES & RESET (Dark Theme) ===== */
+/* ========================================= */
+/* ===== 1. VARIABLES & RESET (Stripe Theme) ===== */
+/* ========================================= */
 :root {
-    /* Dark Theme Palette */
-    --bg-body: #0b0e14;   /* Deep Navy/Black */
-    --bg-surface: #151a23; /* Slightly lighter for cards */
-    --bg-card: #1e2633;
+    /* Stripe-esque Premium Palette */
+    --primary: #635bff;       /* Iconic 'Blurple' */
+    --primary-dark: #4b45c6;
+    --secondary: #0a2540;     /* Deep Slate for Headers */
+    --info: #00d4ff;
+    --success: #00d924;
     
-    /* Primary Blue/Cyan Set */
-    --primary: #2979ff;    /* Vivid Blue */
-    --primary-dark: #1565c0; 
-    --secondary: #00e5ff;  /* Cyan Accent */
+    /* Light Surface Colors */
+    --bg-body: #ffffff;
+    --bg-surface: #f6f9fc;    /* Signature Stripe Light Gray/Blue */
+    --bg-card: #ffffff;
     
-    /* Text - FORCED WHITE FOR VISIBILITY */
-    --text-main: #ffffff;
-    --text-muted: #e2e8f0; /* Very light grey, almost white */
+    /* Typography Colors */
+    --text-slate: #0a2540;    /* High contrast dark navy for headings */
+    --text-main: #425466;     /* Muted slate for body text */
+    --text-muted: #64748b;
     
-    /* Accents */
-    --border-light: rgba(255, 255, 255, 0.15);
-    --shadow-sm: 0 1px 3px rgba(0,0,0,0.5);
-    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.7);
+    /* Borders & Accents */
+    --border-light: #e6ebf1;
     
-    --font-heading: 'Outfit', sans-serif;
-    --font-body: 'Space Grotesk', sans-serif;
+    /* Premium Layered Shadows (The secret to Stripe's look) */
+    --shadow-sm: 0 2px 5px -1px rgba(50, 50, 93, 0.25), 0 1px 3px -1px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 13px 27px -5px rgba(50, 50, 93, 0.25), 0 8px 16px -8px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 30px 60px -12px rgba(50, 50, 93, 0.25), 0 18px 36px -18px rgba(0, 0, 0, 0.3);
+    --shadow-hover: 0 30px 60px -12px rgba(50, 50, 93, 0.25), 0 18px 36px -18px rgba(0, 0, 0, 0.3), 0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+    
+    --font-main: 'Inter', sans-serif;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,925 +36,394 @@
 body {
     background-color: var(--bg-body);
     color: var(--text-main);
-    font-family: var(--font-body);
+    font-family: var(--font-main);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
     line-height: 1.6;
 }
 
-/* FORCE ALL HEADINGS AND TEXT TO BE WHITE/VISIBLE */
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
-    color: #ffffff !important;
+/* Typography Overrides */
+h1, h2, h3, h4, h5, h6, .text-slate {
+    color: var(--text-slate) !important;
+    font-family: var(--font-main);
+    letter-spacing: -0.02em; /* Tighter letter spacing for modern feel */
 }
 
 p, li, span, div {
-    color: #ffffff;
+    color: var(--text-main);
 }
 
-/* Override Bootstrap's invisible dark grey text */
 .text-muted {
-    color: rgba(255, 255, 255, 0.85) !important;
+    color: var(--text-muted) !important;
 }
 
-.lead {
-    color: rgba(255, 255, 255, 0.9) !important;
+.bg-light-surface {
+    background-color: var(--bg-surface) !important;
 }
 
-/* ===== ANIMATED BACKGROUND ===== */
-#neuron-canvas {
+.fw-extrabold { font-weight: 800; }
+.fw-bold { font-weight: 700; }
+.fw-semibold { font-weight: 600; }
+.fw-medium { font-weight: 500; }
+.tracking-wider { letter-spacing: 0.05em; }
+
+/* Gradient Text */
+.text-gradient-primary {
+    background: linear-gradient(135deg, var(--primary), #00d4ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+/* Soft Background Utilities */
+.bg-soft-primary { background-color: rgba(99, 91, 255, 0.1); }
+.bg-soft-info { background-color: rgba(0, 212, 255, 0.1); }
+.bg-soft-success { background-color: rgba(0, 217, 36, 0.1); }
+.bg-soft-secondary { background-color: rgba(10, 37, 64, 0.05); }
+
+/* Badge Overrides */
+.badge-soft-primary { color: var(--primary); background-color: rgba(99, 91, 255, 0.1); border: 1px solid rgba(99, 91, 255, 0.2); }
+.badge-soft-secondary { color: var(--secondary); background-color: rgba(10, 37, 64, 0.1); border: 1px solid rgba(10, 37, 64, 0.2); }
+
+/* ========================================= */
+/* ===== 2. PRELOADER & CANVAS ===== */
+/* ========================================= */
+.premium-loader-wrapper {
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: -1;
-    opacity: 0.5; /* Increased opacity slightly for effect */
-}
-
-/* ===== NAVBAR ===== */
-.navbar {
-    background: rgba(11, 14, 20, 0.98); /* Less transparent for readability */
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border-light);
-    padding: 0.8rem 0;
-    transition: all 0.3s ease;
-    z-index: 1000;
-}
-
-.navbar-brand img {
-    width: 40px; 
-    height: 40px; 
-    border-radius: 50%; 
-    object-fit: cover;
-    border: 1px solid rgba(255,255,255,0.2);
-}
-
-.navbar-brand span {
-    color: #ffffff !important;
-    font-weight: 700;
-    font-size: 1.25rem;
-}
-
-/* Desktop Nav Links */
-.navbar-nav .nav-link {
-    color: #ffffff !important; /* Force White */
-    font-weight: 500;
-    margin: 0 10px;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: #ffffff;
+    z-index: 999999;
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 8px;
-    transition: color 0.2s;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.premium-loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.premium-loader .spinner {
+    width: 50px;
+    height: 50px;
+    animation: rotate 2s linear infinite;
+}
+
+.premium-loader .spinner .path {
+    stroke: var(--primary);
+    stroke-linecap: round;
+    animation: dash 1.5s ease-in-out infinite;
+}
+
+.loader-text {
+    font-weight: 600;
+    color: var(--text-slate);
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+@keyframes rotate { 100% { transform: rotate(360deg); } }
+@keyframes dash {
+    0% { stroke-dasharray: 1, 150; stroke-dashoffset: 0; }
+    50% { stroke-dasharray: 90, 150; stroke-dashoffset: -35; }
+    100% { stroke-dasharray: 90, 150; stroke-dashoffset: -124; }
+}
+
+#gradient-canvas {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at top right, rgba(99,91,255,0.03), transparent 40%),
+                radial-gradient(circle at bottom left, rgba(0,212,255,0.03), transparent 40%);
+}
+
+/* ========================================= */
+/* ===== 3. NAVBAR & SIDEBAR ===== */
+/* ========================================= */
+.premium-navbar {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(10, 37, 64, 0.05);
+    padding: 1rem 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+}
+
+.logo-sm {
+    width: 36px; 
+    height: 36px; 
+    object-fit: cover;
+    box-shadow: var(--shadow-sm);
+}
+
+.navbar-nav .nav-link {
+    color: var(--text-slate) !important;
+    font-weight: 500;
+    margin: 0 12px;
+    transition: color 0.2s ease;
 }
 
 .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
-    color: var(--secondary) !important;
-}
-
-/* ===== SIDEBAR (Mobile) ===== */
-.sidebar {
-    position: fixed;
-    top: 0; left: -300px;
-    width: 300px;
-    height: 100vh;
-    background: #0f0f0f;
-    z-index: 10000;
-    transition: left 0.3s ease;
-    border-right: 1px solid rgba(255,255,255,0.1);
-    display: flex;
-    flex-direction: column;
-}
-
-.sidebar.active { left: 0; }
-
-.sidebar-header {
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-.sidebar-nav { list-style: none; padding: 20px; }
-
-.sidebar-nav .nav-link {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 15px;
-    border-radius: 10px;
-    color: #ffffff !important;
-}
-
-.sidebar-nav .nav-link:hover {
-    background: rgba(255,255,255,0.1);
     color: var(--primary) !important;
 }
 
-.sidebar-close {
-    background: none;
-    border: none;
-    color: #ffffff;
-    cursor: pointer;
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0; left: -320px;
+    width: 320px;
+    height: 100vh;
+    z-index: 10000;
+    transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
-
+.sidebar.active { left: 0; }
 .sidebar-overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.8);
+    background: rgba(10, 37, 64, 0.4);
+    backdrop-filter: blur(4px);
     z-index: 9999;
-    opacity: 0;
-    visibility: hidden;
+    opacity: 0; visibility: hidden;
     transition: all 0.3s;
 }
-
 .sidebar-overlay.active { opacity: 1; visibility: visible; }
-
-.sidebar-toggle {
-    background: transparent;
-    border: none;
-    color: #ffffff !important;
+.sidebar-nav { list-style: none; }
+.sidebar-nav .nav-link {
+    padding: 1rem 1.5rem;
+    display: flex; align-items: center;
+    border-radius: 8px; margin: 0 1rem 0.5rem;
+    transition: background 0.2s;
+}
+.sidebar-nav .nav-link:hover {
+    background: var(--bg-surface);
+    color: var(--primary) !important;
 }
 
-/* ===== HERO CAROUSEL ===== */
+/* ========================================= */
+/* ===== 4. HERO SECTION ===== */
+/* ========================================= */
 .hero-section {
     position: relative;
-    height: 100vh;
-    min-height: 600px;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    padding-top: 80px; 
+    border-bottom: 1px solid var(--border-light);
 }
-
-/* MOBILE PADDING FIX - Ensures text is seen */
-@media (max-width: 991px) {
-    .hero-section {
-        padding-top: 110px; /* Reduced from 150px as requested */
-        height: auto;
-        min-height: 100vh;
-        align-items: flex-start; /* Start content below navbar */
-    }
-    
-    .display-title {
-        font-size: 2.5rem;
-    }
-    
-    .navbar-nav { display: none; } 
-    .sidebar-toggle { display: block; }
+.hero-section .display-4 {
+    line-height: 1.1;
 }
-
-@media (min-width: 992px) {
-    .sidebar-toggle { display: none; }
-}
-
-.carousel-slide {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.8s ease-in-out, visibility 0.8s;
-    display: flex;
-    align-items: center;
-    padding: 0 5%;
-}
-
-.carousel-slide.active { opacity: 1; visibility: visible; }
-
-/* Text Animations */
-.carousel-slide.active h1 { animation: slideUp 0.8s forwards 0.2s; opacity: 0; }
-.carousel-slide.active p { animation: slideUp 0.8s forwards 0.4s; opacity: 0; }
-.carousel-slide.active .btn { animation: slideUp 0.8s forwards 0.6s; opacity: 0; }
-
-.display-title {
-    font-size: 3.5rem;
-    font-weight: 800;
-    line-height: 1.2;
-    margin-bottom: 1.5rem;
-    color: #ffffff !important;
-}
-
-.text-gradient {
-    background: linear-gradient(135deg, var(--secondary), var(--primary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-/* ===== CARDS & SECTIONS ===== */
-.section-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    text-align: center;
-    color: #ffffff !important;
-}
-
-/* Updated Service Card for Glass Effect & Neon Borders */
-.service-card {
-    background: rgba(30, 38, 51, 0.7); /* Dark Glass */
-    backdrop-filter: blur(10px);
-    padding: 2rem;
-    border-radius: 16px;
-    border: 1px solid var(--border-light);
-    border-bottom-width: 4px; /* Thick bottom border for color */
-    box-shadow: var(--shadow-sm);
-    transition: transform 0.3s, box-shadow 0.3s;
-    height: 100%;
-    position: relative;
-    overflow: hidden;
-}
-
-/* CARD TEXT VISIBILITY FIX */
-.service-card h4 {
-    color: #ffffff !important;
-    font-weight: 700;
-}
-
-.service-card p {
-    color: rgba(255, 255, 255, 0.9) !important; /* Force visible light grey/white */
-}
-
-.service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-    background: rgba(40, 50, 65, 0.9);
-    /* Border color handles glow on hover via specific classes below */
-}
-
-.service-icon {
-    width: 50px; height: 50px;
-    background: rgba(41, 121, 255, 0.1);
-    color: var(--secondary);
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    transition: all 0.3s;
-}
-
-/* ===== INDEX PAGE AUTO-COLORING ===== */
-/* Manually targets the 6 service cards in index.html to apply the neon colors */
-
-/* 1. OS Installation (Cyan) */
-#services .col-md-4:nth-child(1) .service-card { border-bottom-color: #00e5ff; }
-#services .col-md-4:nth-child(1) .service-card:hover { box-shadow: 0 10px 30px rgba(0, 229, 255, 0.2); }
-#services .col-md-4:nth-child(1) .service-icon { color: #00e5ff; background: rgba(0, 229, 255, 0.1); }
-
-/* 2. Package Installation (Purple) */
-#services .col-md-4:nth-child(2) .service-card { border-bottom-color: #d500f9; }
-#services .col-md-4:nth-child(2) .service-card:hover { box-shadow: 0 10px 30px rgba(213, 0, 249, 0.2); }
-#services .col-md-4:nth-child(2) .service-icon { color: #d500f9; background: rgba(213, 0, 249, 0.1); }
-
-/* 3. Hardware Setup (Orange) */
-#services .col-md-4:nth-child(3) .service-card { border-bottom-color: #ff9100; }
-#services .col-md-4:nth-child(3) .service-card:hover { box-shadow: 0 10px 30px rgba(255, 145, 0, 0.2); }
-#services .col-md-4:nth-child(3) .service-icon { color: #ff9100; background: rgba(255, 145, 0, 0.1); }
-
-/* 4. Networking & CCTV (Blue) */
-#services .col-md-4:nth-child(4) .service-card { border-bottom-color: #2979ff; }
-#services .col-md-4:nth-child(4) .service-card:hover { box-shadow: 0 10px 30px rgba(41, 121, 255, 0.2); }
-#services .col-md-4:nth-child(4) .service-icon { color: #2979ff; background: rgba(41, 121, 255, 0.1); }
-
-/* 5. Diagnostics (Yellow) */
-#services .col-md-4:nth-child(5) .service-card { border-bottom-color: #ffea00; }
-#services .col-md-4:nth-child(5) .service-card:hover { box-shadow: 0 10px 30px rgba(255, 234, 0, 0.2); }
-#services .col-md-4:nth-child(5) .service-icon { color: #ffea00; background: rgba(255, 234, 0, 0.1); }
-
-/* 6. Web & SEO (Pink) */
-#services .col-md-4:nth-child(6) .service-card { border-bottom-color: #f50057; }
-#services .col-md-4:nth-child(6) .service-card:hover { box-shadow: 0 10px 30px rgba(245, 0, 87, 0.2); }
-#services .col-md-4:nth-child(6) .service-icon { color: #f50057; background: rgba(245, 0, 87, 0.1); }
-
-
-/* ===== NEW PORTFOLIO SECTION ===== */
-.portfolio-section {
-    padding: 80px 0;
-    background: var(--bg-body);
-}
-
-.project-card {
-    position: relative;
-    border-radius: 20px;
-    overflow: hidden;
-    height: 300px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    border: 1px solid rgba(255,255,255,0.1);
-}
-
-.project-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease;
-}
-
-.project-overlay {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(to top, rgba(11, 14, 20, 0.95), rgba(41, 121, 255, 0.3));
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    display: flex;
-    align-items: flex-end;
-    padding: 25px;
-}
-
-.project-card:hover .project-img {
-    transform: scale(1.1);
-}
-
-.project-card:hover .project-overlay {
-    opacity: 1;
-}
-
-.project-tag {
-    font-size: 0.8rem;
-    color: var(--secondary);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 5px;
-    display: block;
-}
-
-.project-info h3 {
-    margin: 0 0 10px 0;
-    font-size: 1.5rem;
-}
-
-.project-info p {
-    font-size: 0.95rem;
-    color: rgba(255,255,255,0.8);
-    margin: 0;
-    line-height: 1.4;
-}
-
-/* ===== BOOKING SECTION ===== */
-.booking-section {
-    background: linear-gradient(180deg, var(--bg-body) 0%, var(--bg-surface) 100%);
-    padding: 5rem 0;
-    border-top: 1px solid var(--border-light);
-}
-
-/* ===== TESTIMONIALS ===== */
-.review-card {
-    background: var(--bg-card);
-    padding: 2rem;
-    border-radius: 16px;
-    box-shadow: var(--shadow-md);
+.premium-shadow {
+    box-shadow: var(--shadow-lg);
     border: 1px solid var(--border-light);
 }
 
-.review-card p {
-    color: rgba(255, 255, 255, 0.9) !important;
-}
-
-.review-card h6 {
-    color: var(--secondary) !important;
-}
-
-.stars { color: #fbbf24; margin-bottom: 1rem; }
-
-/* ===== FOOTER ===== */
-.footer {
-    background: #000000;
-    border-top: 1px solid var(--border-light);
-    padding: 4rem 0 2rem;
-}
-
-.footer h5 { color: white !important; margin-bottom: 1.5rem; }
-.footer p { color: rgba(255, 255, 255, 0.7) !important; }
-.footer a { color: rgba(255, 255, 255, 0.7) !important; text-decoration: none; transition: 0.2s; }
-.footer a:hover { color: var(--secondary) !important; }
-
-/* ===== BUTTONS & ANIMATIONS ===== */
-.btn-primary {
+/* ========================================= */
+/* ===== 5. BUTTONS ===== */
+/* ========================================= */
+.premium-btn {
     background: var(--primary);
-    color: white !important;
-    padding: 12px 32px;
+    color: #ffffff !important;
+    padding: 12px 28px;
     border-radius: 50px;
     border: none;
     font-weight: 600;
-    transition: all 0.3s;
+    box-shadow: 0 4px 14px 0 rgba(99, 91, 255, 0.39);
+    transition: all 0.3s ease;
 }
-
-.btn-primary:hover {
+.premium-btn:hover {
     background: var(--primary-dark);
-    box-shadow: 0 0 15px rgba(41, 121, 255, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 91, 255, 0.23);
 }
-
-.btn-outline-light {
-    border: 1px solid rgba(255,255,255,0.3);
+.premium-btn-outline {
+    background: transparent;
+    color: var(--text-slate) !important;
+    border: 1px solid #d9e2ec;
+    padding: 12px 28px;
     border-radius: 50px;
-    color: white !important;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+.premium-btn-outline:hover {
+    border-color: var(--text-slate);
+    background: var(--text-slate);
+    color: #ffffff !important;
+    transform: translateY(-2px);
+}
+.hover-arrow i {
+    transition: transform 0.2s ease;
+}
+.hover-arrow:hover i {
+    transform: translateX(4px);
 }
 
-.btn-outline-light:hover {
-    background: white;
-    color: black !important;
+/* ========================================= */
+/* ===== 6. CARDS (SERVICES & PORTFOLIO) === */
+/* ========================================= */
+.premium-card {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.premium-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+}
+.icon-wrapper {
+    width: 60px; height: 60px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+}
+.icon-wrapper i { font-size: 1.8rem; }
+
+.premium-project-card {
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    box-shadow: var(--shadow-sm);
+}
+.premium-project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
 }
 
-@keyframes slideUp {
-    from { transform: translateY(30px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+/* ========================================= */
+/* ===== 7. MOCK EDITOR (LIGHT MODE) ======= */
+/* ========================================= */
+.premium-mock-editor {
+    background: #ffffff;
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-lg);
+    font-family: 'Fira Code', 'Consolas', monospace;
+}
+.premium-mock-editor .editor-header {
+    background: #f8fafc;
+}
+.premium-mock-editor .mac-dots span {
+    width: 12px; height: 12px;
+}
+.premium-mock-editor .editor-body {
+    height: 320px;
+    overflow-y: auto;
+    color: #334155; /* Dark gray for code */
+}
+.premium-mock-editor pre, .premium-mock-editor span {
+    font-family: 'Fira Code', 'Consolas', monospace !important;
+    font-size: 0.95rem;
+}
+.typed-cursor {
+    font-weight: bold;
+    color: var(--primary);
+    animation: blink 1s step-end infinite;
 }
 
+@keyframes blink { 50% { opacity: 0; } }
+
+/* ========================================= */
+/* ===== 8. FOOTER & CTA ===== */
+/* ========================================= */
+.cta-section {
+    background: linear-gradient(135deg, var(--primary) 0%, #3b82f6 100%);
+}
+.footer {
+    background: #ffffff;
+}
+.footer-links li { margin-bottom: 0.5rem; }
+.footer-links a { transition: color 0.2s ease; }
+.footer-links a:hover { color: var(--primary) !important; }
+
+/* ========================================= */
+/* ===== 9. SWIPER OVERRIDES ===== */
+/* ========================================= */
+.portfolioSwiper { padding-bottom: 50px; }
+.swiper-pagination-bullet {
+    background: var(--text-muted);
+    opacity: 0.3;
+}
+.swiper-pagination-bullet-active {
+    background: var(--primary);
+    opacity: 1;
+}
+
+/* ========================================= */
+/* ===== 10. SCROLLBAR & FLOATING BTNS ===== */
+/* ========================================= */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--bg-surface); }
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+    border: 2px solid var(--bg-surface);
+}
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+.whatsapp-float {
+    position: fixed;
+    width: 60px; height: 60px;
+    bottom: 30px; right: 30px;
+    background-color: #25d366;
+    color: #ffffff;
+    z-index: 1000;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-md);
+}
+.whatsapp-float:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    color: #ffffff;
+}
+
+/* Scroll Top Button (Light theme) */
+.scroll-top-btn {
+    position: fixed;
+    bottom: 105px; right: 35px;
+    width: 50px; height: 50px;
+    background: #ffffff;
+    color: var(--text-slate);
+    border: 1px solid var(--border-light);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 999;
+    display: flex; justify-content: center; align-items: center;
+    opacity: 0; visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: var(--shadow-md);
+}
+.scroll-top-btn.show {
+    opacity: 1; visibility: visible; transform: translateY(0);
+}
+.scroll-top-btn:hover {
+    color: var(--primary);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* ========================================= */
+/* ===== 11. REVEAL ANIMATIONS ===== */
+/* ========================================= */
 .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease-out;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
 }
-/* ===== TECH BLOG SECTION ===== */
-.blog-section {
-    background: linear-gradient(180deg, var(--bg-body) 0%, var(--bg-surface) 100%);
-    position: relative;
-}
 
-.blog-card {
-    background: var(--bg-card);
-    border-radius: 20px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
+/* Utilities for stacking context */
+.z-index-2 { position: relative; z-index: 2; }
+.min-vh-75 { min-height: 75vh; }
+.py-6 { padding-top: 5rem; padding-bottom: 5rem; }
 
-.blog-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    border-color: var(--primary);
-}
-
-/* Image & Date Badge */
-.blog-img-wrapper {
-    position: relative;
-    height: 220px;
-    overflow: hidden;
-}
-
-.blog-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.blog-card:hover .blog-img {
-    transform: scale(1.1);
-}
-
-.blog-date {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: rgba(11, 14, 20, 0.85);
-    backdrop-filter: blur(5px);
-    padding: 8px 15px;
-    border-radius: 12px;
-    text-align: center;
-    border: 1px solid var(--secondary);
-    box-shadow: 0 0 15px rgba(0, 229, 255, 0.15);
-    z-index: 2;
-}
-
-.blog-date .day {
-    display: block;
-    font-size: 1.4rem;
-    font-weight: 800;
-    color: #ffffff;
-    line-height: 1;
-}
-
-.blog-date .month {
-    display: block;
-    font-size: 0.75rem;
-    color: var(--secondary);
-    text-transform: uppercase;
-    font-weight: 600;
-    letter-spacing: 1px;
-}
-
-/* Content */
-.blog-content {
-    padding: 25px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.blog-meta {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 12px;
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.blog-meta span i {
-    margin-right: 5px;
-    color: var(--primary);
-}
-
-.blog-content h3 {
-    font-size: 1.4rem;
-    margin-bottom: 12px;
-    font-weight: 700;
-    color: #ffffff !important;
-    line-height: 1.3;
-}
-
-.blog-content p {
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 20px;
-    flex-grow: 1;
-    line-height: 1.6;
-}
-
-/* Read More Link */
-.read-more {
-    color: var(--secondary);
-    text-decoration: none;
-    font-weight: 600;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: gap 0.3s;
-}
-
-.read-more:hover {
-    color: var(--primary);
-    gap: 12px;
-}
-/* ===== MOCK EDITOR (Premium Web Showcase) ===== */
-.web-showcase-section {
-    background: linear-gradient(180deg, var(--bg-body) 0%, var(--bg-surface) 100%);
-    border-top: 1px solid var(--border-light);
-    border-bottom: 1px solid var(--border-light);
-    overflow: hidden;
-}
-
-/* Justified text on small devices */
+/* Mobile Adjustments */
 @media (max-width: 991px) {
-    .web-showcase-section p.text-muted {
-        text-align: justify;
-        text-justify: inter-word;
-    }
-}
-
-.mock-editor {
-    background: #1e1e1e; /* Authentic VS Code Dark Background */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    /* Premium glowing shadow effect */
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 
-                0 0 20px rgba(0, 229, 255, 0.2), 
-                0 0 45px rgba(0, 229, 255, 0.1);
-    overflow: hidden;
-    font-family: 'Fira Code', 'Consolas', 'Courier New', Courier, monospace;
-    transition: box-shadow 0.4s ease;
-}
-
-.mock-editor:hover {
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 
-                0 0 30px rgba(0, 229, 255, 0.4), 
-                0 0 60px rgba(0, 229, 255, 0.2);
-}
-
-.editor-header {
-    background: #252526; /* VS Code Header Color */
-    padding: 12px 15px;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    position: relative;
-}
-
-.mac-dots {
-    display: flex;
-    gap: 8px;
-}
-
-.mac-dots span {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    display: inline-block;
-}
-
-.mac-dots span:nth-child(1) { background: #ff5f56; }
-.mac-dots span:nth-child(2) { background: #ffbd2e; }
-.mac-dots span:nth-child(3) { background: #27c93f; }
-
-.file-name {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #9cdcfe; /* VS Code Light Blue */
-    font-size: 0.85rem;
-    font-family: var(--font-body);
-    font-weight: 500;
-}
-
-.editor-body {
-    padding: 20px;
-    height: 300px;
-    overflow-y: auto;
-    background: #1e1e1e;
-}
-
-.editor-body pre {
-    margin: 0;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    font-size: 1rem;
-    line-height: 1.6;
-    /* Force monolithic/monospace font for the code */
-    font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', Courier, monospace !important;
-}
-
-/* Ensure the span elements generated by JS also inherit the monospace font */
-.editor-body pre span {
-    font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', Courier, monospace !important;
-}
-
-/* The Blinking Cursor */
-.typed-cursor {
-    font-weight: bold;
-    color: #d4d4d4; 
-    font-size: 1.1rem;
-    animation: blink 1s step-end infinite;
-    margin-left: 2px;
-    /* Match the cursor font to the code font */
-    font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', Courier, monospace !important;
-}
-
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
-
-/* ========================================= */
-/* ===== 1. CUSTOM NEON SCROLLBAR ===== */
-/* ========================================= */
-::-webkit-scrollbar {
-    width: 12px; /* Width of the vertical scrollbar */
-    height: 8px; /* Height of the horizontal scrollbar */
-}
-
-::-webkit-scrollbar-track {
-    background: #0b0e14; /* Matches your dark body background */
-    border-left: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #00e5ff, #2979ff); /* Premium Cyan to Blue gradient */
-    border-radius: 10px;
-    border: 3px solid #0b0e14; /* Creates a nice padded "floating" effect */
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, #00e5ff, #d500f9); /* Shifts to Cyan/Purple on hover */
-}
-
-
-/* ========================================= */
-/* ===== 2. FLOATING WHATSAPP BUTTON ===== */
-/* ========================================= */
-.whatsapp-float {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 30px;
-    right: 30px;
-    background-color: #25d366; /* Official WhatsApp Green */
-    color: #FFF;
-    border-radius: 50px;
-    text-align: center;
-    font-size: 35px;
-    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    /* This adds the premium pulsing ring effect */
-    animation: pulse-wa 2s infinite; 
-}
-
-.whatsapp-float i {
-    margin-top: 2px; /* Perfectly centers the FontAwesome icon */
-}
-
-.whatsapp-float:hover {
-    color: #fff;
-    transform: scale(1.1) rotate(5deg);
-    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
-}
-
-/* The Glowing Pulse Animation */
-@keyframes pulse-wa {
-    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
-    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-}
-
-/* Move the button slightly on mobile so it doesn't block content */
-@media (max-width: 768px) {
-    .whatsapp-float {
-        width: 50px;
-        height: 50px;
-        bottom: 20px;
-        right: 20px;
-        font-size: 28px;
-    }
-}
-
-
-/* ========================================= */
-/* ===== 3. PREMIUM NEON PRELOADER ===== */
-/* ========================================= */
-#preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #0b0e14; /* Matches your ultra-dark theme */
-    z-index: 999999; /* Stays on top of absolutely everything, including navbars */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 0.6s ease, visibility 0.6s ease;
-}
-
-.loader-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 25px;
-}
-/* The Glowing Tech Ring */
-.neon-ring {
-    width: 65px;
-    height: 65px;
-    /* Creates a faint track for the spinner to travel on */
-    border: 3px solid rgba(41, 121, 255, 0.15); 
-    border-top-color: #2979ff; /* Premium Blue */
-    border-right-color: #2979ff; /* Premium Blue */
-    border-radius: 50%;
-    background-color: #000000; /* Forces the inside to be pure black */
-    animation: spin-ring 1s linear infinite; /* Smooth, continuous spin */
-    /* Outer blue glow only, removed the inset shadow so the inside stays black */
-    box-shadow: 0 0 15px rgba(41, 121, 255, 0.6); 
-}
-
-/* The Loading Text */
-.loader-text {
-    font-family: 'Space Grotesk', 'Courier New', monospace;
-    color: #2979ff; /* Matched the text to the blue ring */
-    letter-spacing: 6px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    animation: pulse-text 1.5s ease-in-out infinite alternate;
-}
-
-@keyframes spin-ring {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-@keyframes pulse-text {
-    0% { opacity: 0.4; text-shadow: 0 0 5px rgba(41, 121, 255, 0.2); }
-    100% { opacity: 1; text-shadow: 0 0 15px rgba(41, 121, 255, 0.9); }
-}
-/* ========================================= */
-/* ===== 4. SCROLL TO TOP BUTTON ====== */
-/* ========================================= */
-.scroll-top-btn {
-    position: fixed;
-    /* Pushed up to sit exactly above the WhatsApp button */
-    bottom: 105px; 
-    /* Aligned to the center of the WhatsApp button */
-    right: 35px; 
-    width: 50px;
-    height: 50px;
-    background: rgba(11, 14, 20, 0.8); /* Dark glassmorphism */
-    backdrop-filter: blur(8px);
-    color: #00e5ff; /* Cyan icon */
-    border: 1px solid #00e5ff;
-    border-radius: 50%;
-    font-size: 20px;
-    cursor: pointer;
-    z-index: 999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* Hidden by default until JS adds the 'show' class */
-    opacity: 0;
-    visibility: hidden; 
-    transform: translateY(20px);
-    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
-}
-
-/* Class added by JS when scrolling down */
-.scroll-top-btn.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.scroll-top-btn:hover {
-    background: #00e5ff;
-    color: #0b0e14;
-    box-shadow: 0 0 25px rgba(0, 229, 255, 0.6);
-    transform: translateY(-5px); /* Pops up slightly when hovered */
-}
-
-/* Adjust spacing for mobile so they stack nicely on small screens too */
-@media (max-width: 768px) {
-    .scroll-top-btn {
-        bottom: 85px; /* Stacked above the smaller mobile WA button */
-        right: 25px; /* Centered with the smaller mobile WA button */
-        width: 40px;
-        height: 40px;
-        font-size: 16px;
-    }
-}
-/* ========================================= */
-/* ===== 5. PORTFOLIO SWIPER SLIDER ======= */
-/* ========================================= */
-.portfolioSwiper {
-    padding-bottom: 60px; /* Gives space for the pagination dots at the bottom */
-    padding-top: 10px;
-}
-
-/* Customizing the Swiper Dots */
-.swiper-pagination-bullet {
-    background: #ffffff;
-    opacity: 0.4;
-    transition: all 0.3s ease;
-}
-
-.swiper-pagination-bullet-active {
-    background: #00e5ff;
-    opacity: 1;
-    transform: scale(1.4);
-    box-shadow: 0 0 10px rgba(0, 229, 255, 0.6);
-}
-
-/* Customizing the Swiper Arrows */
-.swiper-button-next, .swiper-button-prev {
-    color: #00e5ff;
-    background: rgba(11, 14, 20, 0.7);
-    backdrop-filter: blur(5px);
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    border: 1px solid rgba(0, 229, 255, 0.3);
-    transition: all 0.3s ease;
-}
-
-.swiper-button-next:hover, .swiper-button-prev:hover {
-    background: #00e5ff;
-    color: #0b0e14;
-    box-shadow: 0 0 15px rgba(0, 229, 255, 0.6);
-}
-
-.swiper-button-next::after, .swiper-button-prev::after {
-    font-size: 18px;
-    font-weight: 800;
-}
-
-/* Make the cards compact and uniformly sized */
-.portfolioSwiper .swiper-slide {
-    height: 280px; /* This reduces the height. You can change this number (e.g., 280px or 350px) to get the exact size you want! */
-    display: flex;
-    justify-content: center;
-}
-
-.portfolioSwiper .project-card {
-    width: 100%;
-    height: 100%;
-    max-width: 400px; /* Prevents the cards from getting too wide/stretched on big screens */
-    margin: 0 auto;
-    border-radius: 15px;
-    overflow: hidden;
-}
-
-.portfolioSwiper .project-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensures the image fills the smaller box perfectly without looking squished */
-    transition: transform 0.5s ease;
-}
-
-/* Optional: Adds a slight zoom effect to the image when you hover over the smaller card */
-.portfolioSwiper .project-card:hover .project-img {
-    transform: scale(1.1);
+    .hero-section .display-4 { font-size: 2.5rem; }
+    .whatsapp-float { width: 50px; height: 50px; bottom: 20px; right: 20px; }
+    .scroll-top-btn { bottom: 85px; right: 25px; width: 40px; height: 40px; }
+    .py-6 { padding-top: 4rem; padding-bottom: 4rem; }
 }

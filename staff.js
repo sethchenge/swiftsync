@@ -1,86 +1,85 @@
-// ===== LIGHTWEIGHT LOADER =====
+// ==========================================
+// ===== 1. PREMIUM PRELOADER LOGIC =====
+// ==========================================
 window.addEventListener('load', () => {
-    const loader = document.querySelector('.loader-wrapper');
-    if (loader) {
-        loader.style.opacity = '0';
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        // Slight delay so the user sees the smooth spinner
         setTimeout(() => {
-            loader.style.display = 'none';
-        }, 500);
+            preloader.style.opacity = '0';
+            preloader.style.visibility = 'hidden';
+            
+            // Remove from DOM after fade out
+            setTimeout(() => {
+                preloader.remove();
+            }, 500);
+        }, 400); 
     }
 });
 
-// ===== PARTICLE BACKGROUND (Blue/Cyan Theme) =====
-const canvas = document.getElementById('neuron-canvas');
+// ==========================================
+// ===== 2. STRIPE-STYLE MESH GRADIENT =====
+// ==========================================
+// Replaces the harsh particle network with a premium, slow-moving soft gradient
+const canvas = document.getElementById('gradient-canvas');
 if (canvas) {
     const ctx = canvas.getContext('2d');
     let width, height;
-    let particles = [];
+    let time = 0;
 
     function resize() {
         width = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
     }
 
-    class Particle {
-        constructor() {
-            this.x = Math.random() * width;
-            this.y = Math.random() * height;
-            this.vx = (Math.random() - 0.5) * 0.5; 
-            this.vy = (Math.random() - 0.5) * 0.5;
-            this.size = Math.random() * 2 + 1;
-        }
-        update() {
-            this.x += this.vx;
-            this.y += this.vy;
-            if (this.x < 0 || this.x > width) this.vx *= -1;
-            if (this.y < 0 || this.y > height) this.vy *= -1;
-        }
-        draw() {
-            // Primary Blue
-            ctx.fillStyle = 'rgba(41, 121, 255, 0.5)';
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
-        }
-    }
-
-    function initParticles() {
-        particles = [];
-        const count = window.innerWidth < 768 ? 30 : 60;
-        for (let i = 0; i < count; i++) particles.push(new Particle());
-    }
-
-    function animateParticles() {
+    function animateGradient() {
         ctx.clearRect(0, 0, width, height);
-        for (let i = 0; i < particles.length; i++) {
-            particles[i].update();
-            particles[i].draw();
+        time += 0.002; // Very slow, luxurious movement
 
-            for (let j = i; j < particles.length; j++) {
-                const dx = particles[i].x - particles[j].x;
-                const dy = particles[i].y - particles[j].y;
-                const dist = Math.sqrt(dx*dx + dy*dy);
+        // Orbiting coordinates for the gradients
+        const x1 = width / 2 + Math.cos(time) * (width / 3);
+        const y1 = height / 2 + Math.sin(time) * (height / 3);
+        
+        const x2 = width / 2 + Math.sin(time + Math.PI) * (width / 3);
+        const y2 = height / 2 + Math.cos(time + Math.PI) * (height / 3);
 
-                if (dist < 150) {
-                    // Cyan Lines
-                    ctx.beginPath();
-                    ctx.strokeStyle = `rgba(0, 229, 255, ${0.1 - dist/1500})`;
-                    ctx.lineWidth = 1;
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.stroke();
-                }
-            }
-        }
-        requestAnimationFrame(animateParticles);
+        // Primary "Blurple" soft glow
+        const grd1 = ctx.createRadialGradient(x1, y1, 0, x1, y1, width * 0.8);
+        grd1.addColorStop(0, 'rgba(99, 91, 255, 0.04)'); 
+        grd1.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+        // Secondary Cyan soft glow
+        const grd2 = ctx.createRadialGradient(x2, y2, 0, x2, y2, width * 0.8);
+        grd2.addColorStop(0, 'rgba(0, 212, 255, 0.04)'); 
+        grd2.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+        // Fill background base
+        ctx.fillStyle = '#f6f9fc'; 
+        ctx.fillRect(0, 0, width, height);
+        
+        // Overlay moving gradients
+        ctx.fillStyle = grd1;
+        ctx.fillRect(0, 0, width, height);
+        
+        ctx.fillStyle = grd2;
+        ctx.fillRect(0, 0, width, height);
+
+        requestAnimationFrame(animateGradient);
     }
 
-    window.addEventListener('resize', () => { resize(); initParticles(); });
-    resize(); initParticles(); animateParticles();
+    window.addEventListener('resize', resize);
+    resize();
+    animateGradient();
 }
 
-// ===== SCROLL REVEAL =====
-const observerOptions = { threshold: 0.1 };
+// ==========================================
+// ===== 3. SCROLL REVEAL ANIMATIONS =====
+// ==========================================
+const observerOptions = { 
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px"
+};
+
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -90,65 +89,66 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+// Target both class names we used across the HTML files
+document.querySelectorAll('.reveal, .scroll-reveal').forEach(el => observer.observe(el));
 
-// ===== SIDEBAR LOGIC (Mobile) =====
+
+// ==========================================
+// ===== 4. LIGHT THEME NAVBAR GLASS =====
+// ==========================================
+const navbar = document.querySelector('.premium-navbar') || document.querySelector('.navbar');
+if (navbar) {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            navbar.style.boxShadow = "0 4px 15px rgba(10, 37, 64, 0.05)";
+            navbar.style.borderBottom = "1px solid transparent";
+        } else {
+            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            navbar.style.boxShadow = "0 1px 2px rgba(0,0,0,0.03)";
+            navbar.style.borderBottom = "1px solid rgba(10, 37, 64, 0.05)";
+        }
+    });
+}
+
+
+// ==========================================
+// ===== 5. MOBILE SIDEBAR LOGIC =====
+// ==========================================
 const sidebarToggle = document.getElementById('sidebarToggle');
 const sidebarClose = document.getElementById('sidebarClose');
 const sidebar = document.getElementById('sidebar');
 const sidebarOverlay = document.getElementById('sidebarOverlay');
 
 function openSidebar() {
-    sidebar.classList.add('active');
-    sidebarOverlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    if(sidebar && sidebarOverlay) {
+        sidebar.classList.add('active');
+        sidebarOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
 }
 
 function closeSidebar() {
-    sidebar.classList.remove('active');
-    sidebarOverlay.classList.remove('active');
-    document.body.style.overflow = '';
+    if(sidebar && sidebarOverlay) {
+        sidebar.classList.remove('active');
+        sidebarOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
 }
 
 if (sidebarToggle) sidebarToggle.addEventListener('click', openSidebar);
 if (sidebarClose) sidebarClose.addEventListener('click', closeSidebar);
 if (sidebarOverlay) sidebarOverlay.addEventListener('click', closeSidebar);
 
-// Navbar Glass effect
-const navbar = document.querySelector('.navbar');
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(11, 14, 20, 0.98)';
-        navbar.style.boxShadow = "0 4px 6px rgba(0,0,0,0.3)";
-    } else {
-        navbar.style.background = 'rgba(11, 14, 20, 0.9)';
-        navbar.style.boxShadow = "none";
-    }
-});
-// ===== PAGE PRELOADER LOGIC =====
-window.addEventListener('load', () => {
-    const preloader = document.getElementById('preloader');
-    if (preloader) {
-        // We add a tiny 500ms delay so the user gets a glimpse of the cool animation 
-        // even if the page loads instantly.
-        setTimeout(() => {
-            preloader.classList.add('preloader-hidden');
-            
-            // Completely remove it from the DOM after the fade transition completes (600ms)
-            setTimeout(() => {
-                preloader.remove();
-            }, 600);
-        }, 500); 
-    }
-});
-// ===== SCROLL TO TOP BUTTON LOGIC =====
+
+// ==========================================
+// ===== 6. SCROLL TO TOP BUTTON =====
+// ==========================================
 document.addEventListener("DOMContentLoaded", () => {
     const scrollTopBtn = document.getElementById("scrollTopBtn");
     
     if (scrollTopBtn) {
-        // 1. Show/Hide button based on scroll position
         window.addEventListener("scroll", () => {
-            // If user scrolls down more than 300 pixels, show the button
             if (window.scrollY > 300) {
                 scrollTopBtn.classList.add("show");
             } else {
@@ -156,12 +156,20 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // 2. Smooth scroll to top when clicked
         scrollTopBtn.addEventListener("click", () => {
             window.scrollTo({
                 top: 0,
                 behavior: "smooth"
             });
+        });
+    }
+
+    // CV Specific: Hook up the download button to trigger the print dialog
+    // Modern browsers format prints to PDF beautifully
+    const downloadBtn = document.getElementById('downloadBtn');
+    if(downloadBtn) {
+        downloadBtn.addEventListener('click', () => {
+            window.print();
         });
     }
 });
