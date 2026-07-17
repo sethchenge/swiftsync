@@ -84,6 +84,7 @@ p, li, span, div {
 
 /* Badge Overrides */
 .badge-soft-primary { color: var(--primary); background-color: rgba(99, 91, 255, 0.1); border: 1px solid rgba(99, 91, 255, 0.2); }
+.badge-soft-info { color: var(--info); background-color: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.2); }
 .badge-soft-secondary { color: var(--secondary); background-color: rgba(10, 37, 64, 0.1); border: 1px solid rgba(10, 37, 64, 0.2); }
 
 /* ========================================= */
@@ -215,6 +216,13 @@ p, li, span, div {
 .hero-section .display-4 {
     line-height: 1.1;
 }
+
+/* Restricts the hero image size so it looks great on desktop and mobile */
+.hero-img {
+    max-height: 500px;
+    object-fit: contain;
+}
+
 .premium-shadow {
     box-shadow: var(--shadow-lg);
     border: 1px solid var(--border-light);
@@ -287,6 +295,13 @@ p, li, span, div {
 .premium-project-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-md);
+}
+
+/* Forces all portfolio/blog images to be exactly the same size */
+.premium-project-card .card-img-top {
+    height: 240px;
+    object-fit: cover;
+    width: 100%;
 }
 
 /* ========================================= */
@@ -423,6 +438,14 @@ p, li, span, div {
 /* Mobile Adjustments */
 @media (max-width: 991px) {
     .hero-section .display-4 { font-size: 2.5rem; }
+    
+    /* Mobile constraint for the hero image so it doesn't take up the whole screen */
+    .hero-img { 
+        max-width: 85%; 
+        margin: 0 auto;
+        max-height: 350px;
+    }
+    
     .whatsapp-float { width: 50px; height: 50px; bottom: 20px; right: 20px; }
     .scroll-top-btn { bottom: 85px; right: 25px; width: 40px; height: 40px; }
     .py-6 { padding-top: 4rem; padding-bottom: 4rem; }
